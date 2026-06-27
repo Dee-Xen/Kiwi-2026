@@ -499,6 +499,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   <div id="activities-content"></div>
 </div>
 
+<!-- ══════════ HIKES ══════════ -->
+<div id="s-hikes" class="screen">
+  <div class="nav-bar">
+    <div class="nav-title">Hikes</div>
+    <div class="nav-sub">Best walks by stop · winter-safe thinking</div>
+  </div>
+  <div id="hikes-content"></div>
+</div>
+
 <!-- ══════════ SHOPPING ══════════ -->
 <div id="s-shopping" class="screen">
   <div class="nav-bar">
@@ -506,6 +515,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
     <div class="nav-sub">Local makers · galleries · markets · strolls</div>
   </div>
   <div id="shopping-content"></div>
+</div>
+
+<!-- ══════════ COSTS ══════════ -->
+<div id="s-costs" class="screen">
+  <div class="nav-bar">
+    <div class="nav-title">Costs</div>
+    <div class="nav-sub">Invoices · payments · insurance · local extras</div>
+  </div>
+  <div id="costs-content"></div>
 </div>
 
 <!-- ══════════ INFO ══════════ -->
@@ -543,9 +561,17 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
     <div class="tab-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.6 4.1 2.1 6.9L12 16l-6.5 4 2.1-6.9L2 9h7z"/></svg></div>
     <span>Activities</span>
   </button>
+  <button class="tab-item" data-s="hikes" onclick="goTab('hikes')">
+    <div class="tab-icon"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M5 20l5-9 4 6 2-3 3 6"/><path d="M10 11l2-4 2 4"/><circle cx="18" cy="6" r="2"/></svg></div>
+    <span>Hikes</span>
+  </button>
   <button class="tab-item" data-s="shopping" onclick="goTab('shopping')">
     <div class="tab-icon"><svg viewBox="0 0 24 24"><path d="M6 2l1.5 4h9L18 2"/><path d="M3 6h18l-2 15H5z"/><path d="M8 10a4 4 0 0 0 8 0"/></svg></div>
     <span>Shop</span>
+  </button>
+  <button class="tab-item" data-s="costs" onclick="goTab('costs')">
+    <div class="tab-icon"><svg viewBox="0 0 24 24"><path d="M4 7h16"/><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 14h4"/><path d="M15 14h2"/></svg></div>
+    <span>Costs</span>
   </button>
   <button class="tab-item" data-s="info" onclick="goTab('info')">
     <div class="tab-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="9" y1="9" x2="9" y2="9.01"/><line x1="9" y1="13" x2="9" y2="17"/><line x1="15" y1="9" x2="15" y2="9.01"/><line x1="15" y1="13" x2="15" y2="17"/></svg></div>
@@ -585,14 +611,14 @@ const DAYS = [
   note:'Standard Room – Bed & Breakfast · Central Te Anau, short walk to lake',
   website:'https://www.distinctionhotels.com/distinction-luxmore-hotel-te-anau'},
  acts:[
-  {icon:'✈️',name:'Depart Sydney 07:20 → Queenstown 12:20',detail:'Air NZ · both passengers · booking ref 832630',
-   links:[lbtn('Air NZ','https://www.airnewzealand.co.nz'),lbtn('Flight status','https://www.airnewzealand.co.nz/flight-status')]},
-  {icon:'🚗',name:'Pick up RAV4 – Ezi Car Rental 13:30',detail:'Queenstown Airport · AWD automatic · one-way to Christchurch',
-   links:[lbtn('Ezi Car Rental','https://www.ezicarrental.co.nz'),lbtn('Airport map',mapsUrl('Queenstown Airport New Zealand'))]},
+  {icon:'✈️',name:'Depart Sydney 07:20 → Queenstown 12:20',detail:'Virgin Australia VA161 · reservation ESXBHT · eTickets 7952710457721 / 7952710457722 · baggage: 1 checked piece each',
+   links:[lbtn('Virgin check-in','https://www.virginaustralia.com/au/en/travel-info/bookings/check-in/'),lbtn('Virgin status','https://www.virginaustralia.com/au/en/travel-info/flight-status/'),docBtn('Flight e-tickets','docs/flight-e-tickets-fctaed.pdf')]},
+  {icon:'🚗',name:'Pick up RAV4 – Ezi Car Rental 13:30',detail:'Queenstown Airport · DriveAway voucher 705605775 · Ezi reservation R1QJJ7 · Toyota RAV4 or similar · one-way to Christchurch',
+   links:[lbtn('Ezi Car Rental','https://www.ezicarrental.co.nz'),docBtn('Car voucher','docs/ezi-car-hire-voucher-705605775.pdf'),lbtn('Airport map',mapsUrl('Queenstown Airport New Zealand'))]},
   {icon:'🏔️',name:'Drive to Te Anau ~2 hrs',detail:'SH6 · scenic lakeside · no tolls · arriving evening',
    links:[lbtn('Route',mapsUrl('Queenstown Airport to Te Anau New Zealand'))]},
  ],
- notes:['Allow ~40 min after landing for customs + bags before collecting car.'],
+ notes:['Allow ~40–60 min after landing for customs + bags before collecting car. Physical driver licence + physical credit card required for Ezi pickup.'],
  warns:[]},
 
 {date:'2026-07-01',place:'Te Anau',tagline:'Milford Sound day cruise',
@@ -648,16 +674,16 @@ const DAYS = [
  img:'https://images.unsplash.com/photo-1487730116645-74489c95b41b?auto=format&fit=crop&w=1400&q=80',leg:2,hotel:null,
  acts:[
   {icon:'⛷️',name:'Cardrona Alpine Resort – Day 1 of 2',detail:'Arrive ~09:00 · Ref 20674117 · both passengers · Beginner Zone · 2 x group lessons · full rental bundle (jacket, pants, helmet, goggles)',
-   links:[lbtn('Cardrona','https://www.cardrona.com'),lbtn('Snow report','https://www.cardrona.com/the-mountain/conditions/'),lbtn('Map',mapsUrl('Cardrona Alpine Resort New Zealand'))]},
+   links:[lbtn('Cardrona','https://www.cardrona.com'),lbtn('Snow report','https://www.cardrona.com/the-mountain/conditions/'),docBtn('Cardrona voucher','docs/cardrona-vouchers-20674117.pdf'),lbtn('Map',mapsUrl('Cardrona Alpine Resort New Zealand'))]},
  ],
- notes:['Collect RFID card + rental in Wanaka town or on mountain. Check pickup point evening before.'],
+ notes:['Collect RFID card + rental in Wanaka town or on mountain. Voucher barcode/order dated 6 Jul, but package is 2-day for 5–6 Jul — confirm collection before first ski day.'],
  warns:['Ski products non-refundable. Check snow conditions morning of departure.']},
 
 {date:'2026-07-06',place:'Wanaka – Cardrona',tagline:'Ski Day 2 – Cardrona Alpine Resort',
  img:'https://images.unsplash.com/photo-1455156218388-5e61b526818b?auto=format&fit=crop&w=1400&q=80',leg:2,hotel:null,
  acts:[
   {icon:'⛷️',name:'Cardrona Alpine Resort – Day 2 of 2',detail:'Same lift pass · 2 x group lessons · full rental bundle continues · lifts 09:00–16:00',
-   links:[lbtn('Cardrona','https://www.cardrona.com'),lbtn('Snow report','https://www.cardrona.com/the-mountain/conditions/')]},
+   links:[lbtn('Cardrona','https://www.cardrona.com'),lbtn('Snow report','https://www.cardrona.com/the-mountain/conditions/'),docBtn('Cardrona voucher','docs/cardrona-vouchers-20674117.pdf')]},
   {icon:'🍺',name:'Après ski – Wanaka',detail:'Ritual Brewing Co or Rippon Vineyard for sunset after the mountain',
    links:[lbtn('Ritual Brewing','https://www.ritualbrewing.co.nz'),lbtn('Rippon Vineyard','https://www.rippon.co.nz')]},
  ],
@@ -677,7 +703,7 @@ const DAYS = [
   {icon:'💎',name:'Lake Pukaki viewpoint',detail:'5-min stop on SH8 – most vivid turquoise water in NZ · Aoraki visible on clear days',
    links:[lbtn('Map',mapsUrl('Lake Pukaki viewpoint New Zealand'))]},
  ],
- notes:['Lake Pukaki is a 5-minute detour off SH8 – unmissable.'],warns:[]},
+ notes:['Lake Pukaki is a 5-minute detour off SH8 – unmissable.','Aoraki / Hooker Valley conditions can change in winter — check DOC before committing; Kea Point is the safer fallback.'],warns:[]},
 
 {date:'2026-07-08',place:'Lake Tekapo',tagline:'Free day · Church · hot pools · optional stargazing',
  img:'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=80',leg:3,hotel:null,
@@ -713,10 +739,10 @@ const DAYS = [
  acts:[
   {icon:'🚗',name:'Drop off RAV4 by 13:00',detail:'Christchurch Airport · Ezi Car Rental · ~20 min from The George',
    links:[lbtn('Airport map',mapsUrl('Christchurch Airport New Zealand'))]},
-  {icon:'✈️',name:'Depart CHC 16:35 → SYD 18:10',detail:'Air NZ · Ref 832630 · allow 2 hrs before departure · check in by 14:35',
-   links:[lbtn('Flight status','https://www.airnewzealand.co.nz/flight-status')]},
+  {icon:'✈️',name:'Depart CHC 17:20 → SYD 18:40',detail:'QF8765 operated by Emirates · Qantas ref DOEWBM · eTickets 0812710457723 / 0812710457724 · check in with Emirates/Qantas',
+   links:[lbtn('Virgin status','https://www.virginaustralia.com/au/en/travel-info/flight-status/')]},
  ],
- notes:['Leave The George by noon – car drop-off, fuel up, then airport check-in comfortably.'],warns:[]},
+ notes:['Leave The George by noon – car drop-off, fuel up, then airport check-in comfortably. Use 13:00 as the car drop-off target.'],warns:[]},
 ];
 
 // LEGS
@@ -773,7 +799,7 @@ const POIS = [
  {name:'Pescatore – The George',cat:'Eat & Drink',loc:'Christchurch',q:'Pescatore Restaurant Christchurch',web:'https://www.thegeorge.com/dining/pescatore/'},
 ];
 
-const MAP_CATS = ['All','Stay','Activity','Scenic','Eat & Drink','F&B','Recommended','Shopping'];
+const MAP_CATS = ['All','Stay','Activity','Scenic','Eat & Drink','F&B','Recommended','Hikes','Shopping'];
 
 const FNB_EXTRA = [
  {loc:'Te Anau',places:[
@@ -846,9 +872,40 @@ const SHOPPING_RECS = [
   {icon:'🛒',name:'The Tannery',type:'Boutique arcade',desc:'Beautiful restored shopping arcade with independent stores, homewares and cafés; worth it if you have a car and time.',tags:['Homewares','Boutiques'],q:'The Tannery Christchurch',web:'https://thetannery.co.nz'}]}
 ];
 
+
+const HIKE_RECS = [
+ {loc:'Te Anau',items:[
+  {icon:'🌿',name:'Lake Te Anau lakefront walk',type:'Easy town walk',time:'30–90 min',difficulty:'Easy',winter:'Good low-risk option in July',desc:'Best gentle leg-stretcher from the hotel: lake views, fresh air, no alpine commitment. Perfect arrival evening or after Milford if you still have legs.',tags:['Easy','Town','Low risk'],q:'Lake Te Anau lakefront walk',web:'https://www.fiordland.org.nz/visit/te-anau/'},
+  {icon:'🌉',name:'Kepler Track sample: Rainbow Reach → Shallow Bay',type:'Forest / Great Walk sampler',time:'3.5–4 hr return',difficulty:'Moderate',winter:'Only if weather is settled; winter Great Walk hazards apply',desc:'A nice bite-sized taste of the Kepler without committing to a Great Walk. Forest, river, lake edges and proper Fiordland mood.',tags:['Moderate','Forest','Half day'],q:'Rainbow Reach to Shallow Bay Kepler Track',web:'https://www.fiordland.org.nz/things-to-do/walking-and-hiking/day-walks/day-walks-te-anau/'},
+  {icon:'🌧️',name:'Milford Road short stops',type:'Short scenic walks',time:'10–45 min each',difficulty:'Easy',winter:'Use as weather-led stops only',desc:'Mirror Lakes, Lake Gunn and short forest walks can be brilliant on the Milford drive, but road/weather rules the day.',tags:['Short stops','Milford Road','Weather-led'],q:'Milford Road walks Mirror Lakes Lake Gunn',web:'https://www.fiordland.org.nz/things-to-do/walking-and-hiking/day-walks/milford-road-walks/'}
+ ]},
+ {loc:'Queenstown',items:[
+  {icon:'🚡',name:'Tiki Trail to Bob’s Peak',type:'Steep town hike',time:'~1 hr one-way',difficulty:'Moderate',winter:'Good all year; can be muddy/icy in patches',desc:'Short, punchy, and very Queenstown. Climb through forest to Skyline/Bob’s Peak, then reward yourself with the view or take the gondola down.',tags:['2.1 km','Moderate','Views'],q:'Tiki Trail Queenstown',web:'https://www.queenstownnz.co.nz/listing/tiki-trail/9099/'},
+  {icon:'⛰️',name:'Queenstown Hill Time Walk',type:'Classic viewpoint',time:'2–3 hr return',difficulty:'Moderate',winter:'Check ice and daylight',desc:'Probably the best effort-to-view ratio near town: Lake Whakatipu, The Remarkables, and a proper alpine payoff without a whole-day expedition.',tags:['Moderate','Viewpoint','Town access'],q:'Queenstown Hill Time Walk'},
+  {icon:'🏔️',name:'Ben Lomond Track',type:'Big day hike',time:'6–8 hr return',difficulty:'Hard',winter:'Only for fit, equipped hikers in safe conditions',desc:'The serious Queenstown option. Huge 360-degree views, but July conditions can be icy/snowy. Treat it as a maybe, not a casual stroll.',tags:['Hard','Big views','Weather dependent'],q:'Ben Lomond Track Queenstown',web:'https://www.queenstownnz.co.nz/things-to-do/outdoor-activities/walking-and-hiking/'}
+ ]},
+ {loc:'Wanaka',items:[
+  {icon:'⛰️',name:'Mount Iron Track',type:'Short local summit',time:'1 hr 30 min',difficulty:'Easy–intermediate',winter:'Good low-risk clear-day option',desc:'Excellent quick summit close to town with broad Wānaka views. This is the sensible “we still want a hike after skiing” option.',tags:['1.5 hr','Town','Views'],q:'Mount Iron Track Wanaka',web:'https://www.doc.govt.nz/parks-and-recreation/places-to-go/otago/places/wanaka-area/things-to-do/mount-iron-track/'},
+  {icon:'💎',name:'Diamond Lake + Rocky Mountain',type:'Half-day viewpoint hike',time:'2–3 hr',difficulty:'Moderate',winter:'Check track condition; steep sections can be slippery',desc:'Best scenery-per-hour around Wānaka: Diamond Lake, rocky viewpoints and big lake/mountain drama without committing to Roys Peak.',tags:['Moderate','Half day','Best views'],q:'Diamond Lake Rocky Mountain Wanaka',web:'https://www.doc.govt.nz/parks-and-recreation/places-to-go/otago/places/diamond-lake-and-hospital-flat/things-to-do/rocky-mountain-track/'},
+  {icon:'🌄',name:'Roys Peak Track',type:'Iconic big climb',time:'5–6 hr return',difficulty:'Hard',winter:'Only if conditions are clear and you actually want suffering',desc:'The postcard hike. Big climb, huge view. In July it can be cold/icy and not something to squeeze in casually around ski days.',tags:['Hard','Iconic','Early start'],q:'Roys Peak Track Wanaka'}
+ ]},
+ {loc:'Lake Tekapo',items:[
+  {icon:'🏔️',name:'Kea Point Track, Aoraki / Mt Cook',type:'Short alpine viewpoint',time:'1–2 hr return',difficulty:'Easy–intermediate',winter:'Better July fallback if Hooker is closed/limited',desc:'High reward without a huge commitment: Mueller Lake, moraine wall and Aoraki/Mount Cook views. Excellent replacement if Hooker Valley access is limited.',tags:['Aoraki','1–2 hr','DOC'],q:'Kea Point Track Aoraki Mount Cook',web:'https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/aoraki-mount-cook-national-park/things-to-do/tracks/kea-point-track/'},
+  {icon:'🌉',name:'Hooker Valley Track — check status',type:'Planned / conditional',time:'Open section only if still restricted',difficulty:'Easy–intermediate',winter:'Check DOC before committing',desc:'Still the famous one, but DOC has had bridge works/closures. Treat this as conditional: check the latest status before driving the day around it.',tags:['Check DOC','Conditional','Aoraki'],q:'Hooker Valley Track Aoraki Mount Cook',web:'https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/aoraki-mount-cook-national-park/things-to-do/tracks/hooker-valley-track/'},
+  {icon:'🔭',name:'Tekapo Mt John Walkway / Summit Circuit',type:'Tekapo viewpoint',time:'30–45 min summit circuit or 3 hr loop',difficulty:'Easy–advanced depending route',winter:'Drive-up summit circuit is the lazy-smart version',desc:'Big Mackenzie Basin panorama. Full walkway is a proper climb; if weather or legs are questionable, drive up and do the short summit circuit.',tags:['Views','Tekapo','Flexible'],q:'Tekapo Mt John Walkway',web:'https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/lake-tekapo-area/things-to-do/lake-tekapo-town-tracks/'},
+  {icon:'🌊',name:'Cowans Hill / Lake Tekapo town walks',type:'Easy Tekapo leg-stretcher',time:'1–2 hr',difficulty:'Easy',winter:'Good low-risk town option',desc:'A gentle alternative if you want views without turning the day into a survival documentary. Easy to pair with cafés, lakefront and hot pools.',tags:['Easy','Town','Lake views'],q:'Cowans Hill Walkway Lake Tekapo',web:'https://www.mackenzienz.com/short-walks-at-lake-tekapo/'}
+ ]},
+ {loc:'Christchurch',items:[
+  {icon:'🌊',name:'Awaroa / Godley Head Loop Track',type:'Coastal headland hike',time:'~3 hr loop',difficulty:'Easy–intermediate',winter:'Pick a clear low-wind day',desc:'The best “proper hike” near Christchurch: coastal cliffs, WWII history and huge sea views. Worth it if the final day has spare time.',tags:['9.3 km','Coastal','Views'],q:'Awaroa Godley Head Loop Track Christchurch',web:'https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/godley-head/things-to-do/godley-head-loop-track/'},
+  {icon:'⛰️',name:'Port Hills / Bridle Path',type:'City-edge hill walk',time:'1.5–3 hr',difficulty:'Moderate',winter:'Can be windy; good shoes needed',desc:'Classic Christchurch hill walking with harbour/city views. A strong option if you want movement before the flight without going far.',tags:['Port Hills','Moderate','Close to city'],q:'Bridle Path Port Hills Christchurch',web:'https://ccc.govt.nz/parks-and-gardens/explore-parks/port-hills'},
+  {icon:'🌿',name:'Botanic Gardens + Hagley Park loop',type:'Very easy final-day walk',time:'30–90 min',difficulty:'Easy',winter:'Best lazy option near The George',desc:'Not a hike-hike, but extremely useful: pretty, flat, next to the hotel, and perfect before airport/car drop-off logistics.',tags:['Easy','Near hotel','No drama'],q:'Christchurch Botanic Gardens Hagley Park'}
+ ]}
+];
+
 const EXTRA_POIS = [
  ...FNB_EXTRA.flatMap(l=>l.places.map(p=>({name:p.name,cat:'F&B',loc:l.loc,q:p.name+' '+l.loc,web:(p.links.find(x=>x.includes('Website'))||'').match(/href="([^"]+)/)?.[1]}))),
  ...ACTIVITY_RECS.flatMap(l=>l.items.map(p=>({name:p.name,cat:'Recommended',loc:l.loc,q:p.q,web:p.web}))),
+ ...HIKE_RECS.flatMap(l=>l.items.map(p=>({name:p.name,cat:'Hikes',loc:l.loc,q:p.q,web:p.web}))),
  ...SHOPPING_RECS.flatMap(l=>l.items.map(p=>({name:p.name,cat:'Shopping',loc:l.loc,q:p.q,web:p.web})))
 ];
 POIS.push(...EXTRA_POIS);
@@ -946,23 +1003,90 @@ const EAT = [
  ]},
 ];
 
+
+// IMPORTANT DOCUMENTS / COSTS / ADMIN
+const DOCS = [
+ {cat:'Flights',ico:'✈️',name:'Flight e-tickets',sub:'FCTAED · VA ESXBHT · QF DOEWBM',file:'docs/flight-e-tickets-fctaed.pdf'},
+ {cat:'Trip package',ico:'🧾',name:'ANZCRO itinerary',sub:'Booking 832630 · full itinerary and operator details',file:'docs/anzcro-itinerary-832630.pdf'},
+ {cat:'Car hire',ico:'🚗',name:'Ezi car hire voucher',sub:'DriveAway 705605775 · Ezi R1QJJ7',file:'docs/ezi-car-hire-voucher-705605775.pdf'},
+ {cat:'Ski',ico:'⛷️',name:'Cardrona vouchers',sub:'Order 20674117 · RFID barcode · 2-day bundle',file:'docs/cardrona-vouchers-20674117.pdf'},
+ {cat:'Costs',ico:'💳',name:'Flight Centre invoice',sub:'Invoice / Booking ID 9102494',file:'docs/flight-centre-invoice-9102494.pdf'},
+ {cat:'Costs',ico:'✅',name:'Payment receipt',sub:'Paid 19 Jun 2026 · $11,525.75 AUD',file:'docs/flight-centre-payment-receipt-9102494.pdf'},
+ {cat:'Insurance',ico:'🛡️',name:'Insurance certificate',sub:'Policy FCBAR00538996 · Gold · Winter Sports YES',file:'docs/insurance-certificate-fcbar00538996.pdf'},
+ {cat:'Insurance',ico:'📘',name:'Insurance PDS',sub:'Flight Centre Travel Insurance PDS · effective 1 Apr 2026',file:'docs/insurance-pds-2026-04.pdf'},
+ {cat:'Insurance',ico:'📄',name:'Insurance TMD',sub:'Target Market Determination · effective 1 Apr 2026',file:'docs/insurance-tmd-2026-04.pdf'},
+ {cat:'Insurance',ico:'🖼️',name:'Insurance email screenshot',sub:'Policy summary email screenshot',file:'docs/insurance-policy-email-screenshot.png'},
+];
+
+function docByName(name){ return DOCS.find(d=>d.name===name); }
+function docBtn(label,file,cls=''){ return lbtn(label,file,cls); }
+function docLinks(names){
+ return names.map(n=>docByName(n)).filter(Boolean).map(d=>docBtn(d.ico+' '+d.name,d.file)).join('');
+}
+
+const COSTS = [
+ {cat:'Package',item:'Travel services / package',ref:'Booking ID 9102494 · ANZCRO 832630',amount:'$11,193.26 AUD',note:'Includes flights, accommodation/package arrangements and taxes/fees. Does not include insurance.'},
+ {cat:'Flights',item:'Airfares',ref:'Included in Flight Centre invoice',amount:'$2,007.26 AUD',note:'For both travellers; non-refundable fare rules; date/time changes $109 pp plus fare/tax difference.'},
+ {cat:'Insurance',item:'Flight Centre Travel Insurance Gold',ref:'Policy FCBAR00538996',amount:'$314.51 AUD',note:'International Single Trip · NZ · Winter Sports YES · excess $250 · cancellation limit $5,000 pp.'},
+ {cat:'Payment',item:'Card surcharge',ref:'Payment receipt 9102494',amount:'$25.30 AUD',note:'Mastercard debit surcharge.'},
+ {cat:'Payment',item:'Total paid',ref:'Receipt issued 19 Jun 2026',amount:'$11,525.75 AUD',note:'Amount received by Flight Centre.'},
+ {cat:'Car',item:'Snow chains',ref:'Ezi local extra',amount:'NZ$105.00',note:'Requested extra; payable locally at pickup unless already charged later.'},
+ {cat:'Car',item:'Security deposit / pre-authorisation',ref:'Ezi terms',amount:'NZ$400.00',note:'Hold on card; physical card in main driver name required.'},
+ {cat:'Car',item:'Rental excess exposure',ref:'Ezi terms / insurance',amount:'NZ$5,999.55',note:'Covered by insurance excess waiver up to $10,000 and DriveAway refundable excess up to AUD $7,000. Do not blindly duplicate at counter.'},
+ {cat:'Optional',item:'Dark Sky Stargazing',ref:'Not yet booked',amount:'~$492 AUD for two',note:'Optional; weather-dependent; full refund only if operator cancels.'},
+];
+
+const ADMIN_WARNINGS = [
+ 'Te Anau hotel confirmed as Distinction Luxmore Hotel; ignore old Lakefront Lodge invoice note.',
+ 'Use 13:00 as car drop-off reminder even though car voucher says 13:30.',
+ 'Cardrona package is 2-day; voucher barcode/order is dated 6 Jul. Collect RFID/rentals before first ski day if possible.',
+ 'Outbound flight verified by Moamen: VA161 is 07:20 SYD → ZQN.',
+ 'Return flight: QF8765 operated by Emirates, 17:20 CHC → 18:40 SYD.',
+ 'Pack outbound to 23 kg checked per person. Return allows 30 kg checked per person.',
+];
+
+
 // INFO
 const BOOKINGS = [
- {icon:'✈️',title:'Flights – Air NZ',sub:'Both legs · 2 passengers',rows:[
-  {k:'Outbound',v:'30 Jun · SYD 07:20 → ZQN 12:20'},
-  {k:'Return',v:'10 Jul · CHC 16:35 → SYD 18:10'},
+ {icon:'✈️',title:'Flights',sub:'FCTAED · VA ESXBHT · QF DOEWBM',rows:[
+  {k:'Flight Centre reservation',v:'<span class="bk-ref">FCTAED</span>'},
+  {k:'Outbound',v:'30 Jun · Virgin Australia <b>VA161</b> · SYD 07:20 → ZQN 12:20 · Economy · seats 28B/28C'},
+  {k:'Outbound airline ref',v:'<span class="bk-ref">ESXBHT</span> · eTickets 7952710457721 / 7952710457722'},
+  {k:'Outbound baggage',v:'1 checked piece per person · pack to 23 kg each'},
+  {k:'Return',v:'10 Jul · Qantas <b>QF8765</b> operated by Emirates · CHC 17:20 → SYD 18:40 · Economy'},
+  {k:'Return airline ref',v:'<span class="bk-ref">DOEWBM</span> · eTickets 0812710457723 / 0812710457724'},
+  {k:'Return baggage',v:'30 kg checked baggage per person'},
   {k:'Passengers',v:'Panteha Jadidi · Moamen Elbadawy'},
-  {k:'Booking ref',v:'<span class="bk-ref">832630</span>'},
-  {k:'Insurance',v:'Included · incl. ski cover · $307.19'},
-  {k:'Check in',v:'<a href="https://www.airnewzealand.co.nz/check-in" target="_blank">airnewzealand.co.nz/check-in</a>'},
-  {k:'Flight status',v:'<a href="https://www.airnewzealand.co.nz/flight-status" target="_blank">Track flights</a>'},
+  {k:'Check in',v:'<a href="https://www.virginaustralia.com/au/en/travel-info/bookings/check-in/" target="_blank">Virgin outbound</a> · <a href="https://www.emirates.com/au/english/manage-booking/online-check-in/" target="_blank">Emirates return</a> · <a href="https://www.qantas.com/au/en/manage-booking.html" target="_blank">Qantas manage booking</a>'},
+  {k:'Documents',v:docLinks(['Flight e-tickets'])},
  ]},
- {icon:'🚗',title:'Car Hire – Ezi Car Rental',sub:'Toyota RAV4 AWD · one-way',rows:[
+ {icon:'🚗',title:'Car Hire – Ezi Car Rental',sub:'DriveAway 705605775 · Ezi R1QJJ7',rows:[
   {k:'Pickup',v:'30 Jun · Queenstown Airport · 13:30'},
-  {k:'Drop-off',v:'10 Jul · Christchurch Airport · by 13:00'},
-  {k:'Vehicle',v:'Toyota RAV4 or similar AWD'},
+  {k:'Drop-off',v:'10 Jul · Christchurch Airport · use 13:00 reminder'},
+  {k:'Vehicle',v:'Toyota RAV4 or similar · standard 5-door automatic with A/C'},
+  {k:'Driver',v:'Moamen Elbadawy'},
+  {k:'Flight number held',v:'VA161'},
+  {k:'Bring',v:'Physical driver licence + physical credit card in main driver name'},
+  {k:'Deposit',v:'NZ$400 pre-authorisation'},
+  {k:'Excess',v:'NZD 5,999.55 · travel insurance excess waiver $10,000 · DriveAway refundable excess up to AUD $7,000'},
+  {k:'Snow chains',v:'Requested · NZ$105 payable locally'},
   {k:'Operator',v:'<a href="https://www.ezicarrental.co.nz" target="_blank">Ezi Car Rental NZ</a>'},
-  {k:'Total',v:'$1,054.00 AUD'},
+  {k:'Documents',v:docLinks(['Ezi car hire voucher'])},
+ ]},
+ {icon:'🛡️',title:'Travel Insurance',sub:'Europ Assistance / Flight Centre · Gold International',rows:[
+  {k:'Policy number',v:'<span class="bk-ref">FCBAR00538996</span>'},
+  {k:'Period',v:'30 Jun 2026 – 10 Jul 2026'},
+  {k:'Destination',v:'New Zealand'},
+  {k:'Plan',v:'Gold · International'},
+  {k:'Premium',v:'$314.51 AUD'},
+  {k:'Excess',v:'$250 per policy, per event, applicable benefits only'},
+  {k:'Cancellation limit',v:'$5,000 AUD per person'},
+  {k:'Winter Sports Add-on',v:'YES'},
+  {k:'Rental car excess waiver',v:'$10,000'},
+  {k:'Add-ons not selected',v:'Change of Mind NO · Action Pack NO · Cruise NO · Increased luggage sub-limit NO'},
+  {k:'Emergency assistance',v:'<a href="tel:+61293333977">+61 2 9333 3977</a> · <a href="mailto:assistance@europ-assistance.com.au">assistance@europ-assistance.com.au</a>'},
+  {k:'Enquiries',v:'<a href="tel:+61293333970">+61 2 9333 3970</a> · <a href="mailto:enquiries@europ-assistance.com.au">enquiries@europ-assistance.com.au</a>'},
+  {k:'Documents',v:docLinks(['Insurance certificate','Insurance PDS','Insurance TMD'])},
  ]},
  {icon:'🏨',title:'Distinction Luxmore Hotel',sub:'Te Anau · 2 nights · 30 Jun – 2 Jul',rows:[
   {k:'Booking ref',v:'<span class="bk-ref">ANZ-20314688</span>'},
@@ -1021,19 +1145,20 @@ const BOOKINGS = [
   {k:'Phone',v:'<a href="tel:+6434438311">+64 3-443 8311</a>'},
   {k:'Website',v:'<a href="https://www.edgewater.co.nz" target="_blank">edgewater.co.nz</a>'},
   {k:'Map',v:'<a href="'+mapsUrl('Edgewater Hotel Wanaka New Zealand')+'" target="_blank">Open in Google Maps</a>'},
-  {k:'Special note',v:'4-night stay = 3 nights price (stay 4 pay 3 deal)'},
  ]},
  {icon:'⛷️',title:'Cardrona 2-Day Ski Package',sub:'5–6 Jul · both passengers · beginner zone',rows:[
-  {k:'Booking ref',v:'<span class="bk-ref">20674117</span>'},
+  {k:'Order / booking ref',v:'<span class="bk-ref">20674117</span>'},
+  {k:'Customer number',v:'<span class="bk-ref">1526061</span>'},
   {k:'Package',v:'2 Day Full Day · Lift + 4 Lessons + Full Rental Bundle'},
-  {k:'Days',v:'Sunday 5 Jul + Monday 6 Jul (consecutive)'},
+  {k:'Days',v:'Sunday 5 Jul + Monday 6 Jul'},
+  {k:'Voucher date',v:'6 Jul 2026 · barcode/RFID pickup voucher'},
   {k:'Meet time',v:'09:00 on mountain · Cardrona Valley Road'},
   {k:'Rental includes',v:'Equipment · Jacket · Pants · Helmet · Goggles'},
-  {k:'Collect RFID',v:'In Wanaka town or on mountain – confirm evening before'},
-  {k:'Resort phone',v:'Cardrona Valley Road (see website)'},
+  {k:'Collect RFID',v:'Town offices Queenstown/Wānaka or on mountain'},
   {k:'Website',v:'<a href="https://www.cardrona.com" target="_blank">cardrona.com</a>'},
   {k:'Snow report',v:'<a href="https://www.cardrona.com/the-mountain/conditions/" target="_blank">Daily conditions</a>'},
-  {k:'Important',v:'Non-refundable · valid Cardrona only · 2026 season'},
+  {k:'Important',v:'Non-refundable · valid Cardrona only · 2026 ski season'},
+  {k:'Documents',v:docLinks(['Cardrona vouchers'])},
  ]},
  {icon:'🏨',title:'Grand Suites Lake Tekapo',sub:'2 nights · 7–9 Jul',rows:[
   {k:'Booking ref',v:'<span class="bk-ref">25612</span>'},
@@ -1051,10 +1176,9 @@ const BOOKINGS = [
   {k:'Departure',v:'18:30 from Lake Tekapo'},
   {k:'Operator',v:'Dark Sky Project'},
   {k:'Includes',v:'Summit Experience · Mt John Observatory'},
-  {k:'Cost',v:'$492 AUD for two'},
+  {k:'Cost',v:'~$492 AUD for two'},
   {k:'Cancellation',v:'Full refund if guides cancel for weather'},
   {k:'Book',v:'<a href="https://www.darkskyproject.co.nz/tours/summit-experience/" target="_blank">darkskyproject.co.nz</a>'},
-  {k:'Phone',v:'<a href="https://www.darkskyproject.co.nz" target="_blank">Contact via website</a>'},
  ]},
  {icon:'🏨',title:'The George',sub:'Christchurch · 1 night · 9–10 Jul',rows:[
   {k:'Booking ref',v:'<span class="bk-ref">ANZ-20302364</span>'},
@@ -1083,13 +1207,17 @@ const EMERGENCY = [
 ];
 
 const QUICK_LINKS = [
+ {ico:'📄',name:'Flight e-tickets',sub:'Open PDF',url:'docs/flight-e-tickets-fctaed.pdf'},
+ {ico:'🛡️',name:'Insurance cert',sub:'Policy FCBAR00538996',url:'docs/insurance-certificate-fcbar00538996.pdf'},
+ {ico:'🚗',name:'Car voucher',sub:'Ezi R1QJJ7',url:'docs/ezi-car-hire-voucher-705605775.pdf'},
+ {ico:'⛷️',name:'Cardrona voucher',sub:'RFID barcode',url:'docs/cardrona-vouchers-20674117.pdf'},
+ {ico:'🥾',name:'DOC track status',sub:'Check closures before hiking',url:'https://www.doc.govt.nz/parks-and-recreation/'},
  {ico:'🌤️',name:'MetService NZ',sub:'Live weather',url:'https://www.metservice.com'},
  {ico:'⛷️',name:'Cardrona Snow',sub:'Daily conditions',url:'https://www.cardrona.com/the-mountain/conditions/'},
  {ico:'🛣️',name:'NZTA Roads',sub:'Road conditions',url:'https://www.journeys.nzta.govt.nz/'},
  {ico:'🏔️',name:'Milford Road',sub:'SH94 status',url:'https://www.milfordroad.co.nz'},
- {ico:'🔭',name:'Dark Sky Project',sub:'Stargazing book',url:'https://www.darkskyproject.co.nz'},
- {ico:'✈️',name:'Air NZ Flights',sub:'Track your flights',url:'https://www.airnewzealand.co.nz/flight-status'},
- {ico:'🗺️',name:'NZ DOC',sub:'Tracks & parks',url:'https://www.doc.govt.nz'},
+ {ico:'✈️',name:'Virgin check-in',sub:'Outbound VA161',url:'https://www.virginaustralia.com/au/en/travel-info/bookings/check-in/'},
+ {ico:'✈️',name:'Emirates check-in',sub:'Return QF8765/EK413',url:'https://www.emirates.com/au/english/manage-booking/online-check-in/'},
  {ico:'📋',name:'NZ Traveller Decl.',sub:'NZTD app / online',url:'https://www.travellerdeclaration.govt.nz/'},
 ];
 
@@ -1217,8 +1345,9 @@ function dayRecModules(d,i){
  const loc=dayLoc(d);
  const fnb=mergedFnbForLoc(loc).slice(0,3);
  const acts=(ACTIVITY_RECS.find(x=>x.loc===loc)?.items||[]).slice(0,3);
+ const hikes=(HIKE_RECS.find(x=>x.loc===loc)?.items||[]).slice(0,3);
  const shops=(SHOPPING_RECS.find(x=>x.loc===loc)?.items||[]).slice(0,2);
- return `${miniRecModule('Nearby F&B',loc+' options worth checking','🍽️',fnb,loc,3)}${miniRecModule('Activity maybes','Weather backups and nearby side quests','✨',acts,loc,3)}${miniRecModule('Shopping / local finds','Local makers, galleries and strolls','🛍️',shops,loc,2)}`;
+ return `${miniRecModule('Nearby F&B',loc+' options worth checking','🍽️',fnb,loc,3)}${miniRecModule('Hikes nearby','Best walks around this stop, with winter notes','🥾',hikes,loc,3)}${miniRecModule('Activity maybes','Weather backups and nearby side quests','✨',acts,loc,3)}${miniRecModule('Shopping / local finds','Local makers, galleries and strolls','🛍️',shops,loc,2)}`;
 }
 
 function criticalTiles(d,idx){
@@ -1238,7 +1367,7 @@ function enhancedDayCard(d,i,expanded=false){
  const acts=d.acts.map(a=>`<div class="activity-card"><div class="activity-top"><div class="activity-icon">${a.icon}</div><div class="activity-content"><div class="activity-title">${a.name}</div><div class="activity-detail">${a.detail}</div><div class="act-links">${activityLinks(a,d)}</div>${expanded?`<div class="activity-reco"><b>Trip note:</b> ${activityInsight(a,d)}</div>`:''}</div></div></div>`).join('');
  const h=d.hotel?`<div class="activity-card"><div class="activity-top"><div class="activity-icon">🏨</div><div class="activity-content"><div class="activity-title">Tonight: ${d.hotel.name}</div><div class="activity-detail">${d.hotel.addr}<br>${d.hotel.note}<br>Ref ${d.hotel.ref} · ${d.hotel.display}</div><div class="act-links">${lbtn('Hotel website',d.hotel.website)}${lbtn('Map',mapsUrl(d.hotel.name+' '+d.hotel.addr))}${phoneBtn('Call',d.hotel.phone)}</div></div></div></div>`:'';
  const alerts=[...(d.warns||[]).map(w=>`<div class="alert alert-danger">⚠️ <span>${w}</span></div>`),...(d.notes||[]).map(n=>`<div class="alert alert-info">💡 <span>${n}</span></div>`)].join('');
- const loc=dayLoc(d); const quick=(!expanded)?`<div style="padding:0 16px 13px;"><div class="rec-tags"><span class="rec-tag">🍽️ ${mergedFnbForLoc(loc).length} F&amp;B picks</span><span class="rec-tag">✨ ${(ACTIVITY_RECS.find(x=>x.loc===loc)?.items||[]).length} maybes</span><span class="rec-tag">🛍️ ${(SHOPPING_RECS.find(x=>x.loc===loc)?.items||[]).length} local finds</span></div></div>`:''; return `<div class="itinerary-card"><div class="itinerary-head"><div class="itinerary-date"><div>${dayNum(d.date)}</div><div class="m">${dayMon(d.date)}</div></div><div style="flex:1;"><div class="itinerary-title">${d.place}</div><div class="itinerary-sub">${fmtDate(d.date,{weekday:'long',day:'numeric',month:'long'})} · ${d.tagline}</div><div class="info-pills">${dayBookingPills(d,i)}</div></div></div>${acts}${h}${quick}${alerts?`<div style="padding:12px 16px 4px;">${alerts}</div>`:''}</div>${expanded?dayRecModules(d,i):''}`;
+ const loc=dayLoc(d); const quick=(!expanded)?`<div style="padding:0 16px 13px;"><div class="rec-tags"><span class="rec-tag">🍽️ ${mergedFnbForLoc(loc).length} F&amp;B picks</span><span class="rec-tag">🥾 ${(HIKE_RECS.find(x=>x.loc===loc)?.items||[]).length} hikes</span><span class="rec-tag">✨ ${(ACTIVITY_RECS.find(x=>x.loc===loc)?.items||[]).length} maybes</span><span class="rec-tag">🛍️ ${(SHOPPING_RECS.find(x=>x.loc===loc)?.items||[]).length} local finds</span></div></div>`:''; return `<div class="itinerary-card"><div class="itinerary-head"><div class="itinerary-date"><div>${dayNum(d.date)}</div><div class="m">${dayMon(d.date)}</div></div><div style="flex:1;"><div class="itinerary-title">${d.place}</div><div class="itinerary-sub">${fmtDate(d.date,{weekday:'long',day:'numeric',month:'long'})} · ${d.tagline}</div><div class="info-pills">${dayBookingPills(d,i)}</div></div></div>${acts}${h}${quick}${alerts?`<div style="padding:12px 16px 4px;">${alerts}</div>`:''}</div>${expanded?dayRecModules(d,i):''}`;
 }
 function legInsight(leg){
  const name=leg.name.toLowerCase();
@@ -1290,6 +1419,9 @@ function buildLeg(){
  leg.days.forEach(di=>{ html+=enhancedDayCard(DAYS[di],di,false); });
  const eats=EAT.find(e=>leg.name.includes(e.loc)||leg.tags.join(' ').includes(e.loc)||e.loc==='Te Anau'&&leg.name.includes('Fiordland')||e.loc==='Lake Tekapo'&&leg.name.includes('Tekapo'));
  if(eats){ html+=`<div class="sec-head"><h2>Nearby Food Moves</h2></div><div class="gcard"><div class="gcard-body">${eats.places.slice(0,3).map(p=>`<div class="act-row2"><div class="act-ico">🍽️</div><div class="act-meta"><div class="act-title">${p.name}</div><div class="act-detail">${p.desc}</div><div class="act-links">${p.links.slice(0,2).join('')}</div></div></div>`).join('')}</div></div>`; }
+ const legLoc=dayLoc(DAYS[leg.days[0]]);
+ const legHikes=(HIKE_RECS.find(x=>x.loc===legLoc)?.items||[]).slice(0,3);
+ if(legHikes.length){ html+=`<div class="sec-head"><h2>Best Hikes Nearby</h2><button class="seeall" onclick="goTab('hikes')">Hikes</button></div><div class="gcard"><div class="gcard-body">${legHikes.map(p=>`<div class="act-row2"><div class="act-ico">${p.icon}</div><div class="act-meta"><div class="act-title">${p.name}</div><div class="act-detail"><b>${p.time} · ${p.difficulty}</b><br>${p.desc}</div><div class="act-links">${recLinksForItem(p,legLoc)}</div></div></div>`).join('')}</div></div>`; }
  html+='<div style="height:8px;"></div>'; el.innerHTML=html;
 }
 
@@ -1359,7 +1491,7 @@ function buildTimeline(){
  const el=document.getElementById('timeline-content');
  if(!timelineBuilt){
   timelineBuilt=true;
-  el.innerHTML=`<div class="tab-intro"><b>Spin the trip wheel.</b> Swipe across the days, or use the previous/next buttons. The selected day opens below with bookings, links, F&amp;B, activities and shopping suggestions.</div><div class="wheel-wrap"><div class="wheel-center"></div><div class="wheel-days" id="timeline-wheel"></div></div><div class="wheel-controls"><button class="wheel-btn" onclick="shiftTimeline(-1)">← Previous day</button><button class="wheel-btn" onclick="shiftTimeline(1)">Next day →</button></div><div id="timeline-detail"></div>`;
+  el.innerHTML=`<div class="tab-intro"><b>Spin the trip wheel.</b> Swipe across the days, or use the previous/next buttons. The selected day opens below with bookings, links, F&amp;B, hikes, activities and shopping suggestions.</div><div class="wheel-wrap"><div class="wheel-center"></div><div class="wheel-days" id="timeline-wheel"></div></div><div class="wheel-controls"><button class="wheel-btn" onclick="shiftTimeline(-1)">← Previous day</button><button class="wheel-btn" onclick="shiftTimeline(1)">Next day →</button></div><div id="timeline-detail"></div>`;
   const wheel=document.getElementById('timeline-wheel');
   wheel.innerHTML=DAYS.map((d,i)=>`<button class="wheel-day ${i===activeTimelineDay?'active':''}" onclick="selectTimelineDay(${i},true)"><div class="num">${dayNum(d.date)}</div><div class="dow">${new Date(d.date+'T00:00:00').toLocaleDateString('en-AU',{weekday:'short'})}</div><div class="loc">${d.place.split('→').slice(-1)[0].trim()}</div></button>`).join('');
   wheel.addEventListener('scroll',()=>{ clearTimeout(wheel._t); wheel._t=setTimeout(()=>snapWheelSelection(),90); },{passive:true});
@@ -1420,6 +1552,20 @@ function buildActivities(){
  document.getElementById('activities-content').innerHTML=html;
 }
 
+
+// ═══════════════════════════════════════════════════════════
+// HIKES
+// ═══════════════════════════════════════════════════════════
+function buildHikes(){
+ let html='<div class="tab-intro"><b>Hikes for the Big Boss.</b> Best walks around each stop, filtered for July reality: daylight, winter conditions, road/weather risk and how much pain is actually worth it. Check DOC/status before any alpine or Aoraki walk.</div>';
+ HIKE_RECS.forEach(group=>{
+  html+=`<div style="padding:20px 16px 8px;"><span style="font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">${group.loc}</span> <span style="font-size:13px;color:var(--label2);">${group.items.length} walks</span></div>`;
+  html+=`<div class="rec-module"><div class="rec-list">${group.items.map(p=>`<div class="rec-row"><div class="rec-ico">${p.icon}</div><div style="flex:1;"><div class="rec-name">${p.name}</div><div class="rec-desc"><b>${p.type}</b> · ${p.time} · ${p.difficulty}<br>${p.desc}</div><div class="activity-reco"><b>Winter note:</b> ${p.winter}</div><div class="rec-tags">${(p.tags||[]).map(t=>`<span class="rec-tag">${t}</span>`).join('')}</div><div class="act-links" style="margin-top:8px;">${recLinksForItem(p,group.loc)}</div></div></div>`).join('')}</div></div>`;
+ });
+ html+='<div style="height:16px;"></div>';
+ document.getElementById('hikes-content').innerHTML=html;
+}
+
 // ═══════════════════════════════════════════════════════════
 // SHOPPING
 // ═══════════════════════════════════════════════════════════
@@ -1433,6 +1579,47 @@ function buildShopping(){
  document.getElementById('shopping-content').innerHTML=html;
 }
 
+
+// ═══════════════════════════════════════════════════════════
+// COSTS
+// ═══════════════════════════════════════════════════════════
+function buildCosts(){
+ let html='';
+
+ html+=`<div class="tab-intro"><b>Costs &amp; references.</b> Invoice numbers, payment proof, insurance references and local extras. Amounts are in AUD unless shown otherwise.</div>`;
+
+ const totals=[
+  ['Travel Services','$11,193.26','Invoice 9102494'],
+  ['Insurance','$314.51','Policy FCBAR00538996'],
+  ['Total Paid','$11,525.75','Receipt 19 Jun 2026'],
+ ];
+ html+=`<div style="padding:12px 16px 4px;"><div class="ql-grid">${totals.map(t=>`<div class="ql-btn" style="text-align:left;"><div class="ql-ico">💳</div><div class="ql-name">${t[0]}</div><div class="ql-sub">${t[1]} · ${t[2]}</div></div>`).join('')}</div></div>`;
+
+ ['Package','Flights','Insurance','Payment','Car','Optional'].forEach(cat=>{
+  const rows=COSTS.filter(c=>c.cat===cat);
+  if(!rows.length) return;
+  html+=`<div style="padding:18px 16px 8px;font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">${cat}</div>`;
+  rows.forEach(c=>{
+   html+=`<div class="bk-card" style="margin:0 16px 12px;">
+    <div class="bk-head"><div class="bk-head-icon">💰</div><div><div class="bk-head-title">${c.item}</div><div class="bk-head-sub">${c.ref}</div></div></div>
+    <div class="bk-row"><span class="k">Amount</span><span class="v"><b>${c.amount}</b></span></div>
+    <div class="bk-row"><span class="k">Note</span><span class="v">${c.note}</span></div>
+   </div>`;
+  });
+ });
+
+ html+=`<div style="padding:18px 16px 8px;font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">Cost Documents</div>
+ <div class="rec-module"><div class="rec-list">
+ ${DOCS.filter(d=>['Costs','Insurance','Trip package'].includes(d.cat)).map(d=>`<div class="rec-row"><div class="rec-ico">${d.ico}</div><div style="flex:1;"><div class="rec-name">${d.name}</div><div class="rec-desc">${d.sub}</div><div class="act-links" style="margin-top:8px;">${docBtn('Open document',d.file)}</div></div></div>`).join('')}
+ </div></div>`;
+
+ html+=`<div style="padding:18px 16px 8px;font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">Watch-outs</div>
+ <div class="list-card" style="margin:0 16px;">${ADMIN_WARNINGS.map(w=>`<div class="list-row"><div class="list-row-body"><div class="list-row-title">${w}</div></div></div>`).join('')}</div>`;
+
+ html+='<div style="height:16px;"></div>';
+ document.getElementById('costs-content').innerHTML=html;
+}
+
 // ═══════════════════════════════════════════════════════════
 // INFO
 // ═══════════════════════════════════════════════════════════
@@ -1442,6 +1629,17 @@ function buildInfo(){
  // Quick links grid
  html+=`<div style="padding:20px 16px 10px;font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">Quick Links</div>
  <div class="ql-grid">${QUICK_LINKS.map(q=>`<a class="ql-btn" href="${q.url}" target="_blank" rel="noopener"><div class="ql-ico">${q.ico}</div><div class="ql-name">${q.name}</div><div class="ql-sub">${q.sub}</div></a>`).join('')}</div>`;
+
+ // Documents
+ html+=`<div style="padding:20px 16px 10px;font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">Important Documents</div>`;
+ ['Flights','Trip package','Car hire','Ski','Insurance','Costs'].forEach(cat=>{
+  const docs=DOCS.filter(d=>d.cat===cat);
+  if(!docs.length) return;
+  html+=`<div class="bk-card" style="margin:0 16px 12px;">
+   <div class="bk-head"><div class="bk-head-icon">📁</div><div><div class="bk-head-title">${cat}</div><div class="bk-head-sub">${docs.length} document${docs.length>1?'s':''}</div></div></div>
+   ${docs.map(d=>`<div class="bk-row"><span class="k">${d.ico} ${d.name}</span><span class="v">${docBtn('Open',d.file)}</span></div>`).join('')}
+  </div>`;
+ });
 
  // Emergency
  html+=`<div class="list-section" style="margin-top:8px;">
@@ -1467,7 +1665,7 @@ function buildInfo(){
  // Recommendations index
  html+=`<div style="padding:20px 16px 10px;font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">Recommendation Index</div>`;
  ['Te Anau','Queenstown','Wanaka','Lake Tekapo','Christchurch'].forEach(loc=>{
-  html+=`<div class="bk-card" style="margin:0 16px 12px;"><div class="bk-head"><div class="bk-head-icon">📍</div><div><div class="bk-head-title">${loc}</div><div class="bk-head-sub">F&amp;B · activities · shopping pins are on the Map tab</div></div></div><div class="bk-row"><span class="k">F&amp;B</span><span class="v">${mergedFnbForLoc(loc).slice(0,3).map(x=>x.name).join(' · ')}</span></div><div class="bk-row"><span class="k">Activities</span><span class="v">${(ACTIVITY_RECS.find(x=>x.loc===loc)?.items||[]).slice(0,3).map(x=>x.name).join(' · ')}</span></div><div class="bk-row"><span class="k">Shopping</span><span class="v">${(SHOPPING_RECS.find(x=>x.loc===loc)?.items||[]).slice(0,3).map(x=>x.name).join(' · ')}</span></div></div>`;
+  html+=`<div class="bk-card" style="margin:0 16px 12px;"><div class="bk-head"><div class="bk-head-icon">📍</div><div><div class="bk-head-title">${loc}</div><div class="bk-head-sub">F&amp;B · hikes · activities · shopping pins are on the Map tab</div></div></div><div class="bk-row"><span class="k">F&amp;B</span><span class="v">${mergedFnbForLoc(loc).slice(0,3).map(x=>x.name).join(' · ')}</span></div><div class="bk-row"><span class="k">Hikes</span><span class="v">${(HIKE_RECS.find(x=>x.loc===loc)?.items||[]).slice(0,3).map(x=>x.name).join(' · ')}</span></div><div class="bk-row"><span class="k">Activities</span><span class="v">${(ACTIVITY_RECS.find(x=>x.loc===loc)?.items||[]).slice(0,3).map(x=>x.name).join(' · ')}</span></div><div class="bk-row"><span class="k">Shopping</span><span class="v">${(SHOPPING_RECS.find(x=>x.loc===loc)?.items||[]).slice(0,3).map(x=>x.name).join(' · ')}</span></div></div>`;
  });
 
  // Essentials
@@ -1481,6 +1679,8 @@ function buildInfo(){
    <div class="list-row"><div class="list-row-body"><div class="list-row-title">Power plugs</div><div class="list-row-sub">Type I – same as Australia, no adapter needed</div></div></div>
    <div class="list-row"><div class="list-row-body"><div class="list-row-title">Tipping</div><div class="list-row-sub">Not expected · optional at fine dining</div></div></div>
    <div class="list-row"><div class="list-row-body"><div class="list-row-title">Cardrona ski gear</div><div class="list-row-sub">Jacket, pants, helmet, goggles included in package – don't pack</div></div></div>
+   <div class="list-row"><div class="list-row-body"><div class="list-row-title">Baggage</div><div class="list-row-sub">Outbound Virgin: 1 checked piece each. Return: 30 kg each. Pack to 23 kg each.</div></div></div>
+   <div class="list-row"><div class="list-row-body"><div class="list-row-title">Insurance</div><div class="list-row-sub">Gold International · Winter Sports YES · policy FCBAR00538996 · emergency +61 2 9333 3977</div></div></div>
    <div class="list-row"><div class="list-row-body"><div class="list-row-title">Footwear</div><div class="list-row-sub">Waterproof non-slip boots for Milford Sound + Hooker Valley</div></div></div>
   </div>
  </div>`;
@@ -1501,7 +1701,9 @@ function goTab(name){
  if(name==='map') buildMap();
  if(name==='timeline') buildTimeline();
  if(name==='activities') buildActivities();
+ if(name==='hikes') buildHikes();
  if(name==='shopping') buildShopping();
+ if(name==='costs') buildCosts();
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -1553,7 +1755,9 @@ function scheduleLocalMidnightRefresh(){
 function initApp(){
  buildEat();
  buildActivities();
+ buildHikes();
  buildShopping();
+ buildCosts();
  buildInfo();
  buildTimeline();
  refreshDateSensitiveViews(true);
