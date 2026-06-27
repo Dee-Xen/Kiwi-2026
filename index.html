@@ -8,10 +8,11 @@
 <meta name="apple-mobile-web-app-title" content="NZ Jul '26">
 <meta name="theme-color" content="#F2F2F7">
 <title>NZ · South Island · Jul 2026</title>
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="manifest" href="manifest.json?v=4">
+<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png?v=4">
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="./apple-touch-icon.png?v=4">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png?v=4">
+<link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png?v=4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -1234,7 +1235,7 @@ function criticalTiles(d,idx){
 }
 function enhancedDayCard(d,i,expanded=false){
  const dd=new Date(d.date+'T00:00:00');
- const acts=d.acts.map(a=>`<div class="activity-card"><div class="activity-top"><div class="activity-icon">${a.icon}</div><div class="activity-content"><div class="activity-title">${a.name}</div><div class="activity-detail">${a.detail}</div><div class="act-links">${activityLinks(a,d)}</div>${expanded?`<div class="activity-reco"><b>Mira note:</b> ${activityInsight(a,d)}</div>`:''}</div></div></div>`).join('');
+ const acts=d.acts.map(a=>`<div class="activity-card"><div class="activity-top"><div class="activity-icon">${a.icon}</div><div class="activity-content"><div class="activity-title">${a.name}</div><div class="activity-detail">${a.detail}</div><div class="act-links">${activityLinks(a,d)}</div>${expanded?`<div class="activity-reco"><b>Trip note:</b> ${activityInsight(a,d)}</div>`:''}</div></div></div>`).join('');
  const h=d.hotel?`<div class="activity-card"><div class="activity-top"><div class="activity-icon">🏨</div><div class="activity-content"><div class="activity-title">Tonight: ${d.hotel.name}</div><div class="activity-detail">${d.hotel.addr}<br>${d.hotel.note}<br>Ref ${d.hotel.ref} · ${d.hotel.display}</div><div class="act-links">${lbtn('Hotel website',d.hotel.website)}${lbtn('Map',mapsUrl(d.hotel.name+' '+d.hotel.addr))}${phoneBtn('Call',d.hotel.phone)}</div></div></div></div>`:'';
  const alerts=[...(d.warns||[]).map(w=>`<div class="alert alert-danger">⚠️ <span>${w}</span></div>`),...(d.notes||[]).map(n=>`<div class="alert alert-info">💡 <span>${n}</span></div>`)].join('');
  const loc=dayLoc(d); const quick=(!expanded)?`<div style="padding:0 16px 13px;"><div class="rec-tags"><span class="rec-tag">🍽️ ${mergedFnbForLoc(loc).length} F&amp;B picks</span><span class="rec-tag">✨ ${(ACTIVITY_RECS.find(x=>x.loc===loc)?.items||[]).length} maybes</span><span class="rec-tag">🛍️ ${(SHOPPING_RECS.find(x=>x.loc===loc)?.items||[]).length} local finds</span></div></div>`:''; return `<div class="itinerary-card"><div class="itinerary-head"><div class="itinerary-date"><div>${dayNum(d.date)}</div><div class="m">${dayMon(d.date)}</div></div><div style="flex:1;"><div class="itinerary-title">${d.place}</div><div class="itinerary-sub">${fmtDate(d.date,{weekday:'long',day:'numeric',month:'long'})} · ${d.tagline}</div><div class="info-pills">${dayBookingPills(d,i)}</div></div></div>${acts}${h}${quick}${alerts?`<div style="padding:12px 16px 4px;">${alerts}</div>`:''}</div>${expanded?dayRecModules(d,i):''}`;
@@ -1247,7 +1248,6 @@ function legInsight(leg){
  if(name.includes('tekapo')||name.includes('cook')) return 'This is the big landscape leg: Aoraki, Pukaki blue water, Hooker Valley, hot pools and dark skies. Weather decides how epic it gets.';
  return 'Final reset before flying home: easier driving, good food, gardens, car drop-off and airport timing.';
 }
-const ROUTE_EMBED='https://www.google.com/maps/dir/Queenstown+Airport,+Sir+Henry+Wigley+Drive,+Frankton,+Queenstown+9300,+New+Zealand/Te+Anau,+New+Zealand/Queenstown,+New+Zealand/Wanaka,+New+Zealand/Cardrona+Alpine+Resort,+Cardrona+Valley+Rd,+Cardrona+9305,+New+Zealand/Aoraki+Mount+Cook,+7999,+New+Zealand/Lake+Tekapo,+7999,+New+Zealand/Christchurch+Airport,+30+Durey+Road,+Harewood,+Christchurch+8053,+New+Zealand?output=embed';
 const ROUTE_LINK='https://maps.app.goo.gl/aeY3G8nsg5mVSE8M7';
 
 // ═══════════════════════════════════════════════════════════
@@ -1331,23 +1331,20 @@ function setMapToPoi(i){
  document.querySelectorAll('.map-poi-card').forEach(c=>c.classList.remove('active'));
  const card=document.getElementById('mpoi-'+i); if(card){ card.classList.add('active'); card.scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'}); }
 }
-function showDriveRoute(){
- document.getElementById('gmap-iframe').src=ROUTE_EMBED;
- document.querySelectorAll('.map-poi-card').forEach(c=>c.classList.remove('active'));
- document.getElementById('route-panel').style.display='block';
-}
+
 function buildMap(){
  if(mapReady) return; mapReady=true;
  const wrap=document.getElementById('map-frame-wrap'); const h=Math.max(280,Math.floor(window.innerHeight*.42));
- wrap.style.height=h+'px'; document.getElementById('gmap-iframe').style.height=h+'px'; document.getElementById('gmap-iframe').src=ROUTE_EMBED;
+ wrap.style.height=h+'px'; document.getElementById('gmap-iframe').style.height=h+'px'; document.getElementById('gmap-iframe').src=embedUrl(POIS[0].q,14);
  const fEl=document.getElementById('map-filters');
- ['Drive Route',...MAP_CATS].forEach(cat=>{ const b=document.createElement('button'); b.className='chip'+(cat==='Drive Route'?' active':''); b.textContent=cat; b.onclick=()=>{ if(cat==='Drive Route'){ document.querySelectorAll('#map-filters .chip').forEach(x=>x.classList.remove('active')); b.classList.add('active'); showDriveRoute(); } else filterMap(cat,b); }; fEl.appendChild(b); });
+ MAP_CATS.forEach(cat=>{ const b=document.createElement('button'); b.className='chip'+(cat==='All'?' active':''); b.textContent=cat; b.onclick=()=>filterMap(cat,b); fEl.appendChild(b); });
  const grid=document.getElementById('map-poi-grid');
- grid.insertAdjacentHTML('beforebegin',`<div id="route-panel" class="route-panel"><div class="route-title">Full driving route</div><div class="route-sub">Queenstown Airport → Te Anau → Queenstown → Wanaka/Cardrona → Aoraki Mt Cook → Lake Tekapo → Christchurch Airport.</div><div class="act-links" style="margin-top:8px;">${lbtn('Open route in Google Maps',ROUTE_LINK)}</div></div>`);
+ grid.insertAdjacentHTML('beforebegin',`<div id="route-panel" class="route-panel"><div class="route-title">Full driving route</div><div class="route-sub">Embedded Google route previews are unreliable on iPhone/Safari, so the route opens directly in Google Maps instead.</div><div class="act-links" style="margin-top:8px;">${lbtn('Open route in Google Maps',ROUTE_LINK)}</div></div>`);
  grid.innerHTML=POIS.map((p,i)=>`<div class="map-poi-card" data-cat="${p.cat}" id="mpoi-${i}" onclick="setMapToPoi(${i})"><div class="map-poi-name">${p.name}</div><div class="map-poi-cat">${p.cat} · ${p.loc}</div><div class="map-poi-links"><a href="${mapsUrl(p.q)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/></svg>Google Maps</a>${p.web?`<a href="${p.web}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Website</a>`:''}</div></div>`).join('');
+ setMapToPoi(0);
 }
 function filterMap(cat,btn){
- activeCat=cat; document.getElementById('route-panel').style.display='none';
+ activeCat=cat; document.getElementById('route-panel').style.display='block';
  document.querySelectorAll('#map-filters .chip').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
  document.querySelectorAll('.map-poi-card').forEach(c=>{ c.classList.toggle('h',cat!=='All'&&c.dataset.cat!==cat); });
  const idx=POIS.findIndex(p=>cat==='All'||p.cat===cat); if(idx>=0) setMapToPoi(idx);
