@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="NZ Jul '26">
+<meta name="theme-color" content="#F2F2F7">
+<title>NZ · South Island · Jul 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── iOS 26 Liquid Glass Design System ── */
+:root{
+  /* System colours */
+  --sys-bg:          #F2F2F7;
+  --sys-bg2:         #FFFFFF;
+  --sys-bg3:         #E5E5EA;
+  --sys-grouped:     #F2F2F7;
+  --sys-separator:   rgba(60,60,67,.18);
+  --sys-fill:        rgba(120,120,128,.12);
+  --sys-fill2:       rgba(120,120,128,.16);
+  --sys-fill3:       rgba(118,118,128,.24);
+  /* Labels */
+  --label:           #000000;
+  --label2:          rgba(60,60,67,.60);
+  --label3:          rgba(60,60,67,.30);
+  --label4:          rgba(60,60,67,.18);
+  /* Tints */
+  --blue:            #007AFF;
+  --blue-bg:         rgba(0,122,255,.10);
+  --blue-border:     rgba(0,122,255,.25);
+  --green:           #34C759;
+  --green-bg:        rgba(52,199,89,.10);
+  --green-border:    rgba(52,199,89,.25);
+  --orange:          #FF9500;
+  --orange-bg:       rgba(255,149,0,.10);
+  --orange-border:   rgba(255,149,0,.25);
+  --red:             #FF3B30;
+  --red-bg:          rgba(255,59,48,.10);
+  --red-border:      rgba(255,59,48,.22);
+  --purple:          #AF52DE;
+  --purple-bg:       rgba(175,82,222,.10);
+  /* Liquid glass */
+  --glass:           rgba(255,255,255,.72);
+  --glass-border:    rgba(255,255,255,.55);
+  --glass-shadow:    0 2px 20px rgba(0,0,0,.10),0 0 0 .5px rgba(0,0,0,.06);
+  --glass-shadow2:   0 8px 32px rgba(0,0,0,.12),0 0 0 .5px rgba(0,0,0,.06);
+  /* Layout */
+  --r-sm:  10px;
+  --r:     16px;
+  --r-lg:  20px;
+  --r-xl:  28px;
+  --tabh:  83px;
+  --sab:   env(safe-area-inset-bottom,0px);
+  --sat:   env(safe-area-inset-top,0px);
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --sys-bg:#1C1C1E;--sys-bg2:#2C2C2E;--sys-bg3:#3A3A3C;--sys-grouped:#1C1C1E;
+    --sys-separator:rgba(84,84,88,.65);--sys-fill:rgba(120,120,128,.20);--sys-fill2:rgba(120,120,128,.28);--sys-fill3:rgba(118,118,128,.36);
+    --label:#FFFFFF;--label2:rgba(235,235,245,.60);--label3:rgba(235,235,245,.30);--label4:rgba(235,235,245,.18);
+    --glass:rgba(28,28,30,.78);--glass-border:rgba(255,255,255,.10);--glass-shadow:0 2px 20px rgba(0,0,0,.35),0 0 0 .5px rgba(255,255,255,.06);
+    --glass-shadow2:0 8px 32px rgba(0,0,0,.45),0 0 0 .5px rgba(255,255,255,.06);
+    --blue-bg:rgba(0,122,255,.18);--green-bg:rgba(52,199,89,.15);--orange-bg:rgba(255,149,0,.15);--red-bg:rgba(255,59,48,.15);
+  }
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;background:var(--sys-bg);}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','SF Pro Display',system-ui,sans-serif;
+  font-size:17px;line-height:1.47;color:var(--label);
+  -webkit-text-size-adjust:100%;-webkit-font-smoothing:antialiased;
+}
+img{display:block;width:100%;object-fit:cover;}
+a{color:var(--blue);text-decoration:none;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+
+/* ── SHELL ── */
+#app{display:flex;flex-direction:column;height:100dvh;}
+#scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
+  background:var(--sys-bg);
+  padding-bottom:calc(var(--tabh) + var(--sab));}
+.screen{display:none;}
+.screen.active{display:block;animation:fadeUp .22s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+
+/* ── NAVIGATION BAR ── */
+.nav-bar{
+  position:sticky;top:0;z-index:80;
+  padding:calc(var(--sat) + 10px) 20px 12px;
+  background:var(--glass);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:.5px solid var(--sys-separator);
+}
+.nav-title{font-size:17px;font-weight:600;color:var(--label);letter-spacing:-.3px;}
+.nav-sub{font-size:13px;color:var(--label2);margin-top:1px;}
+
+/* ── TAB BAR ── */
+#tabbar{
+  position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:var(--glass);
+  backdrop-filter:saturate(180%) blur(24px);
+  -webkit-backdrop-filter:saturate(180%) blur(24px);
+  border-top:.5px solid var(--sys-separator);
+  display:flex;
+  padding-bottom:var(--sab);
+  height:calc(var(--tabh) + var(--sab));
+}
+.tab-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:4px;padding:10px 4px 6px;
+  color:var(--label3);font-size:10px;font-weight:500;letter-spacing:.02em;
+  -webkit-tap-highlight-color:transparent;transition:color .12s;
+}
+.tab-item.active{color:var(--blue);}
+.tab-icon{
+  width:28px;height:28px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .12s,transform .1s;
+}
+.tab-item.active .tab-icon{background:var(--blue-bg);}
+.tab-item:active .tab-icon{transform:scale(.88);}
+.tab-item svg{width:22px;height:22px;stroke-width:1.6;fill:none;stroke:currentColor;}
+
+/* ── SEGMENT CONTROL (iOS pill) ── */
+.segment-wrap{padding:0 16px 14px;}
+.segment{
+  display:flex;background:var(--sys-fill);border-radius:10px;padding:2px;
+  -webkit-tap-highlight-color:transparent;
+}
+.seg-btn{
+  flex:1;padding:7px 4px;border-radius:8px;font-size:13px;font-weight:500;
+  color:var(--label2);text-align:center;transition:all .18s;
+  -webkit-tap-highlight-color:transparent;
+}
+.seg-btn.active{
+  background:var(--glass);color:var(--label);
+  box-shadow:0 1px 4px rgba(0,0,0,.15),0 0 0 .5px rgba(0,0,0,.06);
+}
+
+/* ── FILTER CHIPS (horizontal scroll) ── */
+.chip-row{display:flex;gap:8px;padding:0 16px 14px;overflow-x:auto;scrollbar-width:none;}
+.chip-row::-webkit-scrollbar{display:none;}
+.chip{
+  flex-shrink:0;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;
+  border:.5px solid var(--sys-separator);background:var(--glass);color:var(--label2);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  box-shadow:0 1px 3px rgba(0,0,0,.08);
+  -webkit-tap-highlight-color:transparent;transition:all .15s;
+}
+.chip.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(0,122,255,.30);}
+
+/* ── GLASS CARD ── */
+.gcard{
+  background:var(--glass);border:.5px solid var(--glass-border);
+  border-radius:var(--r-lg);box-shadow:var(--glass-shadow);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  overflow:hidden;margin:0 16px 12px;
+}
+.gcard-body{padding:16px;}
+.gcard-img{height:160px;position:relative;}
+.gcard-img img{height:100%;}
+.gcard-img-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.55) 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:14px 16px;
+}
+.gcard-img-title{font-size:17px;font-weight:700;color:#fff;letter-spacing:-.3px;}
+.gcard-img-sub{font-size:13px;color:rgba(255,255,255,.80);margin-top:2px;}
+
+/* ── HERO CARD (home) ── */
+.hero-card{
+  margin:16px 16px 12px;border-radius:var(--r-xl);overflow:hidden;
+  box-shadow:var(--glass-shadow2);position:relative;
+}
+.hero-card img{height:220px;}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.62) 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:20px;
+}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:4px;}
+.hero-title{font-size:26px;font-weight:700;color:#fff;letter-spacing:-.5px;line-height:1.15;}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.80);margin-top:4px;}
+.hero-badge{
+  position:absolute;top:16px;right:16px;
+  background:rgba(255,255,255,.20);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:.5px solid rgba(255,255,255,.35);border-radius:20px;
+  padding:5px 11px;font-size:12px;font-weight:600;color:#fff;
+}
+
+/* ── WEATHER CARD ── */
+.wx-card{
+  margin:0 16px 12px;border-radius:var(--r-lg);overflow:hidden;
+  background:linear-gradient(135deg,#1a6ef5 0%,#0a4bbf 100%);
+  box-shadow:0 4px 20px rgba(26,110,245,.35),0 0 0 .5px rgba(255,255,255,.15);
+}
+.wx-inner{padding:16px 18px 14px;display:flex;gap:14px;align-items:center;}
+.wx-icon{font-size:48px;line-height:1;filter:drop-shadow(0 2px 6px rgba(0,0,0,.2));}
+.wx-right{flex:1;}
+.wx-temp{font-size:38px;font-weight:300;color:#fff;letter-spacing:-1px;line-height:1;}
+.wx-cond{font-size:15px;color:rgba(255,255,255,.90);margin-top:2px;}
+.wx-loc{font-size:12px;color:rgba(255,255,255,.65);margin-top:3px;}
+.wx-row{display:flex;border-top:.5px solid rgba(255,255,255,.18);padding:10px 18px;}
+.wx-item{flex:1;text-align:center;border-right:.5px solid rgba(255,255,255,.18);}
+.wx-item:last-child{border-right:none;}
+.wx-item .wv{font-size:15px;font-weight:600;color:#fff;}
+.wx-item .wl{font-size:11px;color:rgba(255,255,255,.65);margin-top:2px;text-transform:uppercase;letter-spacing:.03em;}
+
+/* ── LIST ROW (iOS settings style) ── */
+.list-section{margin:0 16px 20px;}
+.list-section-label{font-size:13px;font-weight:400;color:var(--label2);text-transform:uppercase;letter-spacing:.04em;padding:0 6px 8px;}
+.list-card{background:var(--glass);border:.5px solid var(--glass-border);border-radius:var(--r-lg);box-shadow:var(--glass-shadow);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow:hidden;}
+.list-row{display:flex;align-items:center;padding:13px 16px;border-bottom:.5px solid var(--sys-separator);gap:12px;-webkit-tap-highlight-color:transparent;}
+.list-row:last-child{border-bottom:none;}
+.list-row-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.list-row-body{flex:1;min-width:0;}
+.list-row-title{font-size:15px;font-weight:500;color:var(--label);}
+.list-row-sub{font-size:13px;color:var(--label2);margin-top:1px;}
+.list-row-right{font-size:13px;color:var(--label2);text-align:right;flex-shrink:0;}
+.list-row-chev{color:var(--label3);flex-shrink:0;margin-left:4px;}
+.list-row-chev svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.5;}
+
+/* ── ACT ROW ── */
+.act-row2{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:.5px solid var(--sys-separator);}
+.act-row2:last-child{border-bottom:none;}
+.act-ico{
+  width:38px;height:38px;border-radius:10px;background:var(--sys-fill);
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
+}
+.act-meta{flex:1;min-width:0;}
+.act-title{font-size:15px;font-weight:600;color:var(--label);letter-spacing:-.2px;}
+.act-detail{font-size:13px;color:var(--label2);margin-top:2px;line-height:1.45;}
+.act-links{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+
+/* ── LINK BUTTON ── */
+.lbtn{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:13px;font-weight:500;color:var(--blue);
+  padding:6px 13px;border-radius:20px;
+  border:.5px solid var(--blue-border);background:var(--blue-bg);
+  -webkit-tap-highlight-color:transparent;white-space:nowrap;
+}
+.lbtn svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0;}
+.lbtn:active{opacity:.7;}
+.lbtn-green{color:var(--green);border-color:var(--green-border);background:var(--green-bg);}
+.lbtn-phone{color:var(--green);border-color:var(--green-border);background:var(--green-bg);}
+
+/* ── ALERT STRIPS ── */
+.alert{border-radius:var(--r-sm);padding:11px 13px;font-size:14px;display:flex;gap:10px;margin-bottom:8px;line-height:1.4;}
+.alert:last-child{margin-bottom:0;}
+.alert-warn{background:var(--orange-bg);border:.5px solid var(--orange-border);color:var(--orange);}
+.alert-danger{background:var(--red-bg);border:.5px solid var(--red-border);color:var(--red);}
+.alert-info{background:var(--blue-bg);border:.5px solid var(--blue-border);color:var(--blue);}
+.alert-good{background:var(--green-bg);border:.5px solid var(--green-border);color:var(--green);}
+
+/* ── HOTEL BLOCK ── */
+.hotel-block{background:var(--sys-fill);border-radius:var(--r-sm);overflow:hidden;margin-top:4px;}
+.hotel-block img{height:110px;}
+.hotel-block-body{padding:12px 13px;}
+.hotel-name{font-size:15px;font-weight:600;color:var(--label);}
+.hotel-meta{font-size:13px;color:var(--label2);margin-top:5px;line-height:1.6;}
+.hotel-meta a{color:var(--blue);}
+
+/* ── REF BADGE ── */
+.ref-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--sys-fill2);border-radius:8px;
+  padding:5px 10px;font-size:12px;font-weight:500;color:var(--label2);
+  font-variant-numeric:tabular-nums;letter-spacing:.01em;margin-top:6px;
+}
+.ref-badge span{font-weight:700;color:var(--label);font-size:13px;}
+
+/* ── BOOKING CARD (info tab) ── */
+.bk-card{background:var(--glass);border:.5px solid var(--glass-border);border-radius:var(--r-lg);box-shadow:var(--glass-shadow);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow:hidden;margin-bottom:12px;}
+.bk-head{padding:14px 16px;border-bottom:.5px solid var(--sys-separator);display:flex;align-items:center;gap:10px;}
+.bk-head-icon{font-size:22px;}
+.bk-head-title{font-size:15px;font-weight:600;color:var(--label);}
+.bk-head-sub{font-size:12px;color:var(--label2);margin-top:1px;}
+.bk-row{display:flex;justify-content:space-between;align-items:flex-start;padding:11px 16px;border-bottom:.5px solid var(--sys-separator);gap:14px;}
+.bk-row:last-child{border-bottom:none;}
+.bk-row .k{font-size:13px;color:var(--label2);flex-shrink:0;max-width:46%;}
+.bk-row .v{font-size:13px;color:var(--label);text-align:right;font-weight:500;}
+.bk-row .v a{color:var(--blue);}
+.bk-ref{background:var(--blue-bg);border:.5px solid var(--blue-border);border-radius:8px;padding:3px 8px;font-size:12px;font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums;letter-spacing:.01em;}
+
+/* ── QUICK LINK GRID ── */
+.ql-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 16px 12px;}
+.ql-btn{
+  background:var(--glass);border:.5px solid var(--glass-border);border-radius:var(--r);
+  box-shadow:var(--glass-shadow);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  padding:14px 12px;display:flex;flex-direction:column;gap:6px;
+  text-decoration:none;-webkit-tap-highlight-color:transparent;
+}
+.ql-btn:active{opacity:.7;}
+.ql-ico{font-size:24px;}
+.ql-name{font-size:13px;font-weight:600;color:var(--label);line-height:1.3;}
+.ql-sub{font-size:11px;color:var(--label2);line-height:1.3;}
+
+/* ── SECTION HEADER ── */
+.sec-head{padding:20px 16px 10px;display:flex;align-items:baseline;justify-content:space-between;}
+.sec-head h2{font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;}
+.sec-head .seeall{font-size:15px;font-weight:400;color:var(--blue);}
+
+/* ── PROGRESS ── */
+.prog-bar-wrap{margin:0 16px 14px;}
+.prog-track{height:4px;background:var(--sys-fill2);border-radius:2px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--blue),#55B1FF);border-radius:2px;transition:width .6s ease;}
+.prog-meta{display:flex;justify-content:space-between;margin-top:5px;}
+.prog-meta span{font-size:11px;color:var(--label3);}
+
+/* ── MAP ── */
+.map-filter-row{display:flex;gap:8px;padding:0 16px 12px;overflow-x:auto;scrollbar-width:none;}
+.map-filter-row::-webkit-scrollbar{display:none;}
+#map-frame-wrap{margin:0 16px;border-radius:var(--r-lg);overflow:hidden;border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow2);}
+#map-frame-wrap iframe{width:100%;display:block;border:none;}
+.map-poi-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 16px 0;}
+.map-poi-card{background:var(--glass);border:.5px solid var(--glass-border);border-radius:var(--r);box-shadow:var(--glass-shadow);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:12px 13px;}
+.map-poi-card.h{display:none;}
+.map-poi-name{font-size:13px;font-weight:600;color:var(--label);line-height:1.3;}
+.map-poi-cat{font-size:10px;color:var(--label2);text-transform:uppercase;letter-spacing:.04em;margin-top:2px;}
+.map-poi-links{margin-top:8px;display:flex;flex-direction:column;gap:6px;}
+.map-poi-links a{font-size:12px;color:var(--blue);display:flex;align-items:center;gap:4px;}
+.map-poi-links a svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0;}
+
+/* ── EAT ── */
+.eat-card{background:var(--glass);border:.5px solid var(--glass-border);border-radius:var(--r-lg);box-shadow:var(--glass-shadow);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow:hidden;margin:0 16px 12px;}
+.eat-card img{height:130px;}
+.eat-body{padding:14px 15px;}
+.eat-eyebrow{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-bottom:3px;}
+.eat-name{font-size:17px;font-weight:700;color:var(--label);letter-spacing:-.3px;}
+.eat-desc{font-size:14px;color:var(--label2);margin-top:5px;line-height:1.45;}
+.eat-pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.eat-pill{font-size:12px;padding:4px 10px;border-radius:20px;background:var(--sys-fill);color:var(--label2);border:.5px solid var(--sys-separator);}
+.menu-box{margin-top:10px;background:var(--green-bg);border:.5px solid var(--green-border);border-radius:var(--r-sm);padding:11px 13px;}
+.menu-hd{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--green);margin-bottom:7px;}
+.menu-item{padding:4px 0;border-bottom:.5px solid rgba(52,199,89,.15);}
+.menu-item:last-child{border-bottom:none;}
+.menu-dish{font-size:14px;font-weight:500;color:var(--label);}
+.menu-why{font-size:12px;color:var(--label2);margin-top:1px;}
+.eat-tip{background:var(--orange-bg);border:.5px solid var(--orange-border);border-radius:var(--r-sm);padding:9px 11px;font-size:13px;color:var(--orange);margin-top:8px;display:flex;gap:7px;}
+.eat-links{margin-top:10px;display:flex;flex-wrap:wrap;gap:7px;}
+</style>
+</head>
+<body>
+<div id="app">
+<div id="scroll">
+
+<!-- ══════════ HOME ══════════ -->
+<div id="s-home" class="screen active">
+  <div class="nav-bar">
+    <div class="nav-title" id="home-nav-title">South Island · Jul '26</div>
+    <div class="nav-sub" id="home-nav-sub">Mo &amp; Panteha · 30 Jun – 10 Jul</div>
+  </div>
+
+  <!-- Segment: Today / Leg / Full Trip -->
+  <div style="padding:14px 16px 4px;">
+    <div class="segment" id="home-seg">
+      <button class="seg-btn active" onclick="setHomeView('today',this)">Today</button>
+      <button class="seg-btn" onclick="setHomeView('leg',this)">This Leg</button>
+      <button class="seg-btn" onclick="setHomeView('trip',this)">Full Trip</button>
+    </div>
+  </div>
+
+  <div id="home-today"></div>
+  <div id="home-leg" style="display:none"></div>
+  <div id="home-trip" style="display:none"></div>
+</div>
+
+<!-- ══════════ MAP ══════════ -->
+<div id="s-map" class="screen">
+  <div class="nav-bar">
+    <div class="nav-title">Map &amp; Places</div>
+    <div class="nav-sub">All pinned locations · tap to filter</div>
+  </div>
+  <div style="height:10px;"></div>
+  <div class="map-filter-row" id="map-filters"></div>
+  <div id="map-frame-wrap">
+    <iframe id="gmap-iframe" src="" allowfullscreen referrerpolicy="no-referrer-when-downgrade" loading="lazy"></iframe>
+  </div>
+  <div class="map-poi-grid" id="map-poi-grid"></div>
+  <div style="height:20px;"></div>
+</div>
+
+<!-- ══════════ EAT ══════════ -->
+<div id="s-eat" class="screen">
+  <div class="nav-bar">
+    <div class="nav-title">Eat &amp; Drink</div>
+    <div class="nav-sub">Curated picks · menu highlights</div>
+  </div>
+  <div style="height:10px;"></div>
+  <div id="eat-content"></div>
+</div>
+
+<!-- ══════════ INFO ══════════ -->
+<div id="s-info" class="screen">
+  <div class="nav-bar">
+    <div class="nav-title">Key Info</div>
+    <div class="nav-sub">All bookings · contacts · essentials</div>
+  </div>
+  <div style="height:10px;"></div>
+  <div id="info-content"></div>
+</div>
+
+</div><!-- /scroll -->
+
+<!-- Tab bar -->
+<div id="tabbar">
+  <button class="tab-item active" data-s="home" onclick="goTab('home')">
+    <div class="tab-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+    <span>Home</span>
+  </button>
+  <button class="tab-item" data-s="map" onclick="goTab('map')">
+    <div class="tab-icon"><svg viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></div>
+    <span>Map</span>
+  </button>
+  <button class="tab-item" data-s="eat" onclick="goTab('eat')">
+    <div class="tab-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
+    <span>Eat</span>
+  </button>
+  <button class="tab-item" data-s="info" onclick="goTab('info')">
+    <div class="tab-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="9" y1="9" x2="9" y2="9.01"/><line x1="9" y1="13" x2="9" y2="17"/><line x1="15" y1="9" x2="15" y2="9.01"/><line x1="15" y1="13" x2="15" y2="17"/></svg></div>
+    <span>Info</span>
+  </button>
+</div>
+</div><!-- /app -->
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════════
+const TRIP_START = new Date('2026-06-30T00:00:00');
+const TRIP_END   = new Date('2026-07-10T00:00:00');
+
+function today0(){ const d=new Date(); d.setHours(0,0,0,0); return d; }
+function tripDay(){ return Math.floor((today0()-TRIP_START)/86400000); }
+
+function lbtn(label,url,cls=''){
+  return `<a class="lbtn ${cls}" href="${url}" target="_blank" rel="noopener">${label}<svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>`;
+}
+function phoneBtn(label,num){
+  return `<a class="lbtn lbtn-phone" href="tel:${num}">📞 ${label}</a>`;
+}
+function mapsUrl(q){ return `https://maps.google.com/?q=${encodeURIComponent(q)}`; }
+function embedUrl(q,z=13){ return `https://maps.google.com/maps?q=${encodeURIComponent(q)}&t=m&z=${z}&ie=UTF8&output=embed`; }
+
+// ═══════════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════════
+const DAYS = [
+{date:'2026-06-30',place:'Sydney → Queenstown → Te Anau',tagline:'Arrive · collect RAV4 · drive south',
+ img:'https://images.unsplash.com/photo-1589802829985-817e51171b92?w=900&q=75',
+ leg:0,
+ hotel:{name:'Distinction Luxmore Hotel',addr:'41 Town Centre, Te Anau',ref:'ANZ-20314688',phone:'+6432497526',display:'+64 3-249 7526',nights:2,
+  img:'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=700&q=75',
+  note:'Standard Room – Bed & Breakfast · Central Te Anau, short walk to lake',
+  website:'https://www.distinctionhotels.com/distinction-luxmore-hotel-te-anau'},
+ acts:[
+  {icon:'✈️',name:'Depart Sydney 07:20 → Queenstown 12:20',detail:'Air NZ · both passengers · booking ref 832630',
+   links:[lbtn('Air NZ','https://www.airnewzealand.co.nz'),lbtn('Flight status','https://www.airnewzealand.co.nz/flight-status')]},
+  {icon:'🚗',name:'Pick up RAV4 – Ezi Car Rental 13:30',detail:'Queenstown Airport · AWD automatic · one-way to Christchurch',
+   links:[lbtn('Ezi Car Rental','https://www.ezicarrental.co.nz'),lbtn('Airport map',mapsUrl('Queenstown Airport New Zealand'))]},
+  {icon:'🏔️',name:'Drive to Te Anau ~2 hrs',detail:'SH6 · scenic lakeside · no tolls · arriving evening',
+   links:[lbtn('Route',mapsUrl('Queenstown Airport to Te Anau New Zealand'))]},
+ ],
+ notes:['Allow ~40 min after landing for customs + bags before collecting car.'],
+ warns:[]},
+
+{date:'2026-07-01',place:'Te Anau',tagline:'Milford Sound day cruise',
+ img:'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=900&q=75',leg:0,hotel:null,
+ acts:[
+  {icon:'🚌',name:'Milford Sound Cruise & Coach – depart 10:20',detail:'Check in RealNZ Visitor Centre 10:05 · Ref 356468195 · both passengers · returns ~17:30',
+   links:[lbtn('RealNZ','https://www.realnz.com/en/experiences/day-cruises/milford-sound-day-trip-from-te-anau/'),lbtn('Meet point',mapsUrl('RealNZ Visitor Centre Te Anau'))]},
+  {icon:'🛥️',name:'2-hr Milford Sound Cruise',detail:'Cruise on the fiord · commentary · food & drinks available cashless onboard',
+   links:[lbtn('Milford Sound','https://www.milford-sound.co.nz')]},
+ ],
+ notes:['Wear waterproof jacket + non-slip shoes. Fiord is much colder than Te Anau.'],
+ warns:['SH94 Milford Road is avalanche & landslide monitored 24/7. Carry extra food, water and warm layers in the car.']},
+
+{date:'2026-07-02',place:'Te Anau → Queenstown',tagline:'Drive to Queenstown · check in Browns',
+ img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=75',leg:1,
+ hotel:{name:'Browns Boutique Hotel',addr:'26 Isle Street, Queenstown',ref:'LN16570',phone:'+6434412050',display:'+64 3-441 2050',nights:2,
+  img:'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=700&q=75',
+  note:'Superior King Room · Continental breakfast included · Check in 2–6pm · after 6pm call for lockbox code',
+  website:'https://www.brownshotel.co.nz'},
+ acts:[
+  {icon:'🚗',name:'Drive to Queenstown ~2.5 hrs',detail:'SH94/SH6 or scenic Crown Range Road (adds 30 min, recommended)',
+   links:[lbtn('Crown Range route',mapsUrl('Crown Range Road New Zealand'))]},
+  {icon:'🌆',name:'Queenstown waterfront – free afternoon',detail:'Steamer Wharf · Lake Wakatipu · Queenstown Gardens',
+   links:[lbtn('Queenstown NZ','https://www.queenstownnz.co.nz'),lbtn('Map',mapsUrl('Queenstown waterfront New Zealand'))]},
+ ],
+ notes:['Check in 2–6pm. Call property if arriving after 6pm: +64 3-441 2050.'],warns:[]},
+
+{date:'2026-07-03',place:'Queenstown',tagline:'Gondola · Nevis Bungy (Mo)',
+ img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=900&q=75',leg:1,hotel:null,
+ acts:[
+  {icon:'🚡',name:'Skyline Gondola – anytime',detail:'Brecon St · Ref AX5W8ZU · both passengers · steepest gondola in southern hemisphere',
+   links:[lbtn('Skyline','https://queenstown.skyline.co.nz'),lbtn('Map',mapsUrl('Skyline Gondola Queenstown'))]},
+  {icon:'🪂',name:'Nevis Bungy – Mo only · depart 09:20',detail:'Check in Bungy Centre 08:50 · Ref 2532426 · 134m / 8.5 sec freefall · T-shirt + video + certificate included · Panteha spectator Ref 2532427',
+   links:[lbtn('AJ Hackett','https://www.bungy.co.nz/queenstown/nevis/nevis-bungy/'),lbtn('Meet point',mapsUrl('AJ Hackett Bungy Centre Queenstown'))]},
+ ],
+ notes:['Nevis: dress in warm layers · min 45 kg / max 127 kg · allow 4 hrs round trip.'],warns:[]},
+
+{date:'2026-07-04',place:'Queenstown → Wanaka',tagline:'Drive to Wanaka · school holidays begin',
+ img:'https://images.unsplash.com/photo-1439130490301-25e322d88054?w=900&q=75',leg:2,
+ hotel:{name:'Edgewater Hotel',addr:'54 Sargood Drive, Wanaka',ref:'12-85103',phone:'+6434438311',display:'+64 3-443 8311',nights:3,
+  img:'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=700&q=75',
+  note:'One Bedroom Suite · lakefront lawns · spa, sauna, tennis on-site · 3-night stay',
+  website:'https://www.edgewater.co.nz'},
+ acts:[
+  {icon:'🚗',name:'Drive to Wanaka ~1 hr',detail:'Crown Range Rd (alpine pass, 1,121m) or SH6 · both scenic',
+   links:[lbtn('Route',mapsUrl('Queenstown to Wanaka New Zealand'))]},
+  {icon:'🌲',name:'Explore Wanaka',detail:'That Wanaka Tree · Roy\'s Peak trailhead · Puzzling World · lakefront walk',
+   links:[lbtn('Lake Wanaka','https://www.lakewanaka.co.nz'),lbtn('Puzzling World','https://www.puzzlingworld.co.nz')]},
+ ],
+ notes:['NZ Winter School Holidays begin today (4–19 Jul). Book restaurants ahead – everything fills fast.'],warns:[]},
+
+{date:'2026-07-05',place:'Wanaka → Cardrona',tagline:'Ski Day 1 – Cardrona Alpine Resort',
+ img:'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=900&q=75',leg:2,hotel:null,
+ acts:[
+  {icon:'⛷️',name:'Cardrona Alpine Resort – Day 1 of 2',detail:'Arrive ~09:00 · Ref 20674117 · both passengers · Beginner Zone · 2 x group lessons · full rental bundle (jacket, pants, helmet, goggles)',
+   links:[lbtn('Cardrona','https://www.cardrona.com'),lbtn('Snow report','https://www.cardrona.com/the-mountain/conditions/'),lbtn('Map',mapsUrl('Cardrona Alpine Resort New Zealand'))]},
+ ],
+ notes:['Collect RFID card + rental in Wanaka town or on mountain. Check pickup point evening before.'],
+ warns:['Ski products non-refundable. Check snow conditions morning of departure.']},
+
+{date:'2026-07-06',place:'Wanaka – Cardrona',tagline:'Ski Day 2 – Cardrona Alpine Resort',
+ img:'https://images.unsplash.com/photo-1548777123-e216912df7d8?w=900&q=75',leg:2,hotel:null,
+ acts:[
+  {icon:'⛷️',name:'Cardrona Alpine Resort – Day 2 of 2',detail:'Same lift pass · 2 x group lessons · full rental bundle continues · lifts 09:00–16:00',
+   links:[lbtn('Cardrona','https://www.cardrona.com'),lbtn('Snow report','https://www.cardrona.com/the-mountain/conditions/')]},
+  {icon:'🍺',name:'Après ski – Wanaka',detail:'Ritual Brewing Co or Rippon Vineyard for sunset after the mountain',
+   links:[lbtn('Ritual Brewing','https://www.ritualbrewing.co.nz'),lbtn('Rippon Vineyard','https://www.rippon.co.nz')]},
+ ],
+ notes:[],warns:[]},
+
+{date:'2026-07-07',place:'Wanaka → Mt Cook → Lake Tekapo',tagline:'Scenic drive · Hooker Valley · check in Tekapo',
+ img:'https://images.unsplash.com/photo-1579033385971-a7bc2c6f8c46?w=900&q=75',leg:3,
+ hotel:{name:'Grand Suites Lake Tekapo',addr:'14 Greig Street, Lake Tekapo',ref:'25612',phone:'+6436637049',display:'+64 3-663 7049',nights:2,
+  img:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=700&q=75',
+  note:'Executive Studio · lake & Southern Alps views · reception 8am–8:30pm · call if arriving after hours',
+  website:'https://grandsuitestekapo.co.nz'},
+ acts:[
+  {icon:'🚗',name:'Drive via Aoraki / Mt Cook ~4 hrs total',detail:'SH8 through Mackenzie Basin · Lake Pukaki stop on the way',
+   links:[lbtn('Route',mapsUrl('Wanaka to Lake Tekapo via Mount Cook'))]},
+  {icon:'🏔️',name:'Hooker Valley Track',detail:'3 km each way · flat · glacier + swing bridges · allow 2.5 hrs · free · no bookings',
+   links:[lbtn('DOC info','https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/aoraki-mount-cook-national-park/things-to-do/tracks/hooker-valley-track/'),lbtn('Map',mapsUrl('Hooker Valley Track Mount Cook New Zealand'))]},
+  {icon:'💎',name:'Lake Pukaki viewpoint',detail:'5-min stop on SH8 – most vivid turquoise water in NZ · Aoraki visible on clear days',
+   links:[lbtn('Map',mapsUrl('Lake Pukaki viewpoint New Zealand'))]},
+ ],
+ notes:['Lake Pukaki is a 5-minute detour off SH8 – unmissable.'],warns:[]},
+
+{date:'2026-07-08',place:'Lake Tekapo',tagline:'Free day · Church · hot pools · optional stargazing',
+ img:'https://images.unsplash.com/photo-1514912885225-5e3c374e6f58?w=900&q=75',leg:3,hotel:null,
+ acts:[
+  {icon:'⛪',name:'Church of the Good Shepherd',detail:'Iconic lakefront stone chapel · free entry · best at sunrise · 5-min walk from Grand Suites',
+   links:[lbtn('Church info','https://www.churchofthegoodshepherd.org.nz'),lbtn('Map',mapsUrl('Church of the Good Shepherd Lake Tekapo'))]},
+  {icon:'♨️',name:'Tekapo Springs Hot Pools',detail:'Outdoor thermal pools · mountain views · ~$35–45 pp · book online',
+   links:[lbtn('Book now','https://www.tekaposprings.co.nz'),lbtn('Map',mapsUrl('Tekapo Springs New Zealand'))]},
+  {icon:'🔭',name:'Dark Sky Stargazing ⚠️ OPTIONAL',detail:'Depart 18:30 · Dark Sky Project · Mt John Observatory · $492 for two · full refund if weather cancels',
+   links:[lbtn('Dark Sky Project','https://www.darkskyproject.co.nz'),lbtn('Book','https://www.darkskyproject.co.nz/tours/summit-experience/')]},
+ ],
+ notes:['Stargazing not yet confirmed – decide before 8 Jul. Full refund if weather is poor.'],
+ warns:['Check weather forecast morning of 8 Jul before committing to stargazing.']},
+
+{date:'2026-07-09',place:'Lake Tekapo → Christchurch',tagline:'Drive · Botanic Gardens · final night',
+ img:'https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=900&q=75',leg:4,
+ hotel:{name:'The George',addr:'50 Park Terrace, Christchurch',ref:'ANZ-20302364',phone:'+6433794560',display:'+64 3-379 4560',nights:1,
+  img:'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=700&q=75',
+  note:'Executive Room · overlooks Hagley Park & Avon River · two award-winning restaurants · off-street parking',
+  website:'https://www.thegeorge.com'},
+ acts:[
+  {icon:'🚗',name:'Drive to Christchurch ~3.5 hrs',detail:'SH79/SH1 · straight highway · Canterbury Plains',
+   links:[lbtn('Route',mapsUrl('Lake Tekapo to Christchurch New Zealand'))]},
+  {icon:'🌿',name:'Christchurch Botanic Gardens',detail:'Walking distance from The George · free entry · riverside setting',
+   links:[lbtn('Gardens info','https://ccc.govt.nz/parks-and-gardens/christchurch-botanic-gardens/'),lbtn('Map',mapsUrl('Christchurch Botanic Gardens New Zealand'))]},
+  {icon:'🦞',name:'Dinner at Pescatore – book ahead',detail:'Award-winning seafood restaurant inside The George · window table overlooks Hagley Park',
+   links:[lbtn('Book Pescatore','https://www.thegeorge.com/dining/pescatore/')]},
+ ],
+ notes:['RAV4 drop-off tomorrow at Christchurch Airport by 13:00. Allow 20 min from The George.'],warns:[]},
+
+{date:'2026-07-10',place:'Christchurch → Sydney',tagline:'Car drop-off · fly home',
+ img:'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=75',leg:4,hotel:null,
+ acts:[
+  {icon:'🚗',name:'Drop off RAV4 by 13:00',detail:'Christchurch Airport · Ezi Car Rental · ~20 min from The George',
+   links:[lbtn('Airport map',mapsUrl('Christchurch Airport New Zealand'))]},
+  {icon:'✈️',name:'Depart CHC 16:35 → SYD 18:10',detail:'Air NZ · Ref 832630 · allow 2 hrs before departure · check in by 14:35',
+   links:[lbtn('Flight status','https://www.airnewzealand.co.nz/flight-status')]},
+ ],
+ notes:['Leave The George by noon – car drop-off, fuel up, then airport check-in comfortably.'],warns:[]},
+];
+
+// LEGS
+const LEGS = [
+ {name:'Te Anau & Fiordland',dates:'30 Jun – 2 Jul',days:[0,1],
+  img:'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=900&q=75',
+  tags:['Milford Sound','Cruise','Fiordland National Park'],
+  links:[lbtn('Te Anau tourism','https://www.fiordland.org.nz'),lbtn('Map',mapsUrl('Te Anau New Zealand'))]},
+ {name:'Queenstown',dates:'2 – 4 Jul',days:[2,3],
+  img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=75',
+  tags:['Skyline Gondola','Nevis Bungy','Adventure capital'],
+  links:[lbtn('Queenstown NZ','https://www.queenstownnz.co.nz'),lbtn('Map',mapsUrl('Queenstown New Zealand'))]},
+ {name:'Wanaka & Cardrona',dates:'4 – 7 Jul',days:[4,5,6],
+  img:'https://images.unsplash.com/photo-1439130490301-25e322d88054?w=900&q=75',
+  tags:['2 days skiing','Cardrona Resort','Lakeside alpine'],
+  links:[lbtn('Lake Wanaka','https://www.lakewanaka.co.nz'),lbtn('Cardrona','https://www.cardrona.com')]},
+ {name:'Aoraki / Mt Cook & Tekapo',dates:'7 – 9 Jul',days:[7,8],
+  img:'https://images.unsplash.com/photo-1579033385971-a7bc2c6f8c46?w=900&q=75',
+  tags:['Hooker Valley Track','Dark sky','Lake Pukaki'],
+  links:[lbtn('DOC Mt Cook','https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/aoraki-mount-cook-national-park/'),lbtn('Dark Sky Project','https://www.darkskyproject.co.nz')]},
+ {name:'Christchurch',dates:'9 – 10 Jul',days:[9,10],
+  img:'https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=900&q=75',
+  tags:['The George','Botanic Gardens','Depart 16:35'],
+  links:[lbtn('Christchurch NZ','https://christchurchnz.com'),lbtn('Map',mapsUrl('Christchurch New Zealand'))]},
+];
+
+// MAP POIS
+const POIS = [
+ {name:'Distinction Luxmore Hotel',cat:'Stay',loc:'Te Anau',q:'Distinction Luxmore Hotel Te Anau'},
+ {name:'Browns Boutique Hotel',cat:'Stay',loc:'Queenstown',q:'Browns Boutique Hotel Queenstown',web:'https://www.brownshotel.co.nz'},
+ {name:'Edgewater Hotel',cat:'Stay',loc:'Wanaka',q:'Edgewater Hotel Wanaka New Zealand',web:'https://www.edgewater.co.nz'},
+ {name:'Grand Suites Lake Tekapo',cat:'Stay',loc:'Lake Tekapo',q:'Grand Suites Lake Tekapo New Zealand',web:'https://grandsuitestekapo.co.nz'},
+ {name:'The George',cat:'Stay',loc:'Christchurch',q:'The George Hotel Christchurch New Zealand',web:'https://www.thegeorge.com'},
+ {name:'Milford Sound',cat:'Activity',loc:'Fiordland',q:'Milford Sound New Zealand',web:'https://www.realnz.com/en/experiences/day-cruises/milford-sound-day-trip-from-te-anau/'},
+ {name:'Skyline Gondola',cat:'Activity',loc:'Queenstown',q:'Skyline Gondola Queenstown',web:'https://queenstown.skyline.co.nz'},
+ {name:'AJ Hackett – Nevis Bungy',cat:'Activity',loc:'Queenstown',q:'AJ Hackett Bungy Centre Queenstown',web:'https://www.bungy.co.nz/queenstown/nevis/nevis-bungy/'},
+ {name:'Cardrona Alpine Resort',cat:'Activity',loc:'Wanaka',q:'Cardrona Alpine Resort New Zealand',web:'https://www.cardrona.com'},
+ {name:'Hooker Valley Track',cat:'Activity',loc:'Mt Cook',q:'Hooker Valley Track Mount Cook New Zealand',web:'https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/aoraki-mount-cook-national-park/things-to-do/tracks/hooker-valley-track/'},
+ {name:'Dark Sky Project',cat:'Activity',loc:'Lake Tekapo',q:'Dark Sky Project Lake Tekapo New Zealand',web:'https://www.darkskyproject.co.nz'},
+ {name:'Tekapo Springs',cat:'Activity',loc:'Lake Tekapo',q:'Tekapo Springs New Zealand',web:'https://www.tekaposprings.co.nz'},
+ {name:'Puzzling World',cat:'Activity',loc:'Wanaka',q:'Puzzling World Wanaka New Zealand',web:'https://www.puzzlingworld.co.nz'},
+ {name:'Christchurch Botanic Gardens',cat:'Activity',loc:'Christchurch',q:'Christchurch Botanic Gardens New Zealand',web:'https://ccc.govt.nz/parks-and-gardens/christchurch-botanic-gardens/'},
+ {name:'Lake Pukaki Viewpoint',cat:'Scenic',loc:'Mackenzie',q:'Lake Pukaki viewpoint New Zealand'},
+ {name:'That Wanaka Tree',cat:'Scenic',loc:'Wanaka',q:'That Wanaka Tree New Zealand'},
+ {name:'Crown Range Road',cat:'Scenic',loc:'Queenstown–Wanaka',q:'Crown Range Road New Zealand'},
+ {name:'Church of the Good Shepherd',cat:'Scenic',loc:'Lake Tekapo',q:'Church of the Good Shepherd Lake Tekapo',web:'https://www.churchofthegoodshepherd.org.nz'},
+ {name:'Mt John Summit',cat:'Scenic',loc:'Lake Tekapo',q:'Mount John Observatory Lake Tekapo New Zealand',web:'https://www.darkskyproject.co.nz/mt-john/'},
+ {name:'Fergburger',cat:'Eat & Drink',loc:'Queenstown',q:'Fergburger Queenstown New Zealand',web:'https://www.fergburger.com'},
+ {name:'Rata Restaurant',cat:'Eat & Drink',loc:'Queenstown',q:'Rata Restaurant Queenstown',web:'https://www.ratadining.co.nz'},
+ {name:'Fiordland Brewing Co',cat:'Eat & Drink',loc:'Te Anau',q:'Fiordland Brewing Company Te Anau',web:'https://www.fiordlandbrewing.co.nz'},
+ {name:"Francesca's Italian Kitchen",cat:'Eat & Drink',loc:'Wanaka',q:"Francescas Italian Kitchen Wanaka",web:'https://www.francescas.co.nz'},
+ {name:'Rippon Vineyard',cat:'Eat & Drink',loc:'Wanaka',q:'Rippon Vineyard Wanaka New Zealand',web:'https://www.rippon.co.nz'},
+ {name:'Kohan Restaurant',cat:'Eat & Drink',loc:'Lake Tekapo',q:'Kohan Restaurant Lake Tekapo',web:'https://www.kohanrestaurant.co.nz'},
+ {name:'Pescatore – The George',cat:'Eat & Drink',loc:'Christchurch',q:'Pescatore Restaurant Christchurch',web:'https://www.thegeorge.com/dining/pescatore/'},
+];
+
+const MAP_CATS = ['All','Stay','Activity','Scenic','Eat & Drink'];
+
+// EAT
+const EAT = [
+ {loc:'Te Anau',dates:'30 Jun – 2 Jul',places:[
+  {img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=75',type:'Restaurant',name:'The Redcliff',
+   desc:'Game meat, venison and Fiordland lamb in a stone cottage – a Te Anau institution since 1986.',
+   addr:'12 Mokonui St',hours:'Dinner from 5pm',price:'$$$',
+   menu:[{d:'Fiordland Venison',w:'slow-cooked, herb crust, local berry jus'},{d:'Whitebait Fritter',w:'seasonal NZ delicacy – order as entrée'},{d:'Lamb Rack',w:'South Island grass-fed, mint jus'}],
+   tip:'Book ahead – fills fast in ski season.',
+   links:[lbtn('Website','https://www.theredcliff.co.nz'),lbtn('Map',mapsUrl('The Redcliff Restaurant Te Anau'))]},
+  {img:'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=700&q=75',type:'Café / Bakery',name:'Miles Better Pies',
+   desc:'Famous hand-made pies and excellent coffee – the perfect pre-Milford Sound breakfast.',
+   addr:'2 Milford Rd',hours:'From ~7am, sells out by 10am',price:'$',
+   menu:[{d:'Venison & Mushroom Pie',w:'the bestseller – rich and hearty'},{d:'Mince & Cheese',w:'NZ classic, perfectly executed'},{d:'Long Black',w:'robust local roast'}],
+   tip:'Arrive before 8:30am – they sell out.',
+   links:[lbtn('Map',mapsUrl('Miles Better Pies Te Anau'))]},
+  {img:'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=700&q=75',type:'Craft Brewery',name:'Fiordland Brewing Co',
+   desc:'On-site brewed craft beers, lakeside deck, good burgers and pizza after a big day.',
+   addr:'25 Mokonui St',hours:'From 11am',price:'$$',
+   menu:[{d:'Manuka Smoked Porter',w:'signature brew – rich and complex'},{d:'Venison Burger',w:'local meat, house-pickled veg'},{d:'Tasting Paddle (4 pints)',w:'best way to find your favourite'}],
+   tip:'Get the tasting paddle before committing to a pint.',
+   links:[lbtn('Website','https://www.fiordlandbrewing.co.nz'),lbtn('Map',mapsUrl('Fiordland Brewing Company Te Anau'))]},
+ ]},
+ {loc:'Queenstown',dates:'2 – 4 Jul',places:[
+  {img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=700&q=75',type:'Burgers',name:'Fergburger',
+   desc:'A Queenstown institution open until 5am. Queue looks long – it moves fast.',
+   addr:'42 Shotover St',hours:'8am – 5am',price:'$',
+   menu:[{d:'Mr Big Stuff',w:'double beef, bacon, egg – full commitment'},{d:'Little Lamby',w:'NZ lamb, mint yoghurt – the hidden gem'},{d:'Ferg Deluxe',w:'classic smash burger, always reliable'}],
+   tip:'Go at 10pm – shortest queues, freshest buns.',
+   links:[lbtn('Website','https://www.fergburger.com'),lbtn('Map',mapsUrl('Fergburger Queenstown'))]},
+  {img:'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=700&q=75',type:'Fine Dining',name:'Rata',
+   desc:"Josh Emett's flagship. Impeccable South Island produce – one of NZ's best.",
+   addr:'43 Ballarat St',hours:'Dinner from 5:30pm',price:'$$$$',
+   menu:[{d:'Cervena Venison',w:'signature – cannon + shoulder, brilliant technique'},{d:'Pāua Ravioli',w:'NZ abalone, umami depth – seasonal starter'},{d:'Manuka Honey Dessert',w:'standout finish, distinctly NZ'}],
+   tip:'Book 2+ weeks ahead. Request window seats for mountain views.',
+   links:[lbtn('Book table','https://www.ratadining.co.nz/reservations/'),lbtn('Website','https://www.ratadining.co.nz')]},
+  {img:'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=700&q=75',type:'Café',name:'Vudu Cafe & Larder',
+   desc:'Best coffee in Queenstown. House-baked pastries, great eggs. Waterfront.',
+   addr:'23 Beach St',hours:'7:30am – 4pm',price:'$$',
+   menu:[{d:'Eggs Benedict',w:'perfectly poached, house hollandaise'},{d:'Almond Croissant',w:'baked in-house, buttery layers'},{d:'Flat White',w:'consistently excellent, local roast'}],
+   tip:'Busy on weekends – go before 9am for a table.',
+   links:[lbtn('Website','https://www.vudu.co.nz'),lbtn('Map',mapsUrl('Vudu Cafe Queenstown'))]},
+ ]},
+ {loc:'Wanaka',dates:'4 – 7 Jul',places:[
+  {img:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&q=75',type:'Italian',name:"Francesca's Italian Kitchen",
+   desc:'Wood-fired pizza and house-made pasta – the most popular restaurant in Wanaka.',
+   addr:'93 Ardmore St',hours:'Dinner from 5pm',price:'$$',
+   menu:[{d:'Truffle & Mushroom Pizza',w:'wood-fired, house dough, generous truffle'},{d:'Handmade Tagliatelle',w:'daily-made pasta, rotating seasonal sauce'},{d:'Tiramisu',w:'house recipe – unmissable'}],
+   tip:'Book ahead – fills every single night.',
+   links:[lbtn('Website','https://www.francescas.co.nz'),lbtn('Map',mapsUrl('Francescas Italian Kitchen Wanaka'))]},
+  {img:'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=700&q=75',type:'Biodynamic Winery',name:'Rippon Vineyard',
+   desc:"One of NZ's most photographed wineries. Biodynamic wines on the lakeshore.",
+   addr:'246 Mt Aspiring Rd',hours:'11am–5pm (call ahead in winter)',price:'$$$',
+   menu:[{d:'Mature Vine Pinot Noir',w:'flagship – exceptional in winter'},{d:'Emma Pinot Gris',w:'aromatic, biodynamic, pairs with cheese'},{d:'Cheese & Charcuterie Board',w:'local Wanaka cheeses, perfect with a glass'}],
+   tip:'15 min from town. Call ahead in July – may close in bad weather.',
+   links:[lbtn('Website','https://www.rippon.co.nz'),lbtn('Map',mapsUrl('Rippon Vineyard Wanaka'))]},
+  {img:'https://images.unsplash.com/photo-1525193612562-0ec53b0e5d7c?w=700&q=75',type:'All-day Café',name:'Kika',
+   desc:'Excellent coffee, house ferments, seasonal brunch plates. A Wanaka staple.',
+   addr:'Dunmore St',hours:'8am – 3pm',price:'$$',
+   menu:[{d:'Bircher Muesli Bowl',w:'house-fermented oats, seasonal fruit, honey'},{d:'Corn Fritters',w:'crispy, smashed avo, poached egg'},{d:'Oat Flat White',w:'best coffee for pre-ski mornings'}],
+   tip:'Perfect pre-ski breakfast. Book ahead in school holidays.',
+   links:[lbtn('Website','https://www.kika.co.nz'),lbtn('Map',mapsUrl('Kika Cafe Wanaka'))]},
+ ]},
+ {loc:'Lake Tekapo',dates:'7 – 9 Jul',places:[
+  {img:'https://images.unsplash.com/photo-1553621042-f6e147245754?w=700&q=75',type:'Japanese',name:'Kohan Restaurant',
+   desc:'Lakefront Japanese with breathtaking Tekapo views. Sushi, sashimi, hot udon.',
+   addr:'SH8, Lake Tekapo',hours:'Lunch & Dinner',price:'$$$',
+   menu:[{d:'Salmon Sashimi',w:'freshest fish for miles – always impeccable'},{d:'Tempura Seafood',w:'light batter, great dipping sauce'},{d:'Beef Udon',w:'warming broth – perfect on a cold July evening'}],
+   tip:'Request a window table when booking. Lake views are spectacular.',
+   links:[lbtn('Website','https://www.kohanrestaurant.co.nz'),lbtn('Map',mapsUrl('Kohan Restaurant Lake Tekapo'))]},
+  {img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=75',type:'Summit Café',name:'Astro Café – Mt John',
+   desc:'Observatory café at the top of Mt John. 360° Mackenzie Basin views.',
+   addr:'Mt John Summit, Tekapo',hours:'9am – 4pm (winter)',price:'$$',
+   menu:[{d:'Hot Chocolate',w:'essential at altitude – rich and warming'},{d:'Venison Pie',w:'rotates daily, always a solid option'},{d:'Flat White',w:'the view makes everything taste better'}],
+   tip:'Drive up in the morning – clearest skies and quietest time.',
+   links:[lbtn('Mt John info','https://www.darkskyproject.co.nz/mt-john/'),lbtn('Map',mapsUrl('Astro Cafe Mount John Tekapo'))]},
+ ]},
+ {loc:'Christchurch',dates:'9 – 10 Jul',places:[
+  {img:'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=700&q=75',type:'Fine Dining',name:'Pescatore – The George',
+   desc:"Award-winning NZ seafood restaurant inside your hotel. The trip's best dinner.",
+   addr:'50 Park Terrace (in hotel)',hours:'Dinner from 5:30pm',price:'$$$$',
+   menu:[{d:'Canterbury Salmon',w:"house-smoked – the restaurant's signature"},{d:'Blue Cod',w:"NZ native fish, chef's preparation changes daily"},{d:'Seared Kaikōura Scallops',w:'clean, precise – perfect starter'}],
+   tip:'Book a window table overlooking Hagley Park. Non-hotel guests fill it fast.',
+   links:[lbtn('Book table','https://www.thegeorge.com/dining/pescatore/'),lbtn('Map',mapsUrl('Pescatore Restaurant Christchurch'))]},
+  {img:'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=700&q=75',type:'French Bakery',name:"C'est La Vie",
+   desc:"Finest croissants in Christchurch. 10-min walk from The George.",
+   addr:'123 Victoria St',hours:'7am – 3pm',price:'$',
+   menu:[{d:'Ham & Cheese Croissant',w:'buttery, layered – the pick of the cabinet'},{d:'Pain au Chocolat',w:'two layers of chocolate, flaky pastry'},{d:'Café au Lait',w:'French-style, pairs perfectly with pastry'}],
+   tip:'Go early – pastries sell out by 9:30am most days.',
+   links:[lbtn('Map',mapsUrl("C est La Vie Bakery Christchurch"))]},
+ ]},
+];
+
+// INFO
+const BOOKINGS = [
+ {icon:'✈️',title:'Flights – Air NZ',sub:'Both legs · 2 passengers',rows:[
+  {k:'Outbound',v:'30 Jun · SYD 07:20 → ZQN 12:20'},
+  {k:'Return',v:'10 Jul · CHC 16:35 → SYD 18:10'},
+  {k:'Passengers',v:'Panteha Jadidi · Moamen Elbadawy'},
+  {k:'Booking ref',v:'<span class="bk-ref">832630</span>'},
+  {k:'Insurance',v:'Included · incl. ski cover · $307.19'},
+  {k:'Check in',v:'<a href="https://www.airnewzealand.co.nz/check-in" target="_blank">airnewzealand.co.nz/check-in</a>'},
+  {k:'Flight status',v:'<a href="https://www.airnewzealand.co.nz/flight-status" target="_blank">Track flights</a>'},
+ ]},
+ {icon:'🚗',title:'Car Hire – Ezi Car Rental',sub:'Toyota RAV4 AWD · one-way',rows:[
+  {k:'Pickup',v:'30 Jun · Queenstown Airport · 13:30'},
+  {k:'Drop-off',v:'10 Jul · Christchurch Airport · by 13:00'},
+  {k:'Vehicle',v:'Toyota RAV4 or similar AWD'},
+  {k:'Operator',v:'<a href="https://www.ezicarrental.co.nz" target="_blank">Ezi Car Rental NZ</a>'},
+  {k:'Total',v:'$1,054.00 AUD'},
+ ]},
+ {icon:'🏨',title:'Distinction Luxmore Hotel',sub:'Te Anau · 2 nights · 30 Jun – 2 Jul',rows:[
+  {k:'Booking ref',v:'<span class="bk-ref">ANZ-20314688</span>'},
+  {k:'Room',v:'Standard Room – Bed & Breakfast'},
+  {k:'Check in',v:'30 Jun 2026'},
+  {k:'Check out',v:'2 Jul 2026'},
+  {k:'Phone',v:'<a href="tel:+6432497526">+64 3-249 7526</a>'},
+  {k:'Website',v:'<a href="https://www.distinctionhotels.com/distinction-luxmore-hotel-te-anau" target="_blank">distinctionhotels.com</a>'},
+  {k:'Map',v:'<a href="'+mapsUrl('Distinction Luxmore Hotel Te Anau')+'" target="_blank">Open in Google Maps</a>'},
+ ]},
+ {icon:'🚌',title:'Milford Sound Cruise & Coach',sub:'RealNZ · 1 Jul · both passengers',rows:[
+  {k:'Booking ref',v:'<span class="bk-ref">356468195</span>'},
+  {k:'Departure',v:'10:20am from Te Anau · check in 10:05'},
+  {k:'Meet point',v:'RealNZ Visitor Centre, Te Anau'},
+  {k:'Returns',v:'~17:30 Te Anau'},
+  {k:'Includes',v:'Return coach · 2-hr Milford Sound cruise'},
+  {k:'RealNZ phone',v:'<a href="tel:+6432496000">+64 3-249 6000</a>'},
+  {k:'Website',v:'<a href="https://www.realnz.com" target="_blank">realnz.com</a>'},
+ ]},
+ {icon:'🏨',title:'Browns Boutique Hotel',sub:'Queenstown · 2 nights · 2–4 Jul',rows:[
+  {k:'Booking ref',v:'<span class="bk-ref">LN16570</span>'},
+  {k:'Room',v:'Superior King Room – incl. continental breakfast'},
+  {k:'Check in',v:'2 Jul · from 2:00pm'},
+  {k:'Check out',v:'4 Jul 2026'},
+  {k:'After 6pm',v:'Call for lockbox code'},
+  {k:'Phone',v:'<a href="tel:+6434412050">+64 3-441 2050</a>'},
+  {k:'Email',v:'<a href="mailto:stay@brownshotel.co.nz">stay@brownshotel.co.nz</a>'},
+  {k:'Website',v:'<a href="https://www.brownshotel.co.nz" target="_blank">brownshotel.co.nz</a>'},
+  {k:'Map',v:'<a href="'+mapsUrl('Browns Boutique Hotel Queenstown')+'" target="_blank">Open in Google Maps</a>'},
+ ]},
+ {icon:'🚡',title:'Skyline Gondola',sub:'Queenstown · 3 Jul · anytime',rows:[
+  {k:'Booking ref',v:'<span class="bk-ref">AX5W8ZU</span>'},
+  {k:'Passengers',v:'Both · Panteha Jadidi + Moamen Elbadawy'},
+  {k:'Location',v:'Brecon Street, Queenstown'},
+  {k:'Valid until',v:'Closing time 3 Jul 2026'},
+  {k:'Phone',v:'<a href="tel:+6434410101">+64 3-441 0101</a>'},
+  {k:'Website',v:'<a href="https://queenstown.skyline.co.nz" target="_blank">queenstown.skyline.co.nz</a>'},
+ ]},
+ {icon:'🪂',title:'Nevis Bungy – AJ Hackett',sub:'Queenstown · 3 Jul · Mo only · 134m',rows:[
+  {k:'Bungy ref (Mo)',v:'<span class="bk-ref">2532426</span>'},
+  {k:'Spectator ref (Panteha)',v:'<span class="bk-ref">2532427</span>'},
+  {k:'Check in',v:'08:50 · The Bungy Centre, Station Building'},
+  {k:'Departs',v:'09:20 · 4WD transport to Nevis site'},
+  {k:'Includes (Mo)',v:'Bungy · T-shirt · video · photo package · certificate'},
+  {k:'Spectator',v:'Transport to viewing platform included'},
+  {k:'Phone',v:'<a href="tel:+6434501300">+64 3-450 1300</a>'},
+  {k:'Address',v:'Cnr Camp & Shotover Streets, Queenstown'},
+  {k:'Website',v:'<a href="https://www.bungy.co.nz/queenstown/nevis/nevis-bungy/" target="_blank">bungy.co.nz</a>'},
+  {k:'Amendment',v:'24hrs+ notice: no fee · <24hrs: $50 fee'},
+ ]},
+ {icon:'🏨',title:'Edgewater Hotel',sub:'Wanaka · 3 nights · 4–7 Jul',rows:[
+  {k:'Booking ref',v:'<span class="bk-ref">12-85103</span>'},
+  {k:'Room',v:'One Bedroom Suite – room only'},
+  {k:'Check in',v:'4 Jul 2026'},
+  {k:'Check out',v:'7 Jul 2026'},
+  {k:'Phone',v:'<a href="tel:+6434438311">+64 3-443 8311</a>'},
+  {k:'Website',v:'<a href="https://www.edgewater.co.nz" target="_blank">edgewater.co.nz</a>'},
+  {k:'Map',v:'<a href="'+mapsUrl('Edgewater Hotel Wanaka New Zealand')+'" target="_blank">Open in Google Maps</a>'},
+  {k:'Special note',v:'4-night stay = 3 nights price (stay 4 pay 3 deal)'},
+ ]},
+ {icon:'⛷️',title:'Cardrona 2-Day Ski Package',sub:'5–6 Jul · both passengers · beginner zone',rows:[
+  {k:'Booking ref',v:'<span class="bk-ref">20674117</span>'},
+  {k:'Package',v:'2 Day Full Day · Lift + 4 Lessons + Full Rental Bundle'},
+  {k:'Days',v:'Sunday 5 Jul + Monday 6 Jul (consecutive)'},
+  {k:'Meet time',v:'09:00 on mountain · Cardrona Valley Road'},
+  {k:'Rental includes',v:'Equipment · Jacket · Pants · Helmet · Goggles'},
+  {k:'Collect RFID',v:'In Wanaka town or on mountain – confirm evening before'},
+  {k:'Resort phone',v:'Cardrona Valley Road (see website)'},
+  {k:'Website',v:'<a href="https://www.cardrona.com" target="_blank">cardrona.com</a>'},
+  {k:'Snow report',v:'<a href="https://www.cardrona.com/the-mountain/conditions/" target="_blank">Daily conditions</a>'},
+  {k:'Important',v:'Non-refundable · valid Cardrona only · 2026 season'},
+ ]},
+ {icon:'🏨',title:'Grand Suites Lake Tekapo',sub:'2 nights · 7–9 Jul',rows:[
+  {k:'Booking ref',v:'<span class="bk-ref">25612</span>'},
+  {k:'Room',v:'Executive Studio Double – room only'},
+  {k:'Check in',v:'7 Jul · from 2:00pm'},
+  {k:'Check out',v:'9 Jul · by 10:00am'},
+  {k:'Reception hours',v:'8:00am – 8:30pm'},
+  {k:'After hours',v:'Call on day of arrival for key details'},
+  {k:'Phone',v:'<a href="tel:+6436637049">+64 3-663 7049</a>'},
+  {k:'Website',v:'<a href="https://grandsuitestekapo.co.nz" target="_blank">grandsuitestekapo.co.nz</a>'},
+  {k:'Map',v:'<a href="'+mapsUrl('Grand Suites Lake Tekapo New Zealand')+'" target="_blank">Open in Google Maps</a>'},
+ ]},
+ {icon:'🔭',title:'Dark Sky Stargazing (Optional)',sub:'Lake Tekapo · 8 Jul · not yet booked',rows:[
+  {k:'Status',v:'⚠️ Not confirmed – decide before 8 Jul'},
+  {k:'Departure',v:'18:30 from Lake Tekapo'},
+  {k:'Operator',v:'Dark Sky Project'},
+  {k:'Includes',v:'Summit Experience · Mt John Observatory'},
+  {k:'Cost',v:'$492 AUD for two'},
+  {k:'Cancellation',v:'Full refund if guides cancel for weather'},
+  {k:'Book',v:'<a href="https://www.darkskyproject.co.nz/tours/summit-experience/" target="_blank">darkskyproject.co.nz</a>'},
+  {k:'Phone',v:'<a href="https://www.darkskyproject.co.nz" target="_blank">Contact via website</a>'},
+ ]},
+ {icon:'🏨',title:'The George',sub:'Christchurch · 1 night · 9–10 Jul',rows:[
+  {k:'Booking ref',v:'<span class="bk-ref">ANZ-20302364</span>'},
+  {k:'Room',v:'Executive Room – Double'},
+  {k:'Check in',v:'9 Jul 2026'},
+  {k:'Check out',v:'10 Jul · by checkout time'},
+  {k:'Phone',v:'<a href="tel:+6433794560">+64 3-379 4560</a>'},
+  {k:'Website',v:'<a href="https://www.thegeorge.com" target="_blank">thegeorge.com</a>'},
+  {k:'Map',v:'<a href="'+mapsUrl('The George Hotel 50 Park Terrace Christchurch')+'" target="_blank">Open in Google Maps</a>'},
+  {k:'Parking',v:'Off-street parking provided'},
+  {k:'Dining',v:'<a href="https://www.thegeorge.com/dining/pescatore/" target="_blank">Book Pescatore →</a>'},
+ ]},
+];
+
+const EMERGENCY = [
+ {k:'NZ Emergency (police/fire/ambulance)',v:'<a href="tel:111">111</a>'},
+ {k:'NZ Police non-emergency',v:'<a href="tel:105">105</a>'},
+ {k:'ANZCRO 24/7 Emergency',v:'<a href="tel:+61755565500">+61 7 5556 5500</a>'},
+ {k:'Rachael – Flight Centre',v:'<a href="tel:+61291811474">02 9181 1474</a>'},
+ {k:'Flight Centre email',v:'<a href="mailto:676e@flightcentre.com">676e@flightcentre.com</a>'},
+ {k:'AJ Hackett Bungy',v:'<a href="tel:+6434501300">+64 3-450 1300</a>'},
+ {k:'RealNZ Te Anau',v:'<a href="tel:+6432496000">+64 3-249 6000</a>'},
+ {k:'Grand Suites Tekapo',v:'<a href="tel:+6436637049">+64 3-663 7049</a>'},
+ {k:'The George Christchurch',v:'<a href="tel:+6433794560">+64 3-379 4560</a>'},
+ {k:'Milford Road 24/7',v:'<a href="https://www.milfordroad.co.nz" target="_blank">milfordroad.co.nz</a>'},
+];
+
+const QUICK_LINKS = [
+ {ico:'🌤️',name:'MetService NZ',sub:'Live weather',url:'https://www.metservice.com'},
+ {ico:'⛷️',name:'Cardrona Snow',sub:'Daily conditions',url:'https://www.cardrona.com/the-mountain/conditions/'},
+ {ico:'🛣️',name:'NZTA Roads',sub:'Road conditions',url:'https://www.journeys.nzta.govt.nz/'},
+ {ico:'🏔️',name:'Milford Road',sub:'SH94 status',url:'https://www.milfordroad.co.nz'},
+ {ico:'🔭',name:'Dark Sky Project',sub:'Stargazing book',url:'https://www.darkskyproject.co.nz'},
+ {ico:'✈️',name:'Air NZ Flights',sub:'Track your flights',url:'https://www.airnewzealand.co.nz/flight-status'},
+ {ico:'🗺️',name:'NZ DOC',sub:'Tracks & parks',url:'https://www.doc.govt.nz'},
+ {ico:'📋',name:'NZ Traveller Decl.',sub:'NZTD app / online',url:'https://www.travellerdeclaration.govt.nz/'},
+];
+
+// ═══════════════════════════════════════════════════════════
+// WEATHER
+// ═══════════════════════════════════════════════════════════
+const WX_LOCS = [
+ {n:'Te Anau',la:-45.4133,lo:167.7194},
+ {n:'Te Anau',la:-45.4133,lo:167.7194},
+ {n:'Queenstown',la:-45.0312,lo:168.6626},
+ {n:'Queenstown',la:-45.0312,lo:168.6626},
+ {n:'Wanaka',la:-44.6967,lo:169.1317},
+ {n:'Cardrona',la:-44.8764,lo:168.9939},
+ {n:'Cardrona',la:-44.8764,lo:168.9939},
+ {n:'Lake Tekapo',la:-43.8886,lo:170.4788},
+ {n:'Lake Tekapo',la:-43.8886,lo:170.4788},
+ {n:'Christchurch',la:-43.5321,lo:172.6362},
+ {n:'Christchurch',la:-43.5321,lo:172.6362},
+];
+const WMO_ICO = {0:'☀️',1:'🌤️',2:'⛅',3:'☁️',45:'🌫️',48:'🌫️',51:'🌦️',53:'🌦️',55:'🌧️',61:'🌧️',63:'🌧️',65:'🌧️',71:'🌨️',73:'🌨️',75:'❄️',77:'🌨️',80:'🌦️',81:'🌧️',82:'⛈️',85:'🌨️',86:'❄️',95:'⛈️',96:'⛈️',99:'⛈️'};
+const WMO_TXT = {0:'Clear sky',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Foggy',48:'Icy fog',51:'Light drizzle',53:'Drizzle',55:'Heavy drizzle',61:'Light rain',63:'Rain',65:'Heavy rain',71:'Light snow',73:'Snow',75:'Heavy snow',77:'Snow grains',80:'Rain showers',81:'Heavy showers',82:'Violent showers',85:'Snow showers',86:'Heavy snow showers',95:'Thunderstorm',96:'Thunderstorm + hail',99:'Heavy thunderstorm'};
+
+async function buildWeather(td){
+ const loc = (td>=0&&td<11)?WX_LOCS[td]:{n:'South Island',la:-44.5,lo:169.5};
+ const el = document.getElementById('wx-card-slot');
+ if(!el) return;
+ el.innerHTML=`<div class="wx-card"><div class="wx-inner"><div class="wx-icon">🌡️</div><div class="wx-right"><div class="wx-temp">—</div><div class="wx-cond">Loading weather…</div><div class="wx-loc">${loc.n}</div></div></div></div>`;
+ try{
+  const r=await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${loc.la}&longitude=${loc.lo}&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,relative_humidity_2m&wind_speed_unit=kmh&timezone=Pacific%2FAuckland`);
+  const j=await r.json(); const c=j.current;
+  const ico=WMO_ICO[c.weather_code]||'🌡️';
+  const txt=WMO_TXT[c.weather_code]||'—';
+  el.innerHTML=`<div class="wx-card">
+   <div class="wx-inner">
+    <div class="wx-icon">${ico}</div>
+    <div class="wx-right">
+     <div class="wx-temp">${Math.round(c.temperature_2m)}°</div>
+     <div class="wx-cond">${txt}</div>
+     <div class="wx-loc">${loc.n} · feels like ${Math.round(c.apparent_temperature)}°C</div>
+    </div>
+   </div>
+   <div class="wx-row">
+    <div class="wx-item"><div class="wv">${Math.round(c.wind_speed_10m)}<span style="font-size:11px;font-weight:400"> km/h</span></div><div class="wl">Wind</div></div>
+    <div class="wx-item"><div class="wv">${c.relative_humidity_2m}<span style="font-size:11px;font-weight:400">%</span></div><div class="wl">Humidity</div></div>
+    <div class="wx-item"><div class="wv" style="font-size:13px;">NZT</div><div class="wl">Timezone</div></div>
+   </div>
+  </div>`;
+ } catch(e){
+  el.innerHTML=`<div class="wx-card" style="opacity:.6"><div class="wx-inner"><div class="wx-icon">📡</div><div class="wx-right"><div class="wx-temp" style="font-size:18px;">No signal</div><div class="wx-cond">Connect to internet for live weather</div><div class="wx-loc">${loc.n}</div></div></div></div>`;
+ }
+}
+
+// ═══════════════════════════════════════════════════════════
+// HOME – TODAY VIEW
+// ═══════════════════════════════════════════════════════════
+function buildToday(){
+ const td = tripDay();
+ const el = document.getElementById('home-today');
+ const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+ let html='';
+
+ // Progress
+ const pct=Math.max(0,Math.min(100,(td/11)*100));
+ const progLbl = td<0?`Starts in ${Math.abs(td)} day${Math.abs(td)===1?'':'s'}`
+  : td>=11?'Trip complete ✓':`Day ${td+1} of 11`;
+ html+=`<div style="padding:0 16px 4px;">
+  <div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div>
+  <div class="prog-meta"><span>${progLbl}</span><span>30 Jun – 10 Jul 2026</span></div>
+ </div>`;
+
+ // Weather slot
+ html+=`<div id="wx-card-slot"></div>`;
+
+ if(td>=0&&td<11){
+  const d=DAYS[td];
+  // Hero
+  html+=`<div class="hero-card">
+   <img src="${d.img}" alt="${d.place}" loading="lazy" style="height:220px;">
+   <div class="hero-overlay">
+    <div class="hero-eyebrow">${new Date(d.date+'T00:00:00').toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long'})}</div>
+    <div class="hero-title">${d.place}</div>
+    <div class="hero-sub">${d.tagline}</div>
+   </div>
+   <div class="hero-badge">Day ${td+1}</div>
+  </div>`;
+
+  // Today's activities
+  html+=`<div class="sec-head"><h2>Today's Plan</h2></div>
+  <div class="gcard"><div class="gcard-body">`;
+  d.acts.forEach(a=>{
+   html+=`<div class="act-row2">
+    <div class="act-ico">${a.icon}</div>
+    <div class="act-meta">
+     <div class="act-title">${a.name}</div>
+     <div class="act-detail">${a.detail}</div>
+     ${a.links.length?`<div class="act-links">${a.links.join('')}</div>`:''}
+    </div>
+   </div>`;
+  });
+  html+='</div></div>';
+
+  // Hotel if checking in today
+  if(d.hotel){
+   const h=d.hotel;
+   html+=`<div class="sec-head"><h2>Tonight's Stay</h2></div>
+   <div class="gcard">
+    <img src="${h.img}" alt="${h.name}" style="height:130px;">
+    <div class="gcard-body">
+     <div class="act-title">${h.name}</div>
+     <div class="hotel-meta" style="margin-top:6px;">📍 ${h.addr}<br>📞 <a href="tel:${h.phone}">${h.display}</a><br>ℹ️ ${h.note}</div>
+     <div class="ref-badge">Ref <span>${BOOKINGS.find(b=>b.title.includes(h.name.split(' ').slice(0,2).join(' ')))?BOOKINGS.find(b=>b.rows.some(r=>r.v&&r.v.includes&&r.v.includes('ANZ')||false)):'—'}</span></div>
+     <div class="act-links" style="margin-top:10px;">${lbtn('Website',h.website)} ${lbtn('Map',mapsUrl(h.addr))}</div>
+    </div>
+   </div>`;
+  }
+
+  // Warns
+  if(d.warns.length||d.notes.length){
+   html+=`<div style="padding:0 16px 4px;">`;
+   d.warns.forEach(w=>{html+=`<div class="alert alert-danger">⚠️ <span>${w}</span></div>`;});
+   d.notes.forEach(n=>{html+=`<div class="alert alert-info">💡 <span>${n}</span></div>`;});
+   html+=`</div>`;
+  }
+ } else if(td<0){
+  // Pre-trip
+  html+=`<div class="hero-card">
+   <img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=900&q=75" alt="NZ" style="height:220px;">
+   <div class="hero-overlay">
+    <div class="hero-eyebrow">Departing 30 Jun 2026</div>
+    <div class="hero-title">South Island, New Zealand</div>
+    <div class="hero-sub">Te Anau · Queenstown · Wanaka · Tekapo · Christchurch</div>
+   </div>
+   <div class="hero-badge">${Math.abs(td)}d to go</div>
+  </div>`;
+ } else {
+  html+=`<div style="padding:32px 16px;text-align:center;color:var(--label2);">
+   <div style="font-size:48px;margin-bottom:12px;">🏔️</div>
+   <div style="font-size:20px;font-weight:600;color:var(--label);margin-bottom:6px;">Trip complete!</div>
+   <div style="font-size:15px;">Hope it was incredible.</div>
+  </div>`;
+ }
+
+ // Always-on alerts
+ html+=`<div style="padding:0 16px 8px;">
+  <div class="alert alert-warn">🗓️ <span>NZ School Holidays 4–19 Jul – ski areas and restaurants will be busier. Book ahead.</span></div>
+  <div class="alert alert-info">🚗 <span>Drive on the left · Australian licence valid · RAV4 drop-off Christchurch Airport by 13:00 on 10 Jul.</span></div>
+  <div class="alert alert-info">🌡️ <span>July temperatures: Queenstown 1–9°C · Wanaka 0–8°C · Tekapo −3–6°C. Thermal layers essential.</span></div>
+ </div>`;
+
+ html+='<div style="height:8px;"></div>';
+ el.innerHTML=html;
+ buildWeather(td);
+}
+
+// ═══════════════════════════════════════════════════════════
+// HOME – LEG VIEW
+// ═══════════════════════════════════════════════════════════
+function buildLeg(){
+ const td=tripDay();
+ const el=document.getElementById('home-leg');
+ if(el.dataset.built) return;
+ el.dataset.built='1';
+ // Find current leg
+ const curLegIdx = td>=0&&td<11 ? DAYS[td].leg : 0;
+ const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+ let html='<div style="height:4px;"></div>';
+ LEGS.forEach((leg,li)=>{
+  const isCur = li===curLegIdx&&td>=0&&td<11;
+  html+=`<div class="gcard" style="${isCur?'border-color:var(--blue);box-shadow:0 0 0 1.5px var(--blue),var(--glass-shadow2);':''}">
+   <div class="gcard-img"><img src="${leg.img}" alt="${leg.name}" loading="lazy" style="height:160px;">
+    <div class="gcard-img-overlay">
+     ${isCur?'<div style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:4px;">CURRENT LEG</div>':''}
+     <div class="gcard-img-title">${leg.name}</div>
+     <div class="gcard-img-sub">${leg.dates}</div>
+    </div>
+   </div>
+   <div class="gcard-body">
+    <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;">${leg.tags.map(t=>`<span class="eat-pill">${t}</span>`).join('')}</div>`;
+
+  leg.days.forEach(di=>{
+   const d=DAYS[di];
+   const dd=new Date(d.date+'T00:00:00');
+   const isToday=Math.floor((today0()-new Date(d.date+'T00:00:00'))/86400000)===0;
+   html+=`<div class="act-row2">
+    <div class="act-ico" style="${isToday?'background:var(--blue-bg);':''}">
+     <span style="font-size:12px;font-weight:700;color:${isToday?'var(--blue)':'var(--label2)'};">${dd.getDate()}<br><span style="font-size:9px;font-weight:500;">${months[dd.getMonth()]}</span></span>
+    </div>
+    <div class="act-meta">
+     <div class="act-title" style="${isToday?'color:var(--blue);':''}">${d.place}</div>
+     <div class="act-detail">${d.tagline}</div>
+     <div class="act-links">${d.acts.flatMap(a=>a.links).slice(0,2).join('')}</div>
+    </div>
+   </div>`;
+  });
+
+  html+=`<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${leg.links.join('')}</div>
+  </div></div>`;
+ });
+ html+='<div style="height:8px;"></div>';
+ el.innerHTML=html;
+}
+
+// ═══════════════════════════════════════════════════════════
+// HOME – FULL TRIP VIEW
+// ═══════════════════════════════════════════════════════════
+function buildTrip(){
+ const el=document.getElementById('home-trip');
+ if(el.dataset.built) return;
+ el.dataset.built='1';
+ const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+ const td=tripDay();
+
+ let html='<div style="height:4px;"></div>';
+ DAYS.forEach((d,i)=>{
+  const dd=new Date(d.date+'T00:00:00');
+  const past=i<td; const isT=i===td&&td>=0&&td<11;
+  html+=`<div class="gcard" style="${isT?'border-color:var(--blue);':''}${past?'opacity:.55;':''}">
+   <div class="gcard-img"><img src="${d.img}" alt="${d.place}" loading="lazy" style="height:130px;">
+    <div class="gcard-img-overlay">
+     ${isT?'<div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:3px;">TODAY</div>':''}
+     <div class="gcard-img-title" style="font-size:15px;">${d.place}</div>
+     <div class="gcard-img-sub">${dd.toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short'})}</div>
+    </div>
+   </div>
+   <div class="gcard-body" style="padding:12px 14px;">
+    <div class="act-detail" style="margin-bottom:8px;">${d.tagline}</div>
+    ${d.hotel?`<div class="alert alert-info" style="margin-bottom:8px;">🏨 ${d.hotel.name} · ${d.hotel.nights} night${d.hotel.nights>1?'s':''}</div>`:''}
+    ${d.warns.map(w=>`<div class="alert alert-danger" style="margin-bottom:6px;">⚠️ ${w}</div>`).join('')}
+    <div class="act-links">${d.acts.flatMap(a=>a.links).slice(0,2).join('')}</div>
+   </div>
+  </div>`;
+ });
+ html+='<div style="height:8px;"></div>';
+ el.innerHTML=html;
+}
+
+// ═══════════════════════════════════════════════════════════
+// HOME SEGMENT SWITCH
+// ═══════════════════════════════════════════════════════════
+function setHomeView(view,btn){
+ document.querySelectorAll('#home-seg .seg-btn').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ document.getElementById('home-today').style.display='none';
+ document.getElementById('home-leg').style.display='none';
+ document.getElementById('home-trip').style.display='none';
+ const panel=document.getElementById('home-'+view);
+ panel.style.display='block';
+ if(view==='leg') buildLeg();
+ if(view==='trip') buildTrip();
+ document.getElementById('scroll').scrollTop=0;
+}
+
+// ═══════════════════════════════════════════════════════════
+// MAP
+// ═══════════════════════════════════════════════════════════
+let mapReady=false;
+let activeCat='All';
+
+function buildMap(){
+ if(mapReady) return; mapReady=true;
+ const wrap=document.getElementById('map-frame-wrap');
+ const h=Math.max(260,Math.floor(window.innerHeight*.40));
+ wrap.style.height=h+'px';
+ document.getElementById('gmap-iframe').style.height=h+'px';
+ document.getElementById('gmap-iframe').src=`https://maps.google.com/maps?q=South+Island+New+Zealand&t=m&z=6&ie=UTF8&output=embed`;
+
+ const fEl=document.getElementById('map-filters');
+ MAP_CATS.forEach(cat=>{
+  const b=document.createElement('button');
+  b.className='chip'+(cat==='All'?' active':'');
+  b.textContent=cat;
+  b.onclick=()=>filterMap(cat,b);
+  fEl.appendChild(b);
+ });
+
+ const grid=document.getElementById('map-poi-grid');
+ grid.innerHTML=POIS.map((p,i)=>`
+  <div class="map-poi-card" data-cat="${p.cat}" id="mpoi-${i}">
+   <div class="map-poi-name">${p.name}</div>
+   <div class="map-poi-cat">${p.cat} · ${p.loc}</div>
+   <div class="map-poi-links">
+    <a href="${mapsUrl(p.q)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/></svg>Google Maps</a>
+    ${p.web?`<a href="${p.web}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Website</a>`:''}
+   </div>
+  </div>`).join('');
+}
+
+function filterMap(cat,btn){
+ activeCat=cat;
+ document.querySelectorAll('#map-filters .chip').forEach(b=>b.classList.remove('active'));
+ btn.classList.add('active');
+ document.querySelectorAll('.map-poi-card').forEach(c=>{
+  c.classList.toggle('h',cat!=='All'&&c.dataset.cat!==cat);
+ });
+ const first=POIS.find(p=>cat==='All'||p.cat===cat);
+ if(first) document.getElementById('gmap-iframe').src=`https://maps.google.com/maps?q=${encodeURIComponent(first.q)}&t=m&z=13&ie=UTF8&output=embed`;
+}
+
+// ═══════════════════════════════════════════════════════════
+// EAT
+// ═══════════════════════════════════════════════════════════
+function buildEat(){
+ let html='';
+ EAT.forEach(loc=>{
+  html+=`<div style="padding:20px 16px 8px;"><span style="font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">${loc.loc}</span> <span style="font-size:13px;color:var(--label2);">${loc.dates}</span></div>`;
+  loc.places.forEach(p=>{
+   const menu=p.menu.map(m=>`<div class="menu-item"><div class="menu-dish">🍴 ${m.d}</div><div class="menu-why">${m.w}</div></div>`).join('');
+   html+=`<div class="eat-card">
+    <img src="${p.img}" alt="${p.name}" loading="lazy" style="height:130px;">
+    <div class="eat-body">
+     <div class="eat-eyebrow">${p.type}</div>
+     <div class="eat-name">${p.name}</div>
+     <div class="eat-desc">${p.desc}</div>
+     <div class="eat-pills">
+      ${p.addr?`<span class="eat-pill">📍 ${p.addr}</span>`:''}
+      ${p.hours?`<span class="eat-pill">🕐 ${p.hours}</span>`:''}
+      ${p.price?`<span class="eat-pill">${p.price}</span>`:''}
+     </div>
+     <div class="menu-box"><div class="menu-hd">Order These</div>${menu}</div>
+     ${p.tip?`<div class="eat-tip">💡 <span>${p.tip}</span></div>`:''}
+     <div class="eat-links">${p.links.join('')}</div>
+    </div>
+   </div>`;
+  });
+ });
+ html+='<div style="height:8px;"></div>';
+ document.getElementById('eat-content').innerHTML=html;
+}
+
+// ═══════════════════════════════════════════════════════════
+// INFO
+// ═══════════════════════════════════════════════════════════
+function buildInfo(){
+ let html='';
+
+ // Quick links grid
+ html+=`<div style="padding:20px 16px 10px;font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">Quick Links</div>
+ <div class="ql-grid">${QUICK_LINKS.map(q=>`<a class="ql-btn" href="${q.url}" target="_blank" rel="noopener"><div class="ql-ico">${q.ico}</div><div class="ql-name">${q.name}</div><div class="ql-sub">${q.sub}</div></a>`).join('')}</div>`;
+
+ // Emergency
+ html+=`<div class="list-section" style="margin-top:8px;">
+  <div class="list-section-label">Emergency &amp; Key Contacts</div>
+  <div class="list-card">${EMERGENCY.map(r=>`<div class="list-row">
+   <div class="list-row-body"><div class="list-row-title">${r.k}</div></div>
+   <div class="list-row-right">${r.v}</div>
+  </div>`).join('')}</div>
+ </div>`;
+
+ // All bookings
+ html+=`<div style="padding:20px 16px 10px;font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">All Bookings &amp; References</div>`;
+ BOOKINGS.forEach(bk=>{
+  html+=`<div class="bk-card" style="margin:0 16px 12px;">
+   <div class="bk-head">
+    <div class="bk-head-icon">${bk.icon}</div>
+    <div><div class="bk-head-title">${bk.title}</div><div class="bk-head-sub">${bk.sub}</div></div>
+   </div>
+   ${bk.rows.map(r=>`<div class="bk-row"><span class="k">${r.k}</span><span class="v">${r.v}</span></div>`).join('')}
+  </div>`;
+ });
+
+ // Essentials
+ html+=`<div class="list-section">
+  <div class="list-section-label">NZ Entry &amp; Essentials</div>
+  <div class="list-card">
+   <div class="list-row"><div class="list-row-body"><div class="list-row-title">NZeTA</div><div class="list-row-sub">Apply via NZ Immigration app before departure</div></div><div class="list-row-right"><a href="https://www.immigration.govt.nz/new-zealand-visas/options/visit/nzeta" target="_blank">Apply →</a></div></div>
+   <div class="list-row"><div class="list-row-body"><div class="list-row-title">NZ Traveller Declaration</div><div class="list-row-sub">Complete up to 24 hrs before travel</div></div><div class="list-row-right"><a href="https://www.travellerdeclaration.govt.nz/" target="_blank">NZTD →</a></div></div>
+   <div class="list-row"><div class="list-row-body"><div class="list-row-title">Currency</div><div class="list-row-sub">NZ Dollar (NZD) · mostly cashless</div></div><div class="list-row-right" style="color:var(--label2);">NZD</div></div>
+   <div class="list-row"><div class="list-row-body"><div class="list-row-title">Driving</div><div class="list-row-sub">Australian licence valid · drive on the left</div></div></div>
+   <div class="list-row"><div class="list-row-body"><div class="list-row-title">Power plugs</div><div class="list-row-sub">Type I – same as Australia, no adapter needed</div></div></div>
+   <div class="list-row"><div class="list-row-body"><div class="list-row-title">Tipping</div><div class="list-row-sub">Not expected · optional at fine dining</div></div></div>
+   <div class="list-row"><div class="list-row-body"><div class="list-row-title">Cardrona ski gear</div><div class="list-row-sub">Jacket, pants, helmet, goggles included in package – don't pack</div></div></div>
+   <div class="list-row"><div class="list-row-body"><div class="list-row-title">Footwear</div><div class="list-row-sub">Waterproof non-slip boots for Milford Sound + Hooker Valley</div></div></div>
+  </div>
+ </div>`;
+
+ html+='<div style="height:16px;"></div>';
+ document.getElementById('info-content').innerHTML=html;
+}
+
+// ═══════════════════════════════════════════════════════════
+// TAB NAV
+// ═══════════════════════════════════════════════════════════
+function goTab(name){
+ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+ document.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));
+ document.getElementById('s-'+name).classList.add('active');
+ document.querySelector(`[data-s="${name}"]`).classList.add('active');
+ document.getElementById('scroll').scrollTop=0;
+ if(name==='map') buildMap();
+}
+
+// ═══════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded',()=>{
+ buildToday();
+ buildEat();
+ buildInfo();
+});
+</script>
+</body>
+</html>
