@@ -8,6 +8,10 @@
 <meta name="apple-mobile-web-app-title" content="NZ Jul '26">
 <meta name="theme-color" content="#F2F2F7">
 <title>NZ · South Island · Jul 2026</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -343,6 +347,83 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
 .menu-why{font-size:12px;color:var(--label2);margin-top:1px;}
 .eat-tip{background:var(--orange-bg);border:.5px solid var(--orange-border);border-radius:var(--r-sm);padding:9px 11px;font-size:13px;color:var(--orange);margin-top:8px;display:flex;gap:7px;}
 .eat-links{margin-top:10px;display:flex;flex-wrap:wrap;gap:7px;}
+
+
+/* ── INTERACTIVE TIMELINE + ENHANCED CARDS ── */
+.itinerary-card{background:var(--glass);border:.5px solid var(--glass-border);border-radius:var(--r-lg);box-shadow:var(--glass-shadow);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow:hidden;margin:0 16px 12px;}
+.itinerary-head{padding:15px 16px;border-bottom:.5px solid var(--sys-separator);display:flex;gap:12px;align-items:flex-start;}
+.itinerary-date{width:48px;height:48px;border-radius:14px;background:var(--blue-bg);display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue);font-weight:800;line-height:1;}
+.itinerary-date .m{font-size:10px;text-transform:uppercase;letter-spacing:.06em;margin-top:3px;font-weight:700;}
+.itinerary-title{font-size:17px;font-weight:700;color:var(--label);letter-spacing:-.3px;}
+.itinerary-sub{font-size:13px;color:var(--label2);margin-top:2px;line-height:1.35;}
+.info-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.info-pill{font-size:12px;padding:5px 9px;border-radius:18px;background:var(--sys-fill);border:.5px solid var(--sys-separator);color:var(--label2);}
+.info-pill strong{color:var(--label);font-weight:700;}
+.activity-card{padding:13px 16px;border-bottom:.5px solid var(--sys-separator);}
+.activity-card:last-child{border-bottom:none;}
+.activity-top{display:flex;gap:12px;align-items:flex-start;}
+.activity-icon{width:40px;height:40px;border-radius:12px;background:var(--sys-fill);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.activity-content{flex:1;min-width:0;}
+.activity-title{font-size:15px;font-weight:700;color:var(--label);letter-spacing:-.2px;}
+.activity-detail{font-size:13px;color:var(--label2);line-height:1.45;margin-top:3px;}
+.activity-reco{margin-top:9px;background:var(--green-bg);border:.5px solid var(--green-border);border-radius:var(--r-sm);padding:9px 10px;font-size:13px;color:var(--label2);line-height:1.4;}
+.activity-reco b{color:var(--green);}
+.key-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 16px 12px;}
+.key-tile{background:var(--glass);border:.5px solid var(--glass-border);border-radius:var(--r);box-shadow:var(--glass-shadow);padding:13px 12px;min-height:86px;}
+.key-k{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--label3);}
+.key-v{font-size:14px;font-weight:700;color:var(--label);margin-top:4px;line-height:1.25;}
+.key-s{font-size:12px;color:var(--label2);margin-top:3px;line-height:1.3;}
+.timeline-strip{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:0 16px 12px;}
+.timeline-strip::-webkit-scrollbar{display:none;}
+.tday{flex:0 0 auto;width:74px;border-radius:16px;border:.5px solid var(--sys-separator);background:var(--glass);box-shadow:0 1px 4px rgba(0,0,0,.08);padding:10px 8px;text-align:center;color:var(--label2);-webkit-tap-highlight-color:transparent;}
+.tday.active{background:var(--blue);border-color:var(--blue);color:white;box-shadow:0 3px 14px rgba(0,122,255,.30);}
+.tday .num{font-size:20px;font-weight:800;line-height:1;}
+.tday .dow{font-size:10px;text-transform:uppercase;letter-spacing:.06em;margin-top:4px;font-weight:700;}
+.tday .loc{font-size:10px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.timeline-rail{position:relative;margin:0 16px 12px;padding-left:22px;}
+.timeline-rail:before{content:"";position:absolute;left:12px;top:0;bottom:0;width:2px;background:var(--sys-fill2);border-radius:2px;}
+.titem{position:relative;background:var(--glass);border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);border-radius:var(--r);padding:13px 14px;margin:0 0 10px;}
+.titem:before{content:"";position:absolute;left:-16px;top:20px;width:10px;height:10px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px var(--blue-bg);}
+.titem-title{font-size:15px;font-weight:700;color:var(--label);}
+.titem-sub{font-size:13px;color:var(--label2);line-height:1.45;margin-top:3px;}
+.map-poi-card{cursor:pointer;transition:transform .12s,border-color .12s,box-shadow .12s;}
+.map-poi-card:active{transform:scale(.98);}
+.map-poi-card.active{border-color:var(--blue);box-shadow:0 0 0 1.5px var(--blue),var(--glass-shadow2);}
+.route-panel{margin:12px 16px 0;background:var(--glass);border:.5px solid var(--glass-border);border-radius:var(--r);box-shadow:var(--glass-shadow);padding:12px 13px;}
+.route-title{font-size:14px;font-weight:700;color:var(--label);}
+.route-sub{font-size:12px;color:var(--label2);margin-top:3px;line-height:1.35;}
+
+
+/* ── iPhone 16 Pro / iOS 26 interaction upgrades ── */
+#tabbar{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;justify-content:flex-start;}
+#tabbar::-webkit-scrollbar{display:none;}
+.tab-item{min-width:68px;}
+.rec-module{margin:0 16px 12px;background:var(--glass);border:.5px solid var(--glass-border);border-radius:var(--r-lg);box-shadow:var(--glass-shadow);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow:hidden;}
+.rec-head{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-bottom:.5px solid var(--sys-separator);}
+.rec-title{font-size:15px;font-weight:700;color:var(--label);letter-spacing:-.2px;}
+.rec-sub{font-size:12px;color:var(--label2);margin-top:1px;}
+.rec-list{padding:2px 15px 10px;}
+.rec-row{display:flex;gap:11px;padding:12px 0;border-bottom:.5px solid var(--sys-separator);}
+.rec-row:last-child{border-bottom:none;}
+.rec-ico{width:36px;height:36px;border-radius:11px;background:var(--sys-fill);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.rec-name{font-size:14px;font-weight:650;color:var(--label);letter-spacing:-.15px;}
+.rec-desc{font-size:12.5px;color:var(--label2);line-height:1.38;margin-top:2px;}
+.rec-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
+.rec-tag{font-size:11px;padding:3px 8px;border-radius:18px;background:var(--sys-fill);color:var(--label2);border:.5px solid var(--sys-separator);}
+.wheel-wrap{position:relative;margin:4px 0 12px;padding:12px 0 14px;background:linear-gradient(180deg,transparent,var(--sys-fill),transparent);}
+.wheel-center{position:absolute;left:50%;top:6px;bottom:8px;width:86px;transform:translateX(-50%);border-radius:22px;background:var(--blue-bg);border:1px solid var(--blue-border);pointer-events:none;box-shadow:inset 0 0 0 .5px rgba(255,255,255,.25);}
+.wheel-days{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:2px calc(50vw - 43px);}
+.wheel-days::-webkit-scrollbar{display:none;}
+.wheel-day{scroll-snap-align:center;flex:0 0 86px;border-radius:22px;border:.5px solid var(--sys-separator);background:var(--glass);box-shadow:var(--glass-shadow);padding:12px 8px;text-align:center;color:var(--label2);-webkit-tap-highlight-color:transparent;transform:scale(.92);transition:transform .16s,background .16s,color .16s,border-color .16s;}
+.wheel-day.active{background:var(--blue);border-color:var(--blue);color:#fff;transform:scale(1);box-shadow:0 8px 24px rgba(0,122,255,.25);}
+.wheel-day .num{font-size:22px;font-weight:800;line-height:1;}
+.wheel-day .dow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-top:4px;}
+.wheel-day .loc{font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px;opacity:.82;}
+.wheel-controls{display:flex;gap:8px;padding:0 16px 12px;}
+.wheel-btn{flex:1;padding:10px 12px;border-radius:16px;background:var(--glass);border:.5px solid var(--glass-border);box-shadow:var(--glass-shadow);font-size:13px;font-weight:650;color:var(--blue);}
+.tab-intro{margin:12px 16px;background:var(--glass);border:.5px solid var(--glass-border);border-radius:var(--r-lg);box-shadow:var(--glass-shadow);padding:14px 15px;color:var(--label2);font-size:14px;line-height:1.4;}
+.tab-intro b{color:var(--label);}
+
 </style>
 </head>
 <body>
@@ -385,14 +466,45 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
   <div style="height:20px;"></div>
 </div>
 
+
+
+<!-- ══════════ TIMELINE ══════════ -->
+<div id="s-timeline" class="screen">
+  <div class="nav-bar">
+    <div class="nav-title">Timeline</div>
+    <div class="nav-sub">Tap a day to expand the plan</div>
+  </div>
+  <div style="height:10px;"></div>
+  <div id="timeline-content"></div>
+</div>
+
 <!-- ══════════ EAT ══════════ -->
 <div id="s-eat" class="screen">
   <div class="nav-bar">
-    <div class="nav-title">Eat &amp; Drink</div>
-    <div class="nav-sub">Curated picks · menu highlights</div>
+    <div class="nav-title">F&amp;B</div>
+    <div class="nav-sub">Restaurants · cafés · bars · pubs</div>
   </div>
   <div style="height:10px;"></div>
   <div id="eat-content"></div>
+</div>
+
+
+<!-- ══════════ ACTIVITIES ══════════ -->
+<div id="s-activities" class="screen">
+  <div class="nav-bar">
+    <div class="nav-title">Activities</div>
+    <div class="nav-sub">Booked plans · nearby maybes · weather backups</div>
+  </div>
+  <div id="activities-content"></div>
+</div>
+
+<!-- ══════════ SHOPPING ══════════ -->
+<div id="s-shopping" class="screen">
+  <div class="nav-bar">
+    <div class="nav-title">Shopping</div>
+    <div class="nav-sub">Local makers · galleries · markets · strolls</div>
+  </div>
+  <div id="shopping-content"></div>
 </div>
 
 <!-- ══════════ INFO ══════════ -->
@@ -417,9 +529,22 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;}
     <div class="tab-icon"><svg viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></div>
     <span>Map</span>
   </button>
+
+  <button class="tab-item" data-s="timeline" onclick="goTab('timeline')">
+    <div class="tab-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><circle cx="12" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><path d="M15 6h5"/><path d="M4 18h5"/></svg></div>
+    <span>Timeline</span>
+  </button>
   <button class="tab-item" data-s="eat" onclick="goTab('eat')">
     <div class="tab-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
-    <span>Eat</span>
+    <span>F&amp;B</span>
+  </button>
+  <button class="tab-item" data-s="activities" onclick="goTab('activities')">
+    <div class="tab-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.6 4.1 2.1 6.9L12 16l-6.5 4 2.1-6.9L2 9h7z"/></svg></div>
+    <span>Activities</span>
+  </button>
+  <button class="tab-item" data-s="shopping" onclick="goTab('shopping')">
+    <div class="tab-icon"><svg viewBox="0 0 24 24"><path d="M6 2l1.5 4h9L18 2"/><path d="M3 6h18l-2 15H5z"/><path d="M8 10a4 4 0 0 0 8 0"/></svg></div>
+    <span>Shop</span>
   </button>
   <button class="tab-item" data-s="info" onclick="goTab('info')">
     <div class="tab-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><line x1="9" y1="9" x2="9" y2="9.01"/><line x1="9" y1="13" x2="9" y2="17"/><line x1="15" y1="9" x2="15" y2="9.01"/><line x1="15" y1="13" x2="15" y2="17"/></svg></div>
@@ -452,10 +577,10 @@ function embedUrl(q,z=13){ return `https://maps.google.com/maps?q=${encodeURICom
 // ═══════════════════════════════════════════════════════════
 const DAYS = [
 {date:'2026-06-30',place:'Sydney → Queenstown → Te Anau',tagline:'Arrive · collect RAV4 · drive south',
- img:'https://images.unsplash.com/photo-1589802829985-817e51171b92?w=900&q=75',
+ img:'https://images.unsplash.com/photo-1465056836041-7f43ac27dcb5?auto=format&fit=crop&w=1400&q=80',
  leg:0,
  hotel:{name:'Distinction Luxmore Hotel',addr:'41 Town Centre, Te Anau',ref:'ANZ-20314688',phone:'+6432497526',display:'+64 3-249 7526',nights:2,
-  img:'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=700&q=75',
+  img:'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?auto=format&fit=crop&w=1200&q=80',
   note:'Standard Room – Bed & Breakfast · Central Te Anau, short walk to lake',
   website:'https://www.distinctionhotels.com/distinction-luxmore-hotel-te-anau'},
  acts:[
@@ -470,7 +595,7 @@ const DAYS = [
  warns:[]},
 
 {date:'2026-07-01',place:'Te Anau',tagline:'Milford Sound day cruise',
- img:'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=900&q=75',leg:0,hotel:null,
+ img:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80',leg:0,hotel:null,
  acts:[
   {icon:'🚌',name:'Milford Sound Cruise & Coach – depart 10:20',detail:'Check in RealNZ Visitor Centre 10:05 · Ref 356468195 · both passengers · returns ~17:30',
    links:[lbtn('RealNZ','https://www.realnz.com/en/experiences/day-cruises/milford-sound-day-trip-from-te-anau/'),lbtn('Meet point',mapsUrl('RealNZ Visitor Centre Te Anau'))]},
@@ -481,9 +606,9 @@ const DAYS = [
  warns:['SH94 Milford Road is avalanche & landslide monitored 24/7. Carry extra food, water and warm layers in the car.']},
 
 {date:'2026-07-02',place:'Te Anau → Queenstown',tagline:'Drive to Queenstown · check in Browns',
- img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=75',leg:1,
+ img:'https://images.unsplash.com/photo-1531804055935-76f44d7c3621?auto=format&fit=crop&w=1400&q=80',leg:1,
  hotel:{name:'Browns Boutique Hotel',addr:'26 Isle Street, Queenstown',ref:'LN16570',phone:'+6434412050',display:'+64 3-441 2050',nights:2,
-  img:'https://images.unsplash.com/photo-1582719508461-905c673771fd?w=700&q=75',
+  img:'https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=1200&q=80',
   note:'Superior King Room · Continental breakfast included · Check in 2–6pm · after 6pm call for lockbox code',
   website:'https://www.brownshotel.co.nz'},
  acts:[
@@ -495,7 +620,7 @@ const DAYS = [
  notes:['Check in 2–6pm. Call property if arriving after 6pm: +64 3-441 2050.'],warns:[]},
 
 {date:'2026-07-03',place:'Queenstown',tagline:'Gondola · Nevis Bungy (Mo)',
- img:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=900&q=75',leg:1,hotel:null,
+ img:'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=80',leg:1,hotel:null,
  acts:[
   {icon:'🚡',name:'Skyline Gondola – anytime',detail:'Brecon St · Ref AX5W8ZU · both passengers · steepest gondola in southern hemisphere',
    links:[lbtn('Skyline','https://queenstown.skyline.co.nz'),lbtn('Map',mapsUrl('Skyline Gondola Queenstown'))]},
@@ -505,9 +630,9 @@ const DAYS = [
  notes:['Nevis: dress in warm layers · min 45 kg / max 127 kg · allow 4 hrs round trip.'],warns:[]},
 
 {date:'2026-07-04',place:'Queenstown → Wanaka',tagline:'Drive to Wanaka · school holidays begin',
- img:'https://images.unsplash.com/photo-1439130490301-25e322d88054?w=900&q=75',leg:2,
+ img:'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1400&q=80',leg:2,
  hotel:{name:'Edgewater Hotel',addr:'54 Sargood Drive, Wanaka',ref:'12-85103',phone:'+6434438311',display:'+64 3-443 8311',nights:3,
-  img:'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=700&q=75',
+  img:'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80',
   note:'One Bedroom Suite · lakefront lawns · spa, sauna, tennis on-site · 3-night stay',
   website:'https://www.edgewater.co.nz'},
  acts:[
@@ -519,7 +644,7 @@ const DAYS = [
  notes:['NZ Winter School Holidays begin today (4–19 Jul). Book restaurants ahead – everything fills fast.'],warns:[]},
 
 {date:'2026-07-05',place:'Wanaka → Cardrona',tagline:'Ski Day 1 – Cardrona Alpine Resort',
- img:'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?w=900&q=75',leg:2,hotel:null,
+ img:'https://images.unsplash.com/photo-1487730116645-74489c95b41b?auto=format&fit=crop&w=1400&q=80',leg:2,hotel:null,
  acts:[
   {icon:'⛷️',name:'Cardrona Alpine Resort – Day 1 of 2',detail:'Arrive ~09:00 · Ref 20674117 · both passengers · Beginner Zone · 2 x group lessons · full rental bundle (jacket, pants, helmet, goggles)',
    links:[lbtn('Cardrona','https://www.cardrona.com'),lbtn('Snow report','https://www.cardrona.com/the-mountain/conditions/'),lbtn('Map',mapsUrl('Cardrona Alpine Resort New Zealand'))]},
@@ -528,7 +653,7 @@ const DAYS = [
  warns:['Ski products non-refundable. Check snow conditions morning of departure.']},
 
 {date:'2026-07-06',place:'Wanaka – Cardrona',tagline:'Ski Day 2 – Cardrona Alpine Resort',
- img:'https://images.unsplash.com/photo-1548777123-e216912df7d8?w=900&q=75',leg:2,hotel:null,
+ img:'https://images.unsplash.com/photo-1455156218388-5e61b526818b?auto=format&fit=crop&w=1400&q=80',leg:2,hotel:null,
  acts:[
   {icon:'⛷️',name:'Cardrona Alpine Resort – Day 2 of 2',detail:'Same lift pass · 2 x group lessons · full rental bundle continues · lifts 09:00–16:00',
    links:[lbtn('Cardrona','https://www.cardrona.com'),lbtn('Snow report','https://www.cardrona.com/the-mountain/conditions/')]},
@@ -538,9 +663,9 @@ const DAYS = [
  notes:[],warns:[]},
 
 {date:'2026-07-07',place:'Wanaka → Mt Cook → Lake Tekapo',tagline:'Scenic drive · Hooker Valley · check in Tekapo',
- img:'https://images.unsplash.com/photo-1579033385971-a7bc2c6f8c46?w=900&q=75',leg:3,
+ img:'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80',leg:3,
  hotel:{name:'Grand Suites Lake Tekapo',addr:'14 Greig Street, Lake Tekapo',ref:'25612',phone:'+6436637049',display:'+64 3-663 7049',nights:2,
-  img:'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=700&q=75',
+  img:'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=1200&q=80',
   note:'Executive Studio · lake & Southern Alps views · reception 8am–8:30pm · call if arriving after hours',
   website:'https://grandsuitestekapo.co.nz'},
  acts:[
@@ -554,7 +679,7 @@ const DAYS = [
  notes:['Lake Pukaki is a 5-minute detour off SH8 – unmissable.'],warns:[]},
 
 {date:'2026-07-08',place:'Lake Tekapo',tagline:'Free day · Church · hot pools · optional stargazing',
- img:'https://images.unsplash.com/photo-1514912885225-5e3c374e6f58?w=900&q=75',leg:3,hotel:null,
+ img:'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1400&q=80',leg:3,hotel:null,
  acts:[
   {icon:'⛪',name:'Church of the Good Shepherd',detail:'Iconic lakefront stone chapel · free entry · best at sunrise · 5-min walk from Grand Suites',
    links:[lbtn('Church info','https://www.churchofthegoodshepherd.org.nz'),lbtn('Map',mapsUrl('Church of the Good Shepherd Lake Tekapo'))]},
@@ -567,9 +692,9 @@ const DAYS = [
  warns:['Check weather forecast morning of 8 Jul before committing to stargazing.']},
 
 {date:'2026-07-09',place:'Lake Tekapo → Christchurch',tagline:'Drive · Botanic Gardens · final night',
- img:'https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=900&q=75',leg:4,
+ img:'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80',leg:4,
  hotel:{name:'The George',addr:'50 Park Terrace, Christchurch',ref:'ANZ-20302364',phone:'+6433794560',display:'+64 3-379 4560',nights:1,
-  img:'https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=700&q=75',
+  img:'https://images.unsplash.com/photo-1564501049412-61c2a3083791?auto=format&fit=crop&w=1200&q=80',
   note:'Executive Room · overlooks Hagley Park & Avon River · two award-winning restaurants · off-street parking',
   website:'https://www.thegeorge.com'},
  acts:[
@@ -583,7 +708,7 @@ const DAYS = [
  notes:['RAV4 drop-off tomorrow at Christchurch Airport by 13:00. Allow 20 min from The George.'],warns:[]},
 
 {date:'2026-07-10',place:'Christchurch → Sydney',tagline:'Car drop-off · fly home',
- img:'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=75',leg:4,hotel:null,
+ img:'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1400&q=80',leg:4,hotel:null,
  acts:[
   {icon:'🚗',name:'Drop off RAV4 by 13:00',detail:'Christchurch Airport · Ezi Car Rental · ~20 min from The George',
    links:[lbtn('Airport map',mapsUrl('Christchurch Airport New Zealand'))]},
@@ -596,23 +721,23 @@ const DAYS = [
 // LEGS
 const LEGS = [
  {name:'Te Anau & Fiordland',dates:'30 Jun – 2 Jul',days:[0,1],
-  img:'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=900&q=75',
+  img:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80',
   tags:['Milford Sound','Cruise','Fiordland National Park'],
   links:[lbtn('Te Anau tourism','https://www.fiordland.org.nz'),lbtn('Map',mapsUrl('Te Anau New Zealand'))]},
  {name:'Queenstown',dates:'2 – 4 Jul',days:[2,3],
-  img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=75',
+  img:'https://images.unsplash.com/photo-1531804055935-76f44d7c3621?auto=format&fit=crop&w=1400&q=80',
   tags:['Skyline Gondola','Nevis Bungy','Adventure capital'],
   links:[lbtn('Queenstown NZ','https://www.queenstownnz.co.nz'),lbtn('Map',mapsUrl('Queenstown New Zealand'))]},
  {name:'Wanaka & Cardrona',dates:'4 – 7 Jul',days:[4,5,6],
-  img:'https://images.unsplash.com/photo-1439130490301-25e322d88054?w=900&q=75',
+  img:'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1400&q=80',
   tags:['2 days skiing','Cardrona Resort','Lakeside alpine'],
   links:[lbtn('Lake Wanaka','https://www.lakewanaka.co.nz'),lbtn('Cardrona','https://www.cardrona.com')]},
  {name:'Aoraki / Mt Cook & Tekapo',dates:'7 – 9 Jul',days:[7,8],
-  img:'https://images.unsplash.com/photo-1579033385971-a7bc2c6f8c46?w=900&q=75',
+  img:'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80',
   tags:['Hooker Valley Track','Dark sky','Lake Pukaki'],
   links:[lbtn('DOC Mt Cook','https://www.doc.govt.nz/parks-and-recreation/places-to-go/canterbury/places/aoraki-mount-cook-national-park/'),lbtn('Dark Sky Project','https://www.darkskyproject.co.nz')]},
  {name:'Christchurch',dates:'9 – 10 Jul',days:[9,10],
-  img:'https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=900&q=75',
+  img:'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1400&q=80',
   tags:['The George','Botanic Gardens','Depart 16:35'],
   links:[lbtn('Christchurch NZ','https://christchurchnz.com'),lbtn('Map',mapsUrl('Christchurch New Zealand'))]},
 ];
@@ -647,24 +772,103 @@ const POIS = [
  {name:'Pescatore – The George',cat:'Eat & Drink',loc:'Christchurch',q:'Pescatore Restaurant Christchurch',web:'https://www.thegeorge.com/dining/pescatore/'},
 ];
 
-const MAP_CATS = ['All','Stay','Activity','Scenic','Eat & Drink'];
+const MAP_CATS = ['All','Stay','Activity','Scenic','Eat & Drink','F&B','Recommended','Shopping'];
+
+const FNB_EXTRA = [
+ {loc:'Te Anau',places:[
+  {img:'https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1200&q=80',type:'Gastropub',name:'The Fat Duck',desc:'Reliable pub-style dinner, warm room, easy choice when Milford weather has bullied everyone.',addr:'124 Town Centre',hours:'Lunch & dinner',price:'$$',menu:[{d:'Duck Fat Fries',w:'good cold-weather snack'},{d:'Local Beef Burger',w:'safe, filling post-drive option'}],tip:'Use this as the no-drama fallback if everywhere prettier is full.',links:[lbtn('Website','https://www.thefatduck.co.nz'),lbtn('Map',mapsUrl('The Fat Duck Te Anau'))]},
+  {img:'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1200&q=80',type:'Café',name:'Sandfly Café',desc:'Central breakfast, coffee and cabinet food before coach tours or lake walks.',addr:'9 The Lane',hours:'Breakfast/lunch',price:'$',menu:[{d:'Big Breakfast',w:'sensible fuel before Fiordland'},{d:'Flat White',w:'road-trip medicine'}],tip:'Good quick morning stop near the town centre.',links:[lbtn('Map',mapsUrl('Sandfly Cafe Te Anau'))]}
+ ]},
+ {loc:'Queenstown',places:[
+  {img:'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80',type:'Cocktail Bar',name:'The Lodge Bar',desc:'Waterfront, polished, grown-up cocktails without the backpacker chaos.',addr:'2 Rees St',hours:'Lunch → late',price:'$$$',menu:[{d:'Central Otago Pinot',w:'regional, easy win'},{d:'Seasonal cocktail',w:'ask the bartender'}],tip:'Good date-night drink before or after dinner.',links:[lbtn('Website','https://www.thelodgebar.co.nz'),lbtn('Map',mapsUrl('The Lodge Bar Queenstown'))]},
+  {img:'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1200&q=80',type:'Wine Bar',name:'The Winery',desc:'Self-serve NZ wine tasting. Fun, low-commitment way to try Central Otago bottles.',addr:'14 Beach St',hours:'Afternoon/evening',price:'$$$',menu:[{d:'Pinot Noir flight',w:'Queenstown’s obvious move'},{d:'Reserve tastings',w:'try rare cellar-door-only bottles'}],tip:'Start with tiny pours. It sneaks up on you.',links:[lbtn('Website','https://www.thewinery.co.nz'),lbtn('Map',mapsUrl('The Winery Queenstown'))]},
+  {img:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',type:'Live Music / Casual',name:'Yonder',desc:'All-day café that turns into a music/comedy venue at night. More interesting than a generic pub.',addr:'14 Church St',hours:'Breakfast → late',price:'$$',menu:[{d:'Fried chicken',w:'late-night crowd pleaser'},{d:'House cocktails',w:'easy, lively room'}],tip:'Check events for comedy or live music.',links:[lbtn('Website','https://www.yonderqt.co.nz'),lbtn('Map',mapsUrl('Yonder Queenstown'))]}
+ ]},
+ {loc:'Wanaka',places:[
+  {img:'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=1200&q=80',type:'Wine Bar',name:'Cork Bar',desc:'Cosy local wine bar with proper Central Otago energy. Better for a slow evening than a loud pub.',addr:'14 Helwick St',hours:'Evening',price:'$$$',menu:[{d:'Central Otago Pinot',w:'when in Wānaka'},{d:'Cheese board',w:'ski-day decompression'}],tip:'Best after Cardrona when you want warmth and zero fuss.',links:[lbtn('Website','https://www.corkbar.co.nz'),lbtn('Map',mapsUrl('Cork Bar Wanaka'))]},
+  {img:'https://images.unsplash.com/photo-1543007630-9710e4a00a20?auto=format&fit=crop&w=1200&q=80',type:'Brewery',name:'Rhyme x Reason Brewery',desc:'Local craft brewery with relaxed food-truck style energy.',addr:'17 Gordon Rd',hours:'Afternoon/evening',price:'$$',menu:[{d:'Tasting paddle',w:'try before committing'},{d:'Hazy IPA',w:'ski-trip classic'}],tip:'Check winter opening hours before driving there.',links:[lbtn('Website','https://www.rhymexreason.beer'),lbtn('Map',mapsUrl('Rhyme x Reason Brewery Wanaka'))]},
+  {img:'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80',type:'Brunch / Coffee',name:'Scroggin Coffee & Eatery',desc:'Excellent local café, strong pre-ski breakfast option.',addr:'71 Ardmore St',hours:'Breakfast/lunch',price:'$$',menu:[{d:'Scroggin bowl',w:'actual fuel, not sadness cereal'},{d:'Oat flat white',w:'reliable morning win'}],tip:'Put this before Puzzling World or a lakefront stroll.',links:[lbtn('Website','https://www.scroggin.nz'),lbtn('Map',mapsUrl('Scroggin Coffee Wanaka'))]}
+ ]},
+ {loc:'Lake Tekapo',places:[
+  {img:'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80',type:'Coffee Roaster',name:'Dark Sky Diner / Astro Café area',desc:'Keep this as the warm-drink-and-view option around the Dark Sky / Mt John part of town.',addr:'Lake Tekapo / Mt John',hours:'Daytime/evening varies',price:'$$',menu:[{d:'Hot chocolate',w:'cold Tekapo cheat code'},{d:'Coffee',w:'views do the heavy lifting'}],tip:'Check access/weather before Mt John.',links:[lbtn('Dark Sky Project','https://www.darkskyproject.co.nz'),lbtn('Map',mapsUrl('Dark Sky Project Lake Tekapo'))]},
+  {img:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',type:'Casual Dinner',name:'Blue Lake Eatery & Bar',desc:'Modern casual dinner and drinks when you do not want a formal booking.',addr:'Main Tekapo village',hours:'Dinner',price:'$$',menu:[{d:'NZ lamb',w:'comfort food territory'},{d:'Local beer',w:'simple and effective'}],tip:'Good backup if Kohan is full.',links:[lbtn('Map',mapsUrl('Blue Lake Eatery Bar Lake Tekapo'))]}
+ ]},
+ {loc:'Christchurch',places:[
+  {img:'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',type:'Cocktail Bar',name:'The Last Word',desc:'Intimate whisky/cocktail bar in New Regent Street. Excellent final-night option.',addr:'31 New Regent St',hours:'Evening',price:'$$$',menu:[{d:'Whisky flight',w:'tiny dramatic farewell'},{d:'Old Fashioned',w:'clean classic'}],tip:'Pair with a New Regent Street wander.',links:[lbtn('Website','https://www.thelastword.co.nz'),lbtn('Map',mapsUrl('The Last Word Christchurch'))]},
+  {img:'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=1200&q=80',type:'Food Hall',name:'Riverside Market',desc:'Indoor food market with plenty of stalls — good for breakfast, lunch or a final browse.',addr:'96 Oxford Terrace',hours:'Day/evening',price:'$–$$$',menu:[{d:'Bakery + coffee',w:'easy morning stroll'},{d:'Seafood / casual bites',w:'no single booking needed'}],tip:'Great if you want options without negotiating dinner like a UN summit.',links:[lbtn('Website','https://riverside.nz'),lbtn('Map',mapsUrl('Riverside Market Christchurch'))]},
+  {img:'https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=1200&q=80',type:'Pub / Live Music',name:'The Church Pub',desc:'A big restored-church pub with proper “we are not in Sydney anymore” novelty.',addr:'124 Worcester St',hours:'Lunch → late',price:'$$',menu:[{d:'Pub classics',w:'safe and easy'},{d:'Local tap beer',w:'Christchurch send-off'}],tip:'Worth a look if you want atmosphere more than fine dining.',links:[lbtn('Website','https://thechurchpub.co.nz'),lbtn('Map',mapsUrl('The Church Pub Christchurch'))]}
+ ]}
+];
+
+const ACTIVITY_RECS = [
+ {loc:'Te Anau',items:[
+  {icon:'✨',name:'Te Anau Glowworm Caves',type:'Optional activity',desc:'Short cruise across Lake Te Anau then caves/glowworms. Great weather-proof add-on if you have spare evening energy.',tags:['Book ahead','Low effort'],q:'Te Anau Glowworm Caves',web:'https://www.realnz.com/en/experiences/glowworm-caves/te-anau-glowworm-caves/'},
+  {icon:'🦜',name:'Te Anau Bird Sanctuary',type:'Free / short walk',desc:'Easy lakeside stop to see takahē and native birds without turning the day into a forced march.',tags:['Free','30–45 min'],q:'Te Anau Bird Sanctuary'},
+  {icon:'🚶',name:'Lake Te Anau Foreshore Walk',type:'Gentle walk',desc:'Good arrival-evening stretch after the drive. Low risk, high view-per-minute return.',tags:['Sunset','Easy'],q:'Lake Te Anau Foreshore'}]},
+ {loc:'Queenstown',items:[
+  {icon:'🚤',name:'KJet / Shotover Jet',type:'Adrenaline maybe',desc:'Jet boating is very Queenstown. Add only if Nevis has awakened the chaos demon rather than killed it.',tags:['Cold','Fast','Book'],q:'KJet Queenstown',web:'https://www.kjet.co.nz'},
+  {icon:'🚢',name:'TSS Earnslaw Lake Cruise',type:'Scenic cruise',desc:'Historic steamer across Lake Wakatipu. More chilled than bungy, excellent if you want old-world NZ charm.',tags:['Classic','Scenic'],q:'TSS Earnslaw Queenstown',web:'https://www.realnz.com/en/experiences/cruises/tss-earnslaw-lake-cruises/'},
+  {icon:'🏘️',name:'Arrowtown stroll',type:'Half-day side quest',desc:'Gold-rush village, boutiques, cafés and very pretty streets. Strong fit for a slow morning.',tags:['Shops','Cafés','Pretty'],q:'Arrowtown New Zealand'}]},
+ {loc:'Wanaka',items:[
+  {icon:'🧩',name:'Puzzling World',type:'Weather-proof fun',desc:'Quirky indoor/outdoor attraction. Honestly ideal if the weather is being a wet sock.',tags:['Indoor-ish','Easy'],q:'Puzzling World Wanaka',web:'https://www.puzzlingworld.co.nz'},
+  {icon:'🎬',name:'Cinema Paradiso',type:'Evening backup',desc:'Beloved old-school cinema with sofas and interval cookies. Excellent low-energy après-ski evening.',tags:['Warm','Local classic'],q:'Cinema Paradiso Wanaka',web:'https://www.paradiso.net.nz'},
+  {icon:'🌲',name:'Lakefront + That Wānaka Tree',type:'Easy scenic',desc:'Do the cliché. It is a cliché because it works. Best in soft morning/evening light.',tags:['Free','Photos'],q:'That Wanaka Tree'}]},
+ {loc:'Lake Tekapo',items:[
+  {icon:'♨️',name:'Tekapo Springs',type:'Hot pools',desc:'The recovery move after Hooker Valley or a cold clear day. Book around sunset if timing works.',tags:['Warm','Book'],q:'Tekapo Springs',web:'https://www.tekaposprings.co.nz'},
+  {icon:'🔭',name:'Dark Sky Project',type:'Night activity',desc:'Only worth it if skies are clear. If clear, it could be one of the trip’s best memories.',tags:['Weather-led','Book'],q:'Dark Sky Project Lake Tekapo',web:'https://www.darkskyproject.co.nz'},
+  {icon:'☕',name:'Mt John / Astro Café',type:'Viewpoint',desc:'Short drive for huge Mackenzie Basin views. Road access may vary in winter.',tags:['Views','Coffee'],q:'Mt John Observatory Lake Tekapo'}]},
+ {loc:'Christchurch',items:[
+  {icon:'🛶',name:'Punting on the Avon',type:'Chilled activity',desc:'Touristy in a nice way. Pairs well with Botanic Gardens and The George.',tags:['Easy','Romantic'],q:'Punting on the Avon Christchurch',web:'https://www.punting.co.nz'},
+  {icon:'🎭',name:'The Court Theatre',type:'Theatre check',desc:'Worth checking what’s on for a more refined final-night option if Pescatore feels too simple.',tags:['Evening','Book'],q:'The Court Theatre Christchurch',web:'https://courttheatre.org.nz'},
+  {icon:'🏛️',name:'Christchurch Art Gallery',type:'Indoor culture',desc:'Excellent if the weather turns or you want something calmer before flying home.',tags:['Free','Indoor'],q:'Christchurch Art Gallery',web:'https://christchurchartgallery.org.nz'}]}
+];
+
+const SHOPPING_RECS = [
+ {loc:'Te Anau',items:[
+  {icon:'🧵',name:'Wild Rimu / local gift stores',type:'Local gifts',desc:'Look for NZ timber, wool, merino socks and small Fiordland-made pieces rather than airport souvenir fluff.',tags:['NZ wool','Timber','Gifts'],q:'Te Anau local gifts shops'},
+  {icon:'🧥',name:'Outdoor gear top-up',type:'Practical',desc:'If gloves, beanies or waterproof bits fail, Te Anau is a useful last stop before Milford.',tags:['Useful','Winter'],q:'Te Anau outdoor gear'}]},
+ {loc:'Queenstown',items:[
+  {icon:'🛍️',name:'Queenstown Mall + Beach Street',type:'Morning stroll',desc:'Compact town shopping: outdoor gear, galleries, souvenirs, cafés and lakefront people-watching.',tags:['Central','Cafés'],q:'Queenstown Mall Beach Street'},
+  {icon:'🧶',name:'Untouched World',type:'Merino / NZ-made',desc:'Good place to look for higher-quality NZ merino layers that will still make sense back in Sydney winters.',tags:['Merino','Local brand'],q:'Untouched World Queenstown'},
+  {icon:'🏘️',name:'Arrowtown Buckingham Street',type:'Boutiques',desc:'Best local-feeling shopping detour: preserved gold-rush street, galleries, design stores and cafés.',tags:['Boutiques','Galleries'],q:'Buckingham Street Arrowtown'}]},
+ {loc:'Wanaka',items:[
+  {icon:'👗',name:'47 Frocks',type:'Boutique',desc:'Curated NZ and international clothing/home pieces; more interesting than generic tourist stores.',tags:['Boutique','Design'],q:'47 Frocks Wanaka'},
+  {icon:'🎨',name:'The Picture Lounge',type:'Gallery',desc:'Landscape photography and wall-art inspiration if you want something genuinely tied to the region.',tags:['Art','Local'],q:'The Picture Lounge Wanaka'},
+  {icon:'🛍️',name:'Ardmore Street boutiques',type:'Stroll',desc:'Easy lakefront shopping/café loop for a non-ski morning.',tags:['Cafés','Lakefront'],q:'Ardmore Street Wanaka shops'}]},
+ {loc:'Lake Tekapo',items:[
+  {icon:'📚',name:"Petronella's Gallery & Bookstore",type:'Books / art',desc:'Small independent store; good for local books, prints and quiet browsing.',tags:['Books','Local'],q:"Petronella's Gallery and Bookstore Lake Tekapo"},
+  {icon:'🌌',name:'Dark Sky Project gift store',type:'Astronomy gifts',desc:'Best thematically aligned Tekapo souvenir: astronomy books, star maps, dark-sky bits.',tags:['Stargazing','Gifts'],q:'Dark Sky Project gift shop Lake Tekapo'},
+  {icon:'🎁',name:'Aotea Gifts Tekapo',type:'NZ souvenirs',desc:'Good for last-minute merino, manuka, skincare and small NZ-made gifts.',tags:['Merino','Manuka'],q:'Aotea Gifts Lake Tekapo'}]},
+ {loc:'Christchurch',items:[
+  {icon:'🥐',name:'Riverside Market',type:'Food + shopping',desc:'Best final-morning wander: coffee, breakfast, local food stalls and easy gift browsing.',tags:['Breakfast','Market'],q:'Riverside Market Christchurch',web:'https://riverside.nz'},
+  {icon:'🧱',name:'The Arts Centre',type:'Makers / galleries',desc:'Historic precinct with galleries, design stores, workshops and cafés. Very good “not-a-mall” stroll.',tags:['Makers','Architecture'],q:'The Arts Centre Christchurch',web:'https://www.artscentre.org.nz'},
+  {icon:'🛒',name:'The Tannery',type:'Boutique arcade',desc:'Beautiful restored shopping arcade with independent stores, homewares and cafés; worth it if you have a car and time.',tags:['Homewares','Boutiques'],q:'The Tannery Christchurch',web:'https://thetannery.co.nz'}]}
+];
+
+const EXTRA_POIS = [
+ ...FNB_EXTRA.flatMap(l=>l.places.map(p=>({name:p.name,cat:'F&B',loc:l.loc,q:p.name+' '+l.loc,web:(p.links.find(x=>x.includes('Website'))||'').match(/href="([^"]+)/)?.[1]}))),
+ ...ACTIVITY_RECS.flatMap(l=>l.items.map(p=>({name:p.name,cat:'Recommended',loc:l.loc,q:p.q,web:p.web}))),
+ ...SHOPPING_RECS.flatMap(l=>l.items.map(p=>({name:p.name,cat:'Shopping',loc:l.loc,q:p.q,web:p.web})))
+];
+POIS.push(...EXTRA_POIS);
+
 
 // EAT
 const EAT = [
  {loc:'Te Anau',dates:'30 Jun – 2 Jul',places:[
-  {img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=75',type:'Restaurant',name:'The Redcliff',
+  {img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',type:'Restaurant',name:'The Redcliff',
    desc:'Game meat, venison and Fiordland lamb in a stone cottage – a Te Anau institution since 1986.',
    addr:'12 Mokonui St',hours:'Dinner from 5pm',price:'$$$',
    menu:[{d:'Fiordland Venison',w:'slow-cooked, herb crust, local berry jus'},{d:'Whitebait Fritter',w:'seasonal NZ delicacy – order as entrée'},{d:'Lamb Rack',w:'South Island grass-fed, mint jus'}],
    tip:'Book ahead – fills fast in ski season.',
    links:[lbtn('Website','https://www.theredcliff.co.nz'),lbtn('Map',mapsUrl('The Redcliff Restaurant Te Anau'))]},
-  {img:'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=700&q=75',type:'Café / Bakery',name:'Miles Better Pies',
+  {img:'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=80',type:'Café / Bakery',name:'Miles Better Pies',
    desc:'Famous hand-made pies and excellent coffee – the perfect pre-Milford Sound breakfast.',
    addr:'2 Milford Rd',hours:'From ~7am, sells out by 10am',price:'$',
    menu:[{d:'Venison & Mushroom Pie',w:'the bestseller – rich and hearty'},{d:'Mince & Cheese',w:'NZ classic, perfectly executed'},{d:'Long Black',w:'robust local roast'}],
    tip:'Arrive before 8:30am – they sell out.',
    links:[lbtn('Map',mapsUrl('Miles Better Pies Te Anau'))]},
-  {img:'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=700&q=75',type:'Craft Brewery',name:'Fiordland Brewing Co',
+  {img:'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1200&q=80',type:'Craft Brewery',name:'Fiordland Brewing Co',
    desc:'On-site brewed craft beers, lakeside deck, good burgers and pizza after a big day.',
    addr:'25 Mokonui St',hours:'From 11am',price:'$$',
    menu:[{d:'Manuka Smoked Porter',w:'signature brew – rich and complex'},{d:'Venison Burger',w:'local meat, house-pickled veg'},{d:'Tasting Paddle (4 pints)',w:'best way to find your favourite'}],
@@ -672,19 +876,19 @@ const EAT = [
    links:[lbtn('Website','https://www.fiordlandbrewing.co.nz'),lbtn('Map',mapsUrl('Fiordland Brewing Company Te Anau'))]},
  ]},
  {loc:'Queenstown',dates:'2 – 4 Jul',places:[
-  {img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=700&q=75',type:'Burgers',name:'Fergburger',
+  {img:'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80',type:'Burgers',name:'Fergburger',
    desc:'A Queenstown institution open until 5am. Queue looks long – it moves fast.',
    addr:'42 Shotover St',hours:'8am – 5am',price:'$',
    menu:[{d:'Mr Big Stuff',w:'double beef, bacon, egg – full commitment'},{d:'Little Lamby',w:'NZ lamb, mint yoghurt – the hidden gem'},{d:'Ferg Deluxe',w:'classic smash burger, always reliable'}],
    tip:'Go at 10pm – shortest queues, freshest buns.',
    links:[lbtn('Website','https://www.fergburger.com'),lbtn('Map',mapsUrl('Fergburger Queenstown'))]},
-  {img:'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=700&q=75',type:'Fine Dining',name:'Rata',
+  {img:'https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80',type:'Fine Dining',name:'Rata',
    desc:"Josh Emett's flagship. Impeccable South Island produce – one of NZ's best.",
    addr:'43 Ballarat St',hours:'Dinner from 5:30pm',price:'$$$$',
    menu:[{d:'Cervena Venison',w:'signature – cannon + shoulder, brilliant technique'},{d:'Pāua Ravioli',w:'NZ abalone, umami depth – seasonal starter'},{d:'Manuka Honey Dessert',w:'standout finish, distinctly NZ'}],
    tip:'Book 2+ weeks ahead. Request window seats for mountain views.',
    links:[lbtn('Book table','https://www.ratadining.co.nz/reservations/'),lbtn('Website','https://www.ratadining.co.nz')]},
-  {img:'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=700&q=75',type:'Café',name:'Vudu Cafe & Larder',
+  {img:'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=80',type:'Café',name:'Vudu Cafe & Larder',
    desc:'Best coffee in Queenstown. House-baked pastries, great eggs. Waterfront.',
    addr:'23 Beach St',hours:'7:30am – 4pm',price:'$$',
    menu:[{d:'Eggs Benedict',w:'perfectly poached, house hollandaise'},{d:'Almond Croissant',w:'baked in-house, buttery layers'},{d:'Flat White',w:'consistently excellent, local roast'}],
@@ -692,19 +896,19 @@ const EAT = [
    links:[lbtn('Website','https://www.vudu.co.nz'),lbtn('Map',mapsUrl('Vudu Cafe Queenstown'))]},
  ]},
  {loc:'Wanaka',dates:'4 – 7 Jul',places:[
-  {img:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&q=75',type:'Italian',name:"Francesca's Italian Kitchen",
+  {img:'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80',type:'Italian',name:"Francesca's Italian Kitchen",
    desc:'Wood-fired pizza and house-made pasta – the most popular restaurant in Wanaka.',
    addr:'93 Ardmore St',hours:'Dinner from 5pm',price:'$$',
    menu:[{d:'Truffle & Mushroom Pizza',w:'wood-fired, house dough, generous truffle'},{d:'Handmade Tagliatelle',w:'daily-made pasta, rotating seasonal sauce'},{d:'Tiramisu',w:'house recipe – unmissable'}],
    tip:'Book ahead – fills every single night.',
    links:[lbtn('Website','https://www.francescas.co.nz'),lbtn('Map',mapsUrl('Francescas Italian Kitchen Wanaka'))]},
-  {img:'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=700&q=75',type:'Biodynamic Winery',name:'Rippon Vineyard',
+  {img:'https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=1200&q=80',type:'Biodynamic Winery',name:'Rippon Vineyard',
    desc:"One of NZ's most photographed wineries. Biodynamic wines on the lakeshore.",
    addr:'246 Mt Aspiring Rd',hours:'11am–5pm (call ahead in winter)',price:'$$$',
    menu:[{d:'Mature Vine Pinot Noir',w:'flagship – exceptional in winter'},{d:'Emma Pinot Gris',w:'aromatic, biodynamic, pairs with cheese'},{d:'Cheese & Charcuterie Board',w:'local Wanaka cheeses, perfect with a glass'}],
    tip:'15 min from town. Call ahead in July – may close in bad weather.',
    links:[lbtn('Website','https://www.rippon.co.nz'),lbtn('Map',mapsUrl('Rippon Vineyard Wanaka'))]},
-  {img:'https://images.unsplash.com/photo-1525193612562-0ec53b0e5d7c?w=700&q=75',type:'All-day Café',name:'Kika',
+  {img:'https://images.unsplash.com/photo-1525193612562-0ec53b0e5d7c?auto=format&fit=crop&w=1200&q=80',type:'All-day Café',name:'Kika',
    desc:'Excellent coffee, house ferments, seasonal brunch plates. A Wanaka staple.',
    addr:'Dunmore St',hours:'8am – 3pm',price:'$$',
    menu:[{d:'Bircher Muesli Bowl',w:'house-fermented oats, seasonal fruit, honey'},{d:'Corn Fritters',w:'crispy, smashed avo, poached egg'},{d:'Oat Flat White',w:'best coffee for pre-ski mornings'}],
@@ -712,13 +916,13 @@ const EAT = [
    links:[lbtn('Website','https://www.kika.co.nz'),lbtn('Map',mapsUrl('Kika Cafe Wanaka'))]},
  ]},
  {loc:'Lake Tekapo',dates:'7 – 9 Jul',places:[
-  {img:'https://images.unsplash.com/photo-1553621042-f6e147245754?w=700&q=75',type:'Japanese',name:'Kohan Restaurant',
+  {img:'https://images.unsplash.com/photo-1553621042-f6e147245754?auto=format&fit=crop&w=1200&q=80',type:'Japanese',name:'Kohan Restaurant',
    desc:'Lakefront Japanese with breathtaking Tekapo views. Sushi, sashimi, hot udon.',
    addr:'SH8, Lake Tekapo',hours:'Lunch & Dinner',price:'$$$',
    menu:[{d:'Salmon Sashimi',w:'freshest fish for miles – always impeccable'},{d:'Tempura Seafood',w:'light batter, great dipping sauce'},{d:'Beef Udon',w:'warming broth – perfect on a cold July evening'}],
    tip:'Request a window table when booking. Lake views are spectacular.',
    links:[lbtn('Website','https://www.kohanrestaurant.co.nz'),lbtn('Map',mapsUrl('Kohan Restaurant Lake Tekapo'))]},
-  {img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=75',type:'Summit Café',name:'Astro Café – Mt John',
+  {img:'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80',type:'Summit Café',name:'Astro Café – Mt John',
    desc:'Observatory café at the top of Mt John. 360° Mackenzie Basin views.',
    addr:'Mt John Summit, Tekapo',hours:'9am – 4pm (winter)',price:'$$',
    menu:[{d:'Hot Chocolate',w:'essential at altitude – rich and warming'},{d:'Venison Pie',w:'rotates daily, always a solid option'},{d:'Flat White',w:'the view makes everything taste better'}],
@@ -726,13 +930,13 @@ const EAT = [
    links:[lbtn('Mt John info','https://www.darkskyproject.co.nz/mt-john/'),lbtn('Map',mapsUrl('Astro Cafe Mount John Tekapo'))]},
  ]},
  {loc:'Christchurch',dates:'9 – 10 Jul',places:[
-  {img:'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?w=700&q=75',type:'Fine Dining',name:'Pescatore – The George',
+  {img:'https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?auto=format&fit=crop&w=1200&q=80',type:'Fine Dining',name:'Pescatore – The George',
    desc:"Award-winning NZ seafood restaurant inside your hotel. The trip's best dinner.",
    addr:'50 Park Terrace (in hotel)',hours:'Dinner from 5:30pm',price:'$$$$',
    menu:[{d:'Canterbury Salmon',w:"house-smoked – the restaurant's signature"},{d:'Blue Cod',w:"NZ native fish, chef's preparation changes daily"},{d:'Seared Kaikōura Scallops',w:'clean, precise – perfect starter'}],
    tip:'Book a window table overlooking Hagley Park. Non-hotel guests fill it fast.',
    links:[lbtn('Book table','https://www.thegeorge.com/dining/pescatore/'),lbtn('Map',mapsUrl('Pescatore Restaurant Christchurch'))]},
-  {img:'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=700&q=75',type:'French Bakery',name:"C'est La Vie",
+  {img:'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1200&q=80',type:'French Bakery',name:"C'est La Vie",
    desc:"Finest croissants in Christchurch. 10-min walk from The George.",
    addr:'123 Victoria St',hours:'7am – 3pm',price:'$',
    menu:[{d:'Ham & Cheese Croissant',w:'buttery, layered – the pick of the cabinet'},{d:'Pain au Chocolat',w:'two layers of chocolate, flaky pastry'},{d:'Café au Lait',w:'French-style, pairs perfectly with pastry'}],
@@ -937,190 +1141,166 @@ async function buildWeather(td){
  }
 }
 
+
+function fmtDate(dstr,opts){ return new Date(dstr+'T00:00:00').toLocaleDateString('en-AU',opts||{weekday:'long',day:'numeric',month:'long'}); }
+function dayNum(dstr){ return new Date(dstr+'T00:00:00').getDate(); }
+function dayMon(dstr){ return new Date(dstr+'T00:00:00').toLocaleDateString('en-AU',{month:'short'}); }
+function findStayForDay(idx){ for(let i=idx;i>=0;i--){ if(DAYS[i] && DAYS[i].hotel){ const h=DAYS[i].hotel; if(idx<i+h.nights) return h; } } return null; }
+function activityMapQuery(a,d){
+ const txt=(a.name+' '+a.detail+' '+d.place).toLowerCase();
+ if(txt.includes('airport')&&txt.includes('queenstown')) return 'Queenstown Airport New Zealand';
+ if(txt.includes('christchurch airport')) return 'Christchurch Airport New Zealand';
+ if(txt.includes('milford')) return 'Milford Sound New Zealand';
+ if(txt.includes('realnz')) return 'RealNZ Visitor Centre Te Anau';
+ if(txt.includes('skyline')) return 'Skyline Gondola Queenstown';
+ if(txt.includes('bungy')||txt.includes('nevis')) return 'AJ Hackett Bungy Centre Queenstown';
+ if(txt.includes('cardrona')) return 'Cardrona Alpine Resort New Zealand';
+ if(txt.includes('hooker')) return 'Hooker Valley Track Mount Cook New Zealand';
+ if(txt.includes('pukaki')) return 'Lake Pukaki viewpoint New Zealand';
+ if(txt.includes('tekapo springs')) return 'Tekapo Springs New Zealand';
+ if(txt.includes('church of the good shepherd')) return 'Church of the Good Shepherd Lake Tekapo';
+ if(txt.includes('botanic')) return 'Christchurch Botanic Gardens New Zealand';
+ if(txt.includes('pescatore')) return 'Pescatore Restaurant Christchurch';
+ if(txt.includes('drive')) return d.place+' New Zealand';
+ return d.place+' New Zealand';
+}
+function activityInsight(a,d){
+ const t=(a.name+' '+a.detail).toLowerCase();
+ if(t.includes('flight')) return 'Give yourselves airport buffer: check in online, keep passports/NZeTA handy, and don’t bury winter layers in checked luggage.';
+ if(t.includes('car rental')||t.includes('rav4')) return 'Before leaving the lot: photograph the car, confirm snow-chain policy, fuel type, toll/roadside contact, and the one-way drop-off details.';
+ if(t.includes('drive')) return 'Treat winter driving as part of the activity: top up fuel, download offline maps, check NZTA road status, and stop before sunset where possible.';
+ if(t.includes('milford')) return 'Pack waterproofs, warm layers and snacks. The coach/cruise day is long, cold, wet and spectacular — exactly the sort of chaos NZ specialises in.';
+ if(t.includes('bungy')||t.includes('nevis')) return 'Arrive early, eat light, wear secure shoes, and don’t overthink the jump. Overthinking is how the lizard brain wins.';
+ if(t.includes('gondola')) return 'Best paired with a relaxed lunch or sunset drink up top. Check cloud cover before committing too much time.';
+ if(t.includes('cardrona')||t.includes('ski')) return 'Leave early, collect gear calmly, and keep a spare pair of dry socks in the car. Beginner lessons are much better when nobody is rushing.';
+ if(t.includes('hooker')) return 'Flat but exposed: windproof jacket, gloves and waterproof boots. Start earlier for parking and better light over Aoraki.';
+ if(t.includes('tekapo')||t.includes('stargazing')||t.includes('dark sky')) return 'Check cloud forecast before paying. If skies are clear, this is one of the trip’s proper “remember this forever” moments.';
+ if(t.includes('botanic')||t.includes('gardens')) return 'Easy final-day decompression: low effort, pretty, and close to The George. Excellent after too many heroic drives.';
+ return 'Good nearby move: open the map link, check travel time, then look for a café or viewpoint within a 10-minute detour.';
+}
+function activityLinks(a,d){
+ const hasMap=(a.links||[]).some(x=>x.includes('maps.google.com')||x.includes('Google Maps'));
+ let links=[...(a.links||[])];
+ if(!hasMap) links.push(lbtn('Map',mapsUrl(activityMapQuery(a,d))));
+ return links.join('');
+}
+function dayBookingPills(d,idx){
+ const h=findStayForDay(idx);
+ const pills=[];
+ if(h) pills.push(`<span class="info-pill">🏨 <strong>${h.name}</strong>${d.hotel?' · check-in':' · tonight'}</span>`);
+ d.acts.forEach(a=>{
+  const m=(a.detail||'').match(/(?:Ref|ref|booking ref)\s*([A-Z0-9-]+)/i);
+  if(m) pills.push(`<span class="info-pill">🎫 Ref <strong>${m[1]}</strong></span>`);
+  if(a.detail&&a.detail.match(/\b\d{1,2}:\d{2}\b/)) pills.push(`<span class="info-pill">🕐 <strong>${a.detail.match(/\b\d{1,2}:\d{2}\b/)[0]}</strong></span>`);
+ });
+ return pills.join('');
+}
+
+function primaryLocFromText(txt){
+ txt=(txt||'').toLowerCase();
+ if(txt.includes('te anau')||txt.includes('fiordland')||txt.includes('milford')) return 'Te Anau';
+ if(txt.includes('queenstown')||txt.includes('arrowtown')) return 'Queenstown';
+ if(txt.includes('wanaka')||txt.includes('wānaka')||txt.includes('cardrona')) return 'Wanaka';
+ if(txt.includes('tekapo')||txt.includes('pukaki')||txt.includes('cook')) return 'Lake Tekapo';
+ if(txt.includes('christchurch')) return 'Christchurch';
+ return 'Queenstown';
+}
+function dayLoc(d){ return primaryLocFromText(d.place+' '+d.tagline+' '+(d.acts||[]).map(a=>a.name+' '+a.detail).join(' ')); }
+function mergedFnbForLoc(loc){ const base=(EAT.find(e=>e.loc===loc)?.places||[]); const extra=(FNB_EXTRA.find(e=>e.loc===loc)?.places||[]); return [...base,...extra]; }
+function recLinksForItem(item,loc){ return `${lbtn('Map',mapsUrl(item.q||item.name+' '+loc))}${item.web?lbtn('Website',item.web):''}`; }
+function miniRecModule(title,sub,icon,items,loc,limit=3){
+ if(!items||!items.length) return '';
+ return `<div class="rec-module"><div class="rec-head"><div><div class="rec-title">${icon} ${title}</div><div class="rec-sub">${sub}</div></div></div><div class="rec-list">${items.slice(0,limit).map(p=>`<div class="rec-row"><div class="rec-ico">${p.icon||icon}</div><div style="flex:1;"><div class="rec-name">${p.name}</div><div class="rec-desc">${p.desc}</div><div class="rec-tags">${(p.tags||[p.type,p.price].filter(Boolean)).slice(0,3).map(t=>`<span class="rec-tag">${t}</span>`).join('')}</div><div class="act-links" style="margin-top:8px;">${p.links?p.links.slice(0,2).join(''):recLinksForItem(p,loc)}</div></div></div>`).join('')}</div></div>`;
+}
+function dayRecModules(d,i){
+ const loc=dayLoc(d);
+ const fnb=mergedFnbForLoc(loc).slice(0,3);
+ const acts=(ACTIVITY_RECS.find(x=>x.loc===loc)?.items||[]).slice(0,3);
+ const shops=(SHOPPING_RECS.find(x=>x.loc===loc)?.items||[]).slice(0,2);
+ return `${miniRecModule('Nearby F&B',loc+' options worth checking','🍽️',fnb,loc,3)}${miniRecModule('Activity maybes','Weather backups and nearby side quests','✨',acts,loc,3)}${miniRecModule('Shopping / local finds','Local makers, galleries and strolls','🛍️',shops,loc,2)}`;
+}
+
+function criticalTiles(d,idx){
+ const h=findStayForDay(idx);
+ const tiles=[];
+ const flight=d.acts.find(a=>(a.name+a.detail).toLowerCase().includes('air nz')||(a.name+a.detail).toLowerCase().includes('flight'));
+ const car=d.acts.find(a=>(a.name+a.detail).toLowerCase().includes('rav4')||(a.name+a.detail).toLowerCase().includes('car rental'));
+ if(flight) tiles.push(`<div class="key-tile"><div class="key-k">Flight</div><div class="key-v">Air NZ · 832630</div><div class="key-s">${flight.name.replace('Depart ','')}</div></div>`);
+ if(car) tiles.push(`<div class="key-tile"><div class="key-k">Car Rental</div><div class="key-v">Ezi · RAV4 AWD</div><div class="key-s">${car.name}</div></div>`);
+ if(h) tiles.push(`<div class="key-tile"><div class="key-k">Stay</div><div class="key-v">${h.name}</div><div class="key-s">Ref ${h.ref} · ${h.nights} night${h.nights>1?'s':''}</div></div>`);
+ const important=d.acts.find(a=>(a.detail||'').match(/Ref|ref|booking/i) && a!==flight && a!==car);
+ if(important) tiles.push(`<div class="key-tile"><div class="key-k">Booking</div><div class="key-v">${important.name.split('–')[0].trim()}</div><div class="key-s">${important.detail.match(/(?:Ref|ref|booking ref)\s*[A-Z0-9-]+/i)?.[0]||'See activity details'}</div></div>`);
+ return tiles.length?`<div class="sec-head"><h2>Key Details</h2></div><div class="key-grid">${tiles.slice(0,4).join('')}</div>`:'';
+}
+function enhancedDayCard(d,i,expanded=false){
+ const dd=new Date(d.date+'T00:00:00');
+ const acts=d.acts.map(a=>`<div class="activity-card"><div class="activity-top"><div class="activity-icon">${a.icon}</div><div class="activity-content"><div class="activity-title">${a.name}</div><div class="activity-detail">${a.detail}</div><div class="act-links">${activityLinks(a,d)}</div>${expanded?`<div class="activity-reco"><b>Mira note:</b> ${activityInsight(a,d)}</div>`:''}</div></div></div>`).join('');
+ const h=d.hotel?`<div class="activity-card"><div class="activity-top"><div class="activity-icon">🏨</div><div class="activity-content"><div class="activity-title">Tonight: ${d.hotel.name}</div><div class="activity-detail">${d.hotel.addr}<br>${d.hotel.note}<br>Ref ${d.hotel.ref} · ${d.hotel.display}</div><div class="act-links">${lbtn('Hotel website',d.hotel.website)}${lbtn('Map',mapsUrl(d.hotel.name+' '+d.hotel.addr))}${phoneBtn('Call',d.hotel.phone)}</div></div></div></div>`:'';
+ const alerts=[...(d.warns||[]).map(w=>`<div class="alert alert-danger">⚠️ <span>${w}</span></div>`),...(d.notes||[]).map(n=>`<div class="alert alert-info">💡 <span>${n}</span></div>`)].join('');
+ const loc=dayLoc(d); const quick=(!expanded)?`<div style="padding:0 16px 13px;"><div class="rec-tags"><span class="rec-tag">🍽️ ${mergedFnbForLoc(loc).length} F&amp;B picks</span><span class="rec-tag">✨ ${(ACTIVITY_RECS.find(x=>x.loc===loc)?.items||[]).length} maybes</span><span class="rec-tag">🛍️ ${(SHOPPING_RECS.find(x=>x.loc===loc)?.items||[]).length} local finds</span></div></div>`:''; return `<div class="itinerary-card"><div class="itinerary-head"><div class="itinerary-date"><div>${dayNum(d.date)}</div><div class="m">${dayMon(d.date)}</div></div><div style="flex:1;"><div class="itinerary-title">${d.place}</div><div class="itinerary-sub">${fmtDate(d.date,{weekday:'long',day:'numeric',month:'long'})} · ${d.tagline}</div><div class="info-pills">${dayBookingPills(d,i)}</div></div></div>${acts}${h}${quick}${alerts?`<div style="padding:12px 16px 4px;">${alerts}</div>`:''}</div>${expanded?dayRecModules(d,i):''}`;
+}
+function legInsight(leg){
+ const name=leg.name.toLowerCase();
+ if(name.includes('fiordland')) return 'This is the remote, wild start: long scenic travel, weather-led plans, and the Milford Sound day. Keep layers, snacks and road-condition checks close.';
+ if(name.includes('queenstown')) return 'This is the adrenaline + views leg. Short distances, big activities, and restaurant pressure. Book dinners and leave buffer around Nevis.';
+ if(name.includes('wanaka')) return 'This is the ski base leg. The rhythm is early starts, Cardrona conditions, gear logistics, and lazy lakefront recovery after the mountain.';
+ if(name.includes('tekapo')||name.includes('cook')) return 'This is the big landscape leg: Aoraki, Pukaki blue water, Hooker Valley, hot pools and dark skies. Weather decides how epic it gets.';
+ return 'Final reset before flying home: easier driving, good food, gardens, car drop-off and airport timing.';
+}
+const ROUTE_EMBED='https://www.google.com/maps/dir/Queenstown+Airport,+Sir+Henry+Wigley+Drive,+Frankton,+Queenstown+9300,+New+Zealand/Te+Anau,+New+Zealand/Queenstown,+New+Zealand/Wanaka,+New+Zealand/Cardrona+Alpine+Resort,+Cardrona+Valley+Rd,+Cardrona+9305,+New+Zealand/Aoraki+Mount+Cook,+7999,+New+Zealand/Lake+Tekapo,+7999,+New+Zealand/Christchurch+Airport,+30+Durey+Road,+Harewood,+Christchurch+8053,+New+Zealand?output=embed';
+const ROUTE_LINK='https://maps.app.goo.gl/aeY3G8nsg5mVSE8M7';
+
 // ═══════════════════════════════════════════════════════════
 // HOME – TODAY VIEW
 // ═══════════════════════════════════════════════════════════
 function buildToday(){
  const td = tripDay();
  const el = document.getElementById('home-today');
- const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
  let html='';
-
- // Progress
  const pct=Math.max(0,Math.min(100,(td/11)*100));
- const progLbl = td<0?`Starts in ${Math.abs(td)} day${Math.abs(td)===1?'':'s'}`
-  : td>=11?'Trip complete ✓':`Day ${td+1} of 11`;
- html+=`<div style="padding:0 16px 4px;">
-  <div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div>
-  <div class="prog-meta"><span>${progLbl}</span><span>30 Jun – 10 Jul 2026</span></div>
- </div>`;
-
- // Weather slot
+ const progLbl = td<0?`Starts in ${Math.abs(td)} day${Math.abs(td)===1?'':'s'}` : td>=11?'Trip complete ✓':`Day ${td+1} of 11`;
+ html+=`<div style="padding:0 16px 4px;"><div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div><div class="prog-meta"><span>${progLbl}</span><span>30 Jun – 10 Jul 2026</span></div></div>`;
  html+=`<div id="wx-card-slot"></div>`;
-
  if(td>=0&&td<11){
   const d=DAYS[td];
-  // Hero
-  html+=`<div class="hero-card">
-   <img src="${d.img}" alt="${d.place}" loading="lazy" style="height:220px;">
-   <div class="hero-overlay">
-    <div class="hero-eyebrow">${new Date(d.date+'T00:00:00').toLocaleDateString('en-AU',{weekday:'long',day:'numeric',month:'long'})}</div>
-    <div class="hero-title">${d.place}</div>
-    <div class="hero-sub">${d.tagline}</div>
-   </div>
-   <div class="hero-badge">Day ${td+1}</div>
-  </div>`;
-
-  // Today's activities
-  html+=`<div class="sec-head"><h2>Today's Plan</h2></div>
-  <div class="gcard"><div class="gcard-body">`;
-  d.acts.forEach(a=>{
-   html+=`<div class="act-row2">
-    <div class="act-ico">${a.icon}</div>
-    <div class="act-meta">
-     <div class="act-title">${a.name}</div>
-     <div class="act-detail">${a.detail}</div>
-     ${a.links.length?`<div class="act-links">${a.links.join('')}</div>`:''}
-    </div>
-   </div>`;
-  });
-  html+='</div></div>';
-
-  // Hotel if checking in today
-  if(d.hotel){
-   const h=d.hotel;
-   html+=`<div class="sec-head"><h2>Tonight's Stay</h2></div>
-   <div class="gcard">
-    <img src="${h.img}" alt="${h.name}" style="height:130px;">
-    <div class="gcard-body">
-     <div class="act-title">${h.name}</div>
-     <div class="hotel-meta" style="margin-top:6px;">📍 ${h.addr}<br>📞 <a href="tel:${h.phone}">${h.display}</a><br>ℹ️ ${h.note}</div>
-     <div class="ref-badge">Ref <span>${BOOKINGS.find(b=>b.title.includes(h.name.split(' ').slice(0,2).join(' ')))?BOOKINGS.find(b=>b.rows.some(r=>r.v&&r.v.includes&&r.v.includes('ANZ')||false)):'—'}</span></div>
-     <div class="act-links" style="margin-top:10px;">${lbtn('Website',h.website)} ${lbtn('Map',mapsUrl(h.addr))}</div>
-    </div>
-   </div>`;
-  }
-
-  // Warns
-  if(d.warns.length||d.notes.length){
-   html+=`<div style="padding:0 16px 4px;">`;
-   d.warns.forEach(w=>{html+=`<div class="alert alert-danger">⚠️ <span>${w}</span></div>`;});
-   d.notes.forEach(n=>{html+=`<div class="alert alert-info">💡 <span>${n}</span></div>`;});
-   html+=`</div>`;
-  }
+  const leg=LEGS[d.leg];
+  html+=`<div class="hero-card"><img src="${d.img}" alt="${d.place}" loading="lazy" style="height:220px;"><div class="hero-overlay"><div class="hero-eyebrow">${fmtDate(d.date)}</div><div class="hero-title">${d.place}</div><div class="hero-sub">${d.tagline}</div></div><div class="hero-badge">Day ${td+1}</div></div>`;
+  html+=criticalTiles(d,td);
+  html+=`<div class="sec-head"><h2>Today's Full Plan</h2></div>${enhancedDayCard(d,td,true)}`;
+  html+=`<div class="sec-head"><h2>Current Leg</h2><button class="seeall" onclick="setHomeView('leg',document.querySelector('#home-seg .seg-btn:nth-child(2)'))">Open</button></div><div class="gcard"><div class="gcard-body"><div class="act-title">${leg.name}</div><div class="act-detail" style="margin-top:4px;">${leg.dates} · ${legInsight(leg)}</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;">${leg.tags.map(t=>`<span class="eat-pill">${t}</span>`).join('')}</div><div class="act-links" style="margin-top:10px;">${leg.links.join('')}</div></div></div>`;
  } else if(td<0){
-  // Pre-trip
-  html+=`<div class="hero-card">
-   <img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?w=900&q=75" alt="NZ" style="height:220px;">
-   <div class="hero-overlay">
-    <div class="hero-eyebrow">Departing 30 Jun 2026</div>
-    <div class="hero-title">South Island, New Zealand</div>
-    <div class="hero-sub">Te Anau · Queenstown · Wanaka · Tekapo · Christchurch</div>
-   </div>
-   <div class="hero-badge">${Math.abs(td)}d to go</div>
-  </div>`;
+  html+=`<div class="hero-card"><img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?auto=format&fit=crop&w=1400&q=80" alt="NZ" style="height:220px;"><div class="hero-overlay"><div class="hero-eyebrow">Departing 30 Jun 2026</div><div class="hero-title">South Island, New Zealand</div><div class="hero-sub">Te Anau · Queenstown · Wanaka · Tekapo · Christchurch</div></div><div class="hero-badge">${Math.abs(td)}d to go</div></div>`;
+  html+=`<div class="sec-head"><h2>First Day Preview</h2></div>${enhancedDayCard(DAYS[0],0,true)}`;
  } else {
-  html+=`<div style="padding:32px 16px;text-align:center;color:var(--label2);">
-   <div style="font-size:48px;margin-bottom:12px;">🏔️</div>
-   <div style="font-size:20px;font-weight:600;color:var(--label);margin-bottom:6px;">Trip complete!</div>
-   <div style="font-size:15px;">Hope it was incredible.</div>
-  </div>`;
+  html+=`<div style="padding:32px 16px;text-align:center;color:var(--label2);"><div style="font-size:48px;margin-bottom:12px;">🏔️</div><div style="font-size:20px;font-weight:600;color:var(--label);margin-bottom:6px;">Trip complete!</div><div style="font-size:15px;">Hope it was incredible.</div></div>`;
  }
-
- // Always-on alerts
- html+=`<div style="padding:0 16px 8px;">
-  <div class="alert alert-warn">🗓️ <span>NZ School Holidays 4–19 Jul – ski areas and restaurants will be busier. Book ahead.</span></div>
-  <div class="alert alert-info">🚗 <span>Drive on the left · Australian licence valid · RAV4 drop-off Christchurch Airport by 13:00 on 10 Jul.</span></div>
-  <div class="alert alert-info">🌡️ <span>July temperatures: Queenstown 1–9°C · Wanaka 0–8°C · Tekapo −3–6°C. Thermal layers essential.</span></div>
- </div>`;
-
- html+='<div style="height:8px;"></div>';
- el.innerHTML=html;
- buildWeather(td);
+ html+=`<div style="padding:0 16px 8px;"><div class="alert alert-warn">🗓️ <span>NZ School Holidays 4–19 Jul – ski areas and restaurants will be busier. Book ahead.</span></div><div class="alert alert-info">🚗 <span>Drive on the left · Australian licence valid · RAV4 drop-off Christchurch Airport by 13:00 on 10 Jul.</span></div><div class="alert alert-info">🌡️ <span>July temperatures: Queenstown 1–9°C · Wanaka 0–8°C · Tekapo −3–6°C. Thermal layers essential.</span></div></div>`;
+ html+='<div style="height:8px;"></div>'; el.innerHTML=html; buildWeather(td);
 }
 
 // ═══════════════════════════════════════════════════════════
 // HOME – LEG VIEW
 // ═══════════════════════════════════════════════════════════
 function buildLeg(){
- const td=tripDay();
- const el=document.getElementById('home-leg');
- if(el.dataset.built) return;
- el.dataset.built='1';
- // Find current leg
- const curLegIdx = td>=0&&td<11 ? DAYS[td].leg : 0;
- const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
+ const td=tripDay(); const el=document.getElementById('home-leg');
+ const curLegIdx = td>=0&&td<11 ? DAYS[td].leg : 0; const leg=LEGS[curLegIdx];
  let html='<div style="height:4px;"></div>';
- LEGS.forEach((leg,li)=>{
-  const isCur = li===curLegIdx&&td>=0&&td<11;
-  html+=`<div class="gcard" style="${isCur?'border-color:var(--blue);box-shadow:0 0 0 1.5px var(--blue),var(--glass-shadow2);':''}">
-   <div class="gcard-img"><img src="${leg.img}" alt="${leg.name}" loading="lazy" style="height:160px;">
-    <div class="gcard-img-overlay">
-     ${isCur?'<div style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:4px;">CURRENT LEG</div>':''}
-     <div class="gcard-img-title">${leg.name}</div>
-     <div class="gcard-img-sub">${leg.dates}</div>
-    </div>
-   </div>
-   <div class="gcard-body">
-    <div style="display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;">${leg.tags.map(t=>`<span class="eat-pill">${t}</span>`).join('')}</div>`;
-
-  leg.days.forEach(di=>{
-   const d=DAYS[di];
-   const dd=new Date(d.date+'T00:00:00');
-   const isToday=Math.floor((today0()-new Date(d.date+'T00:00:00'))/86400000)===0;
-   html+=`<div class="act-row2">
-    <div class="act-ico" style="${isToday?'background:var(--blue-bg);':''}">
-     <span style="font-size:12px;font-weight:700;color:${isToday?'var(--blue)':'var(--label2)'};">${dd.getDate()}<br><span style="font-size:9px;font-weight:500;">${months[dd.getMonth()]}</span></span>
-    </div>
-    <div class="act-meta">
-     <div class="act-title" style="${isToday?'color:var(--blue);':''}">${d.place}</div>
-     <div class="act-detail">${d.tagline}</div>
-     <div class="act-links">${d.acts.flatMap(a=>a.links).slice(0,2).join('')}</div>
-    </div>
-   </div>`;
-  });
-
-  html+=`<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${leg.links.join('')}</div>
-  </div></div>`;
- });
- html+='<div style="height:8px;"></div>';
- el.innerHTML=html;
+ html+=`<div class="gcard" style="border-color:var(--blue);box-shadow:0 0 0 1.5px var(--blue),var(--glass-shadow2);"><div class="gcard-img"><img src="${leg.img}" alt="${leg.name}" loading="lazy" style="height:175px;"><div class="gcard-img-overlay"><div style="font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:4px;">CURRENT LEG</div><div class="gcard-img-title">${leg.name}</div><div class="gcard-img-sub">${leg.dates}</div></div></div><div class="gcard-body"><div class="act-title">What this leg is about</div><div class="act-detail" style="margin-top:5px;">${legInsight(leg)}</div><div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:12px;">${leg.tags.map(t=>`<span class="eat-pill">${t}</span>`).join('')}</div><div class="act-links" style="margin-top:12px;">${leg.links.join('')}</div></div></div>`;
+ html+=`<div class="sec-head"><h2>Leg Days</h2></div>`;
+ leg.days.forEach(di=>{ html+=enhancedDayCard(DAYS[di],di,false); });
+ const eats=EAT.find(e=>leg.name.includes(e.loc)||leg.tags.join(' ').includes(e.loc)||e.loc==='Te Anau'&&leg.name.includes('Fiordland')||e.loc==='Lake Tekapo'&&leg.name.includes('Tekapo'));
+ if(eats){ html+=`<div class="sec-head"><h2>Nearby Food Moves</h2></div><div class="gcard"><div class="gcard-body">${eats.places.slice(0,3).map(p=>`<div class="act-row2"><div class="act-ico">🍽️</div><div class="act-meta"><div class="act-title">${p.name}</div><div class="act-detail">${p.desc}</div><div class="act-links">${p.links.slice(0,2).join('')}</div></div></div>`).join('')}</div></div>`; }
+ html+='<div style="height:8px;"></div>'; el.innerHTML=html;
 }
 
 // ═══════════════════════════════════════════════════════════
 // HOME – FULL TRIP VIEW
 // ═══════════════════════════════════════════════════════════
 function buildTrip(){
- const el=document.getElementById('home-trip');
- if(el.dataset.built) return;
- el.dataset.built='1';
- const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
- const td=tripDay();
-
- let html='<div style="height:4px;"></div>';
- DAYS.forEach((d,i)=>{
-  const dd=new Date(d.date+'T00:00:00');
-  const past=i<td; const isT=i===td&&td>=0&&td<11;
-  html+=`<div class="gcard" style="${isT?'border-color:var(--blue);':''}${past?'opacity:.55;':''}">
-   <div class="gcard-img"><img src="${d.img}" alt="${d.place}" loading="lazy" style="height:130px;">
-    <div class="gcard-img-overlay">
-     ${isT?'<div style="font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:3px;">TODAY</div>':''}
-     <div class="gcard-img-title" style="font-size:15px;">${d.place}</div>
-     <div class="gcard-img-sub">${dd.toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short'})}</div>
-    </div>
-   </div>
-   <div class="gcard-body" style="padding:12px 14px;">
-    <div class="act-detail" style="margin-bottom:8px;">${d.tagline}</div>
-    ${d.hotel?`<div class="alert alert-info" style="margin-bottom:8px;">🏨 ${d.hotel.name} · ${d.hotel.nights} night${d.hotel.nights>1?'s':''}</div>`:''}
-    ${d.warns.map(w=>`<div class="alert alert-danger" style="margin-bottom:6px;">⚠️ ${w}</div>`).join('')}
-    <div class="act-links">${d.acts.flatMap(a=>a.links).slice(0,2).join('')}</div>
-   </div>
-  </div>`;
- });
- html+='<div style="height:8px;"></div>';
- el.innerHTML=html;
+ const el=document.getElementById('home-trip'); const td=tripDay(); let html='<div style="height:4px;"></div>';
+ html+=`<div class="sec-head"><h2>Full Trip Timeline</h2><button class="seeall" onclick="goTab('timeline')">Interactive</button></div>`;
+ DAYS.forEach((d,i)=>{ const isT=i===td&&td>=0&&td<11; const past=i<td; html+=`<div style="${past?'opacity:.60;':''}${isT?'border:1.5px solid var(--blue);border-radius:var(--r-lg);margin:0 15px 12px;':''}">${enhancedDayCard(d,i,false)}</div>`; });
+ html+='<div style="height:8px;"></div>'; el.innerHTML=html;
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -1144,76 +1324,116 @@ function setHomeView(view,btn){
 // ═══════════════════════════════════════════════════════════
 let mapReady=false;
 let activeCat='All';
-
+let selectedPoi=null;
+function setMapToPoi(i){
+ selectedPoi=i; const p=POIS[i];
+ document.getElementById('gmap-iframe').src=embedUrl(p.q,14);
+ document.querySelectorAll('.map-poi-card').forEach(c=>c.classList.remove('active'));
+ const card=document.getElementById('mpoi-'+i); if(card){ card.classList.add('active'); card.scrollIntoView({block:'nearest',inline:'nearest',behavior:'smooth'}); }
+}
+function showDriveRoute(){
+ document.getElementById('gmap-iframe').src=ROUTE_EMBED;
+ document.querySelectorAll('.map-poi-card').forEach(c=>c.classList.remove('active'));
+ document.getElementById('route-panel').style.display='block';
+}
 function buildMap(){
  if(mapReady) return; mapReady=true;
- const wrap=document.getElementById('map-frame-wrap');
- const h=Math.max(260,Math.floor(window.innerHeight*.40));
- wrap.style.height=h+'px';
- document.getElementById('gmap-iframe').style.height=h+'px';
- document.getElementById('gmap-iframe').src=`https://maps.google.com/maps?q=South+Island+New+Zealand&t=m&z=6&ie=UTF8&output=embed`;
-
+ const wrap=document.getElementById('map-frame-wrap'); const h=Math.max(280,Math.floor(window.innerHeight*.42));
+ wrap.style.height=h+'px'; document.getElementById('gmap-iframe').style.height=h+'px'; document.getElementById('gmap-iframe').src=ROUTE_EMBED;
  const fEl=document.getElementById('map-filters');
- MAP_CATS.forEach(cat=>{
-  const b=document.createElement('button');
-  b.className='chip'+(cat==='All'?' active':'');
-  b.textContent=cat;
-  b.onclick=()=>filterMap(cat,b);
-  fEl.appendChild(b);
- });
-
+ ['Drive Route',...MAP_CATS].forEach(cat=>{ const b=document.createElement('button'); b.className='chip'+(cat==='Drive Route'?' active':''); b.textContent=cat; b.onclick=()=>{ if(cat==='Drive Route'){ document.querySelectorAll('#map-filters .chip').forEach(x=>x.classList.remove('active')); b.classList.add('active'); showDriveRoute(); } else filterMap(cat,b); }; fEl.appendChild(b); });
  const grid=document.getElementById('map-poi-grid');
- grid.innerHTML=POIS.map((p,i)=>`
-  <div class="map-poi-card" data-cat="${p.cat}" id="mpoi-${i}">
-   <div class="map-poi-name">${p.name}</div>
-   <div class="map-poi-cat">${p.cat} · ${p.loc}</div>
-   <div class="map-poi-links">
-    <a href="${mapsUrl(p.q)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/></svg>Google Maps</a>
-    ${p.web?`<a href="${p.web}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Website</a>`:''}
-   </div>
-  </div>`).join('');
+ grid.insertAdjacentHTML('beforebegin',`<div id="route-panel" class="route-panel"><div class="route-title">Full driving route</div><div class="route-sub">Queenstown Airport → Te Anau → Queenstown → Wanaka/Cardrona → Aoraki Mt Cook → Lake Tekapo → Christchurch Airport.</div><div class="act-links" style="margin-top:8px;">${lbtn('Open route in Google Maps',ROUTE_LINK)}</div></div>`);
+ grid.innerHTML=POIS.map((p,i)=>`<div class="map-poi-card" data-cat="${p.cat}" id="mpoi-${i}" onclick="setMapToPoi(${i})"><div class="map-poi-name">${p.name}</div><div class="map-poi-cat">${p.cat} · ${p.loc}</div><div class="map-poi-links"><a href="${mapsUrl(p.q)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/></svg>Google Maps</a>${p.web?`<a href="${p.web}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Website</a>`:''}</div></div>`).join('');
 }
-
 function filterMap(cat,btn){
- activeCat=cat;
- document.querySelectorAll('#map-filters .chip').forEach(b=>b.classList.remove('active'));
- btn.classList.add('active');
- document.querySelectorAll('.map-poi-card').forEach(c=>{
-  c.classList.toggle('h',cat!=='All'&&c.dataset.cat!==cat);
- });
- const first=POIS.find(p=>cat==='All'||p.cat===cat);
- if(first) document.getElementById('gmap-iframe').src=`https://maps.google.com/maps?q=${encodeURIComponent(first.q)}&t=m&z=13&ie=UTF8&output=embed`;
+ activeCat=cat; document.getElementById('route-panel').style.display='none';
+ document.querySelectorAll('#map-filters .chip').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
+ document.querySelectorAll('.map-poi-card').forEach(c=>{ c.classList.toggle('h',cat!=='All'&&c.dataset.cat!==cat); });
+ const idx=POIS.findIndex(p=>cat==='All'||p.cat===cat); if(idx>=0) setMapToPoi(idx);
 }
 
 // ═══════════════════════════════════════════════════════════
-// EAT
+// TIMELINE
+// ═══════════════════════════════════════════════════════════
+let timelineBuilt=false;
+let activeTimelineDay=Math.max(0,Math.min(10,tripDay()));
+function buildTimeline(){
+ const el=document.getElementById('timeline-content');
+ if(!timelineBuilt){
+  timelineBuilt=true;
+  el.innerHTML=`<div class="tab-intro"><b>Spin the trip wheel.</b> Swipe across the days, or use the previous/next buttons. The selected day opens below with bookings, links, F&amp;B, activities and shopping suggestions.</div><div class="wheel-wrap"><div class="wheel-center"></div><div class="wheel-days" id="timeline-wheel"></div></div><div class="wheel-controls"><button class="wheel-btn" onclick="shiftTimeline(-1)">← Previous day</button><button class="wheel-btn" onclick="shiftTimeline(1)">Next day →</button></div><div id="timeline-detail"></div>`;
+  const wheel=document.getElementById('timeline-wheel');
+  wheel.innerHTML=DAYS.map((d,i)=>`<button class="wheel-day ${i===activeTimelineDay?'active':''}" onclick="selectTimelineDay(${i},true)"><div class="num">${dayNum(d.date)}</div><div class="dow">${new Date(d.date+'T00:00:00').toLocaleDateString('en-AU',{weekday:'short'})}</div><div class="loc">${d.place.split('→').slice(-1)[0].trim()}</div></button>`).join('');
+  wheel.addEventListener('scroll',()=>{ clearTimeout(wheel._t); wheel._t=setTimeout(()=>snapWheelSelection(),90); },{passive:true});
+ }
+ selectTimelineDay(activeTimelineDay,true);
+}
+function shiftTimeline(delta){ selectTimelineDay(Math.max(0,Math.min(DAYS.length-1,activeTimelineDay+delta)),true); }
+function snapWheelSelection(){ const wheel=document.getElementById('timeline-wheel'); if(!wheel) return; const mid=wheel.scrollLeft+wheel.clientWidth/2; let best=0,dist=Infinity; [...wheel.children].forEach((c,i)=>{ const cm=c.offsetLeft+c.offsetWidth/2; const d=Math.abs(cm-mid); if(d<dist){dist=d;best=i;} }); if(best!==activeTimelineDay) selectTimelineDay(best,false); }
+function selectTimelineDay(i,scroll){ activeTimelineDay=i; document.querySelectorAll('.wheel-day').forEach((b,idx)=>b.classList.toggle('active',idx===i)); if(scroll){ const wheel=document.getElementById('timeline-wheel'); const b=wheel?.children[i]; if(b) b.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'}); } renderTimelineDay(i); }
+function renderTimelineDay(i){
+ const d=DAYS[i];
+ let html=`<div class="sec-head"><h2>${fmtDate(d.date,{weekday:'long',day:'numeric',month:'long'})}</h2></div>${enhancedDayCard(d,i,true)}`;
+ html+=`<div class="sec-head"><h2>Booked timeline</h2></div><div class="timeline-rail">`;
+ d.acts.forEach(a=>{ html+=`<div class="titem"><div class="titem-title">${a.icon} ${a.name}</div><div class="titem-sub">${a.detail}</div><div class="act-links">${activityLinks(a,d)}</div></div>`; });
+ if(d.hotel){ html+=`<div class="titem"><div class="titem-title">🏨 ${d.hotel.name}</div><div class="titem-sub">${d.hotel.note}<br>Ref ${d.hotel.ref}</div><div class="act-links">${lbtn('Hotel',d.hotel.website)}${lbtn('Map',mapsUrl(d.hotel.name+' '+d.hotel.addr))}</div></div>`; }
+ html+='</div><div style="height:12px;"></div>';
+ document.getElementById('timeline-detail').innerHTML=html;
+}
+
+// ═══════════════════════════════════════════════════════════
+// F&B
 // ═══════════════════════════════════════════════════════════
 function buildEat(){
- let html='';
- EAT.forEach(loc=>{
-  html+=`<div style="padding:20px 16px 8px;"><span style="font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">${loc.loc}</span> <span style="font-size:13px;color:var(--label2);">${loc.dates}</span></div>`;
-  loc.places.forEach(p=>{
-   const menu=p.menu.map(m=>`<div class="menu-item"><div class="menu-dish">🍴 ${m.d}</div><div class="menu-why">${m.w}</div></div>`).join('');
+ let html='<div class="tab-intro"><b>F&amp;B shortlist.</b> A few planned anchors plus proper backups: cafés, pubs, bars, wine spots and easy dinners, grouped by where you will actually be.</div>';
+ ['Te Anau','Queenstown','Wanaka','Lake Tekapo','Christchurch'].forEach(loc=>{
+  const places=mergedFnbForLoc(loc);
+  html+=`<div style="padding:20px 16px 8px;"><span style="font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">${loc}</span> <span style="font-size:13px;color:var(--label2);">${places.length} picks</span></div>`;
+  places.forEach(p=>{
+   const menu=(p.menu||[]).map(m=>`<div class="menu-item"><div class="menu-dish">🍴 ${m.d}</div><div class="menu-why">${m.w}</div></div>`).join('');
    html+=`<div class="eat-card">
-    <img src="${p.img}" alt="${p.name}" loading="lazy" style="height:130px;">
+    <img src="${p.img}" alt="${p.name}" loading="lazy" style="height:150px;">
     <div class="eat-body">
      <div class="eat-eyebrow">${p.type}</div>
      <div class="eat-name">${p.name}</div>
      <div class="eat-desc">${p.desc}</div>
-     <div class="eat-pills">
-      ${p.addr?`<span class="eat-pill">📍 ${p.addr}</span>`:''}
-      ${p.hours?`<span class="eat-pill">🕐 ${p.hours}</span>`:''}
-      ${p.price?`<span class="eat-pill">${p.price}</span>`:''}
-     </div>
-     <div class="menu-box"><div class="menu-hd">Order These</div>${menu}</div>
+     <div class="eat-pills">${p.addr?`<span class="eat-pill">📍 ${p.addr}</span>`:''}${p.hours?`<span class="eat-pill">🕐 ${p.hours}</span>`:''}${p.price?`<span class="eat-pill">${p.price}</span>`:''}</div>
+     ${menu?`<div class="menu-box"><div class="menu-hd">Order / try these</div>${menu}</div>`:''}
      ${p.tip?`<div class="eat-tip">💡 <span>${p.tip}</span></div>`:''}
-     <div class="eat-links">${p.links.join('')}</div>
+     <div class="eat-links">${p.links?p.links.join(''):recLinksForItem(p,loc)}</div>
     </div>
    </div>`;
   });
  });
  html+='<div style="height:8px;"></div>';
  document.getElementById('eat-content').innerHTML=html;
+}
+
+// ═══════════════════════════════════════════════════════════
+// ACTIVITIES
+// ═══════════════════════════════════════════════════════════
+function buildActivities(){
+ let html='<div class="tab-intro"><b>Activities tab.</b> Booked items are already locked into each day; this page adds nearby maybes and weather backups by location. Anything here is also visible in day cards, timeline and map pins.</div>';
+ ACTIVITY_RECS.forEach(group=>{
+  html+=`<div style="padding:20px 16px 8px;"><span style="font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">${group.loc}</span> <span style="font-size:13px;color:var(--label2);">${group.items.length} maybes</span></div>`;
+  html+=`<div class="rec-module"><div class="rec-list">${group.items.map(p=>`<div class="rec-row"><div class="rec-ico">${p.icon}</div><div style="flex:1;"><div class="rec-name">${p.name}</div><div class="rec-desc"><b>${p.type}.</b> ${p.desc}</div><div class="rec-tags">${(p.tags||[]).map(t=>`<span class="rec-tag">${t}</span>`).join('')}</div><div class="act-links" style="margin-top:8px;">${recLinksForItem(p,group.loc)}</div></div></div>`).join('')}</div></div>`;
+ });
+ html+='<div style="height:16px;"></div>';
+ document.getElementById('activities-content').innerHTML=html;
+}
+
+// ═══════════════════════════════════════════════════════════
+// SHOPPING
+// ═══════════════════════════════════════════════════════════
+function buildShopping(){
+ let html='<div class="tab-intro"><b>Shopping without the airport-souvenir sadness.</b> Local makers, merino, galleries, bookstores, markets and pretty shopping streets that can be paired with breakfast or a lazy stroll.</div>';
+ SHOPPING_RECS.forEach(group=>{
+  html+=`<div style="padding:20px 16px 8px;"><span style="font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">${group.loc}</span> <span style="font-size:13px;color:var(--label2);">${group.items.length} ideas</span></div>`;
+  html+=`<div class="rec-module"><div class="rec-list">${group.items.map(p=>`<div class="rec-row"><div class="rec-ico">${p.icon}</div><div style="flex:1;"><div class="rec-name">${p.name}</div><div class="rec-desc"><b>${p.type}.</b> ${p.desc}</div><div class="rec-tags">${(p.tags||[]).map(t=>`<span class="rec-tag">${t}</span>`).join('')}</div><div class="act-links" style="margin-top:8px;">${recLinksForItem(p,group.loc)}</div></div></div>`).join('')}</div></div>`;
+ });
+ html+='<div style="height:16px;"></div>';
+ document.getElementById('shopping-content').innerHTML=html;
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -1247,6 +1467,12 @@ function buildInfo(){
   </div>`;
  });
 
+ // Recommendations index
+ html+=`<div style="padding:20px 16px 10px;font-size:20px;font-weight:700;color:var(--label);letter-spacing:-.4px;">Recommendation Index</div>`;
+ ['Te Anau','Queenstown','Wanaka','Lake Tekapo','Christchurch'].forEach(loc=>{
+  html+=`<div class="bk-card" style="margin:0 16px 12px;"><div class="bk-head"><div class="bk-head-icon">📍</div><div><div class="bk-head-title">${loc}</div><div class="bk-head-sub">F&amp;B · activities · shopping pins are on the Map tab</div></div></div><div class="bk-row"><span class="k">F&amp;B</span><span class="v">${mergedFnbForLoc(loc).slice(0,3).map(x=>x.name).join(' · ')}</span></div><div class="bk-row"><span class="k">Activities</span><span class="v">${(ACTIVITY_RECS.find(x=>x.loc===loc)?.items||[]).slice(0,3).map(x=>x.name).join(' · ')}</span></div><div class="bk-row"><span class="k">Shopping</span><span class="v">${(SHOPPING_RECS.find(x=>x.loc===loc)?.items||[]).slice(0,3).map(x=>x.name).join(' · ')}</span></div></div>`;
+ });
+
  // Essentials
  html+=`<div class="list-section">
   <div class="list-section-label">NZ Entry &amp; Essentials</div>
@@ -1276,6 +1502,9 @@ function goTab(name){
  document.querySelector(`[data-s="${name}"]`).classList.add('active');
  document.getElementById('scroll').scrollTop=0;
  if(name==='map') buildMap();
+ if(name==='timeline') buildTimeline();
+ if(name==='activities') buildActivities();
+ if(name==='shopping') buildShopping();
 }
 
 // ═══════════════════════════════════════════════════════════
@@ -1284,7 +1513,10 @@ function goTab(name){
 document.addEventListener('DOMContentLoaded',()=>{
  buildToday();
  buildEat();
+ buildActivities();
+ buildShopping();
  buildInfo();
+ buildTimeline();
 });
 </script>
 </body>
